@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge; charset=utf-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<meta name="description" content=""></meta>
+	<meta name="author" content=""></meta>
+	<title>VacinaWeb</title>
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js" />
+
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" />
+
+	<link rel="stylesheet" href="css/styles.css" />
+	<link rel="stylesheet" href="css/tabela.css" />
+
+</h:head>
+
+<h:body class="align">
+	<div class="siteContainer">
+		<div class="row">
+			<img src="http://www.canalalagoinhas.com.br/wp-content/uploads/2015/05/vacina-1024x640.jpg"
+						class="img-rounded" style="width: 300px; height: 150px;"></img>
+		</div>
+		<div>
+			<h:outputLabel class="labelTitulo" value="Seja bem vindo, usuário " />
+			<h:outputLabel id="tituloNome" class="labelTituloNome"
+				value="#{UsuarioMB.nomeUsuarioTela}" />
+			<h:outputLabel class="labelTitulo" value="." />
+			<br /> <br />
+			<h2>
+				<h:outputLabel class="labelSubTitulo" value="Menu do Usuário" />
+			</h2>
+			<br /> <br />
+		</div>
+
+			<div class="container">
+  <ul class="nav nav-justified">
+  	<li><a class="text-center" href="6_ADMManterPessoa.xhtml"><i class="fa fa-tag fa-5x"></i> <br></br>Cadastrar Pessoa</a></li>
+    <li><a class="text-center" href="6_ADMManterVacina.xhtml"><i class="fa fa-bookmark fa-5x"></i> <br></br>Cadastrar Vacina</a></li>
+  </ul>
+</div>
+	</div>
+</h:body>
+</html>

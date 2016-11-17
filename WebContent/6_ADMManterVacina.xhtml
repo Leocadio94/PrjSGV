@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge; charset=utf-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<meta name="description" content=""></meta>
+	<meta name="author" content=""></meta>
+	<title>VacinaWeb</title>
+
+
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" />
+
+	<link rel="stylesheet" href="css/teste.css" />
+	<link rel="stylesheet" href="css/styles.css" />
+
+</h:head>
+<h:body>
+
+	<div class="blended_grid">
+		<div class="topo">
+			<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="nav">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+						aria-controls="navbar"></button>
+
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="6_ADMManterVacina.xhtml"><i
+								class="fa fa-book"></i></a></li>
+						<li><a href="telaPesquisa.xhtml"><i class="fa fa-search"></i>
+								<li><a href="6_ADMManterPessoa.xhtml"> <i
+										class="fa fa-cart-plus"></i>
+								</a></li>
+								<li><a href="6_ADMManterVacina.xhtml">Vacinas</a></li>
+								<li><a href="7_ADMManterPessoa.xhtml">Pessoas</a></li>
+								<li role="presentation" class="dropdown"><a
+									class="dropdown-toggle" data-toggle="dropdown" href="#"
+									role="button" aria-haspopup="true" aria-expanded="false">
+										Categoria <span class="caret"></span>
+								</a></li>
+								<li><p>
+										<h:outputLabel style="color: white;"
+											rendered="${not empty loginMB.usuario}">Logado como: ${loginMB.usuario}</h:outputLabel>
+										<a
+											href="http://localhost:8080/Livraria/1_PortalPrincipal.html"
+											class="btn btn-info btn-lg"> <span
+											class="glyphicon glyphicon-log-out"></span> Log out
+										</a>
+									</p></li> </a></li>
+					</ul>
+				</div>
+			</div>
+			</nav>
+		</div>
+
+		<p:messages />
+
+		<div class="content">
+			<div class="col-md-6">
+				<h:form role="form" class="form-horizontal"
+					enctype="multipart/form-data">
+					<img
+						src="http://www.big1news.com.br/wp-content/uploads/2013/08/Campanha-Nacional-de-Vacina%C3%A7%C3%A3o-1.jpg"
+						class="img-rounded" style="width: 400px; height: 230px;"></img>
+
+					<h2>Administração de Vacinas</h2>
+
+					<div class="form-group">
+						<h:outputLabel class="col-md-4 control-label" value="Nome:" />
+						<div class="col-md-4">
+							<h:inputText styleClass="form-control"
+								value="${vaccineMB.currentVaccine.name}" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<h:outputLabel for="txtVal" class="col-md-4 control-label"
+							value="Data de Validade:" />
+						<div class="col-md-4">
+							<p:calendar id="txtVal"
+								value="${vaccineMB.currentVaccine.validate}"
+								pattern="dd/MM/yyyy" mask="true" locale="br" navigator="true" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<h:outputLabel class="col-md-4 control-label" value="Lote:" />
+						<div class="col-md-4">
+							<h:inputText styleClass="form-control"
+								value="${vaccineMB.currentVaccine.lot}" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<h:outputLabel class="col-md-4 control-label"
+							value="Tipo:" />
+
+						<div class="col-md-4">
+							<h:selectOneMenu styleClass="form-control"
+								converter="vaccineTypeConverter"
+								value="${vaccineMB.currentVaccine.vaccineType}" >
+								<f:selectItem itemLabel="Selecione o tipo..."
+									noSelectionOption="true" itemValue="" />
+								<f:selectItems value="#{vaccineMB.vaccineTypes}" var="vac" 
+												itemValue="#{vac}" itemLabel="#{vac.name}"/>
+							</h:selectOneMenu>
+						</div>
+					</div>
+
+					<center>
+
+					<div class="grupoBotao">
+
+						<div class="botao">
+							<h:commandButton styleClass="btn btn-success" value="Gravar"
+								action="${vaccineMB.create()}" />
+							<h:commandButton styleClass="btn btn-danger" value="Excluir"
+								action="${vaccineMB.remove()}" />
+
+
+						</div>
+
+					</div>
+					</center>
+
+				</h:form>
+				
+				<hr/>
+				
+				<h:form role="form" class="form-horizontal"
+					enctype="multipart/form-data">
+					<h2>Busca Avançada</h2>
+				</h:form>
+				
+				<hr/>
+				
+				<h:form>
+					<h2>Relatório</h2>
+					<h:panelGrid columns="2">
+						<a href="pdf/relatorio.pdf" class="btn btn-info btn-lg"> <span
+							class="glyphicon glyphicon-log-out"></span> Visualizar Relatório
+						</a>
+					</h:panelGrid>
+				</h:form>
+
+				<hr/>
+
+				<center>
+				<div class="rodape">
+					<span>VacinaWeb - Site em Desenvolvimento ® All Rights
+						Reserved 2016 - <a href="https://facebook.com" target="_blank"><i
+							class="fa fa-facebook-official"></i> Facebook</a> / <a
+						href="https://google.com" target="_blank"><i
+							class="fa fa-google"></i> Google</a>
+					</span>
+				</div>
+				</center>
+			</div>
+		</div>
+	</div>
+</h:body>
+</html>
+

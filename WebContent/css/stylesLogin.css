@@ -1,0 +1,47 @@
+@import url("reset.css");
+
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	background-image: url("img/fundao.png");
+	background-color: #ffffff;
+}
+
+}
+p {
+	padding: 20px;
+}
+
+#topo {
+	margin: 0 auto;
+	width: 1000px;
+}
+
+#nav {
+	float: left;
+	height: 40px;
+	width: 1500px;
+	background: #ffffff;
+}
+
+#content {
+	float: center;
+	background: #ffffff;
+	width: 1400px;
+}
+
+#barra {
+	float: left;
+	background: #33CCFF;
+	z-index: 200;
+	position: relative;
+	width: 20%;
+	font-size: 1em;
+
+}
+#rodape {
+	height: 40px;
+	width: 1000px;
+	background: #c0c0c0;
+	clear: both;
+}

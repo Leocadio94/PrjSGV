@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge; charset=utf-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<meta name="description" content=""></meta>
+	<meta name="author" content=""></meta>
+	<title>VacinaWeb</title>
+
+
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" />
+
+	<link rel="stylesheet" href="css/teste.css" />
+	<link rel="stylesheet" href="css/styles.css" />
+
+</h:head>
+<h:body>
+
+	<div class="blended_grid">
+		<div class="topo">
+			<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="nav">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+						aria-controls="navbar"></button>
+
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="6_ADMManterPessoa.xhtml"><i
+								class="fa fa-book"></i></a></li>
+						<li><a href="telaPesquisa.xhtml"><i class="fa fa-search"></i>
+								<li><a href="6_ADMManterVacina.xhtml"> <i
+										class="fa fa-cart-plus"></i>
+								</a></li>
+								<li><a href="6_ADMManterVacina.xhtml">Vacinas</a></li>
+								<li><a href="7_ADMManterPessoa.xhtml">Pessoas</a></li>
+								<li role="presentation" class="dropdown"><a
+									class="dropdown-toggle" data-toggle="dropdown" href="#"
+									role="button" aria-haspopup="true" aria-expanded="false">
+										Categoria <span class="caret"></span>
+								</a></li>
+								<li><p>
+										<h:outputLabel style="color: white;"
+											rendered="${not empty loginMB.usuario}">Logado como: ${loginMB.usuario}</h:outputLabel>
+										<a
+											href="http://localhost:8080/Livraria/1_PortalPrincipal.html"
+											class="btn btn-info btn-lg"> <span
+											class="glyphicon glyphicon-log-out"></span> Log out
+										</a>
+									</p></li> </a></li>
+					</ul>
+				</div>
+			</div>
+			</nav>
+		</div>
+
+		<p:messages />
+
+		<div class="content">
+			<div class="col-md-6">
+				<h:form id="form1" role="form" class="form-horizontal"
+					enctype="multipart/form-data">
+					<img
+						src="http://www.big1news.com.br/wp-content/uploads/2013/08/Campanha-Nacional-de-Vacina%C3%A7%C3%A3o-1.jpg"
+						class="img-rounded" style="width: 400px; height: 230px;"></img>
+
+					<h2>Cadastro de Usuários</h2>
+					<h:panelGroup id="pPrincipal">
+
+						<div class="form-group">
+							<h:outputLabel for="txtCPF" class="col-md-4 control-label"
+								value="CPF:" />
+							<div class="col-md-4">
+								<h:inputText id="txtCPF" styleClass="form-control"
+									value="${personMB.currentPerson.cpf}" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<h:outputLabel class="col-md-4 control-label" value="Nome:" />
+							<div class="col-md-4">
+								<h:inputText styleClass="form-control"
+									value="${personMB.currentPerson.name}" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<h:outputLabel class="col-md-4 control-label" value="RG:" />
+							<div class="col-md-4">
+								<h:inputText styleClass="form-control"
+									value="${personMB.currentPerson.rg}" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<h:outputLabel class="col-md-4 control-label" value="Peso:" />
+							<div class="col-md-4">
+								<h:inputText styleClass="form-control"
+									value="${personMB.currentPerson.weight}" />
+							</div>
+						</div>
+
+						<div class="form-group">
+
+							<h:outputLabel class="col-md-4 control-label" value="Tatuagem:" />
+
+							<div class="col-md-4">
+								<h:selectOneMenu styleClass="form-control"
+									value="${personMB.currentPerson.has_tattoo}">
+									<f:selectItem itemLabel="Selecione a opção..."
+										noSelectionOption="true" itemValue="" />
+									<f:selectItem itemLabel="Sim" itemValue="#{true}" />
+									<f:selectItem itemLabel="Não" itemValue="#{false}" />
+								</h:selectOneMenu>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<h:outputLabel for="txtDataNasc" class="col-md-4 control-label"
+								value="Data da Nascimento:" />
+							<div class="col-md-4">
+								<p:calendar id="txtDataNasc"
+									value="${personMB.currentPerson.dtBirth}" pattern="dd/MM/yyyy"
+									mask="true" locale="br" navigator="true" />
+							</div>
+						</div>
+
+					</h:panelGroup>
+					<hr />
+
+					<h:panelGroup id="pAddress">
+						<div class="form-group">
+
+							<h:outputLabel class="col-md-4 control-label"
+								value="Endereço(s):" />
+							<div class="col-md-4">
+								<h:inputText id="txtAddress" styleClass="form-control"
+									value="${personMB.currentAddress.address}" required="true"
+									label="Endereço" />
+								<p:message for="txtAddress" />
+							</div>
+						</div>
+						<div class="form-group">
+							<h:outputLabel class="col-md-4 control-label"
+								value="Número do endereço:" />
+							<div class="col-md-4">
+								<h:inputText id="txtNumberAdr" styleClass="form-control"
+									value="${personMB.currentAddress.number}" required="true"
+									label="Número">
+									<f:validateDoubleRange minimum="1" />
+								</h:inputText>
+								<p:message for="txtNumberAdr" />
+								<p:commandLink value="Adicionar endereço"
+									action="#{personMB.addAddress}" update="dAddress"
+									process="@this form1:pAddress form1:pPrincipal" />
+							</div>
+						</div>
+						<div class="form-group">
+							<h:outputLabel class="col-md-4 control-label" value="" />
+							<div class="col-md-4">
+								<p:outputPanel id="dAddress">
+									<p:dataList value="${personMB.addresses}" var="adr"
+										emptyMessage="Nenhum endereço.">
+						            #{adr.address} - #{adr.number}
+						        </p:dataList>
+								</p:outputPanel>
+							</div>
+						</div>
+					</h:panelGroup>
+
+					<hr />
+
+					<h:panelGroup id="pEmail">
+
+						<div class="form-group">
+
+							<h:outputLabel class="col-md-4 control-label" value="E-mail(s):" />
+							<div class="col-md-4">
+								<h:inputText id="txtEmail" styleClass="form-control"
+									value="${personMB.currentEmail.email}" required="true"
+									label="E-mail" />
+								<p:message for="txtEmail" />
+								<p:commandLink value="Adicionar e-mail"
+									action="#{personMB.addEmail}" update="dEmail"
+									process="@this form1:pEmail" />
+							</div>
+						</div>
+						<div class="form-group">
+							<h:outputLabel class="col-md-4 control-label" value="" />
+							<div class="col-md-4">
+								<p:outputPanel id="dEmail">
+									<p:dataList value="${personMB.emails}" var="em"
+										emptyMessage="Nenhum email.">
+						            #{em.email}
+						        </p:dataList>
+								</p:outputPanel>
+							</div>
+						</div>
+					</h:panelGroup>
+
+					<hr />
+
+					<h:panelGroup id="pDependent">
+
+						<div class="form-group">
+							<h:outputLabel class="col-md-4 control-label"
+								value="CPF do(s) Dependente(s):" />
+							<div class="col-md-4">
+								<h:inputText id="txtCpfDep" styleClass="form-control"
+									value="${personMB.currentDependent.cpfDependent}"
+									required="true" label="CPF do Dependente" />
+								<p:message for="txtCpfDep" />
+								<p:commandLink value="Adicionar dependente"
+									action="#{personMB.addDependent}" update="dDependent"
+									process="@this form1:pDependent" />
+							</div>
+						</div>
+						<div class="form-group">
+							<h:outputLabel class="col-md-4 control-label" value="" />
+							<div class="col-md-4">
+								<p:outputPanel id="dDependent">
+									<p:dataList value="${personMB.dependents}" var="dep"
+										emptyMessage="Nenhum dependente.">
+						            #{dep.cpfDependent}
+						        </p:dataList>
+								</p:outputPanel>
+							</div>
+						</div>
+
+					</h:panelGroup>
+
+					<hr />
+
+					<h:panelGroup id="pDisease">
+						<div class="form-group">
+							<h:outputLabel class="col-md-4 control-label" value="Doença(s):" />
+							<div class="col-md-4">
+								<h:inputText id="txtDisease" styleClass="form-control"
+									value="${personMB.currentDisease.description}" required="true"
+									label="Doença" />
+								<p:message for="txtDisease" />
+								<p:commandLink value="Adicionar doença"
+									action="#{personMB.addDisease}" update="dDisease"
+									process="@this form1:pDisease" />
+							</div>
+						</div>
+						<div class="form-group">
+							<h:outputLabel class="col-md-4 control-label" value="" />
+							<div class="col-md-4">
+								<p:outputPanel id="dDisease">
+									<p:dataList value="${personMB.diseases}" var="doe"
+										emptyMessage="Nenhum doença">
+						            #{doe.description}
+						        </p:dataList>
+								</p:outputPanel>
+							</div>
+						</div>
+					</h:panelGroup>
+
+					<hr />
+
+					<h:panelGroup id="pAllergy">
+
+						<div class="form-group">
+							<h:outputLabel class="col-md-4 control-label" value="Alergia(s):" />
+							<div class="col-md-4">
+								<h:inputText id="txtAllergy" styleClass="form-control"
+									value="${personMB.currentAllergy.description}" required="true"
+									label="Alergia" />
+								<p:message for="txtAllergy" />
+								<p:commandLink value="Adicionar alergia"
+									action="#{personMB.addAllergy}" update="dAllergy"
+									process="@this form1:pAllergy" />
+							</div>
+						</div>
+						<div class="form-group">
+							<h:outputLabel class="col-md-4 control-label" value="" />
+							<div class="col-md-4">
+								<p:outputPanel id="dAllergy">
+									<p:dataList value="${personMB.allergies}" var="aller"
+										emptyMessage="Nenhuma alergia">
+						            #{aller.description}
+						        </p:dataList>
+								</p:outputPanel>
+							</div>
+						</div>
+					</h:panelGroup>
+
+					<hr />
+
+					<h:panelGroup id="pVaccination">
+
+						<div class="form-group">
+							<h:outputLabel class="col-md-4 control-label" value="Vacina:" />
+
+							<div class="col-md-4">
+								<h:selectOneMenu id="slctVaccine" styleClass="form-control"
+									converter="vaccineConverter"
+									value="${personMB.currentVaccination.vaccine}">
+									<f:selectItem itemLabel="Selecione a vacina..."
+										noSelectionOption="true" itemValue="" />
+									<f:selectItems value="#{personMB.vaccines}" var="vacc"
+										itemValue="#{vacc}" itemLabel="#{vacc.name}" />
+								</h:selectOneMenu>
+								<p:message for="slctVaccine" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<h:outputLabel class="col-md-4 control-label"
+								value="Data da vacinação:" />
+							<div class="col-md-4">
+								<p:calendar id="txtDateVac"
+									value="${personMB.currentVaccination.dateVaccination}"
+									pattern="dd/MM/yyyy" mask="true" locale="br" navigator="true"
+									required="true" label="Data da vacinação" />
+								<p:message for="txtDateVac" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<h:outputLabel class="col-md-4 control-label" value="Dose:" />
+							<div class="col-md-4">
+								<h:inputText id="txtDose" styleClass="form-control"
+									value="${personMB.currentVaccination.dose}" required="true"
+									label="Dose" />
+								<p:message for="txtDose" />
+								<p:commandLink value="Adicionar vacinação"
+									action="#{personMB.addVaccination}" update="dVaccination"
+									process="@this form1:pVaccination" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<h:outputLabel class="col-md-4 control-label" value="" />
+							<div class="col-md-4">
+								<p:outputPanel id="dVaccination">
+									<p:dataList value="${personMB.vaccinations}" var="vac"
+										emptyMessage="Nenhuma vacinação">
+						            #{vac.vaccine.name} - #{vac.dose} ml
+						        </p:dataList>
+								</p:outputPanel>
+							</div>
+						</div>
+
+					</h:panelGroup>
+
+					<hr />
+
+					<center>
+					<div class="grupoBotao">
+
+						<div class="botao">
+							<h:commandButton styleClass="btn btn-success" value="Gravar"
+								action="${personMB.create()}" />
+						</div>
+
+					</div>
+					</center>
+
+				</h:form>
+
+				<center>
+				<div class="rodape">
+					<span>VacinaWeb - Site em Desenvolvimento ® All Rights
+						Reserved 2016 - <a href="https://facebook.com" target="_blank"><i
+							class="fa fa-facebook-official"></i> Facebook</a> / <a
+						href="https://google.com" target="_blank"><i
+							class="fa fa-google"></i> Google</a>
+					</span>
+				</div>
+				</center>
+			</div>
+		</div>
+	</div>
+</h:body>
+</html>
+

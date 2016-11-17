@@ -1,0 +1,18 @@
+body {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  background-image: url("http://wallpaper.zone/img/9535.jpg"); 
+  background-color: #ffffff;
+}
+
+
+.btn {
+  background-color: rgba(0, 60, 40, 1);
+  padding-botton: 20px;  
+  background-image: 
+}
+
+.btn:hover {
+  transition: 0.3s;  
+  box-shadow: 5px 5px 5px #000000;
+}

@@ -1,0 +1,60 @@
+*{
+padding : 0;
+margin : 0;
+border : 0;
+}
+body{
+font-family: Arial, sans-serif;
+background-color: #dddddd;
+color: rgba(0,0,0,1);
+}
+.blended_grid{
+display : block;
+width : 1300px;
+overflow : auto;
+margin : 30px auto 0 auto;
+}
+.pageHeader{
+background-color : rgba(0, 0, 0, 0.5);
+float : left;
+clear : none;
+height : 200px;
+width : 900px;
+font-family: 'FonteLogo', sans-serif;
+font-size: 20pt;
+color:#606060;
+margin-bottom: 0px;
+margin-top: 0px;
+}
+.pageLeftMenu{
+background-color : rgba(0, 0, 0, 0.5);
+float : right;
+clear : none;
+height : 600px;
+width : 200px;
+}
+.pageContent{
+background-color : rgba(0, 0, 0, 0.5);
+float : left;
+clear : none;
+height : 600px;
+width : 700px;
+}
+.pageFooter{
+background-color : rgba(0, 0, 0, 0.5);
+float : left;
+clear : none;
+height : 100px;
+width : 900px;
+text-align: justify;
+text-indent: 50px;
+}
+.btn {
+  background-color: rgba(0, 60, 40, 1);
+  padding-botton: 20px;  
+}
+
+.btn:hover {
+  transition: 0.3s;  
+  box-shadow: 5px 5px 5px #000000;
+}

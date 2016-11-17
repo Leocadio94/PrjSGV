@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge; charset=utf-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<meta name="description" content=""></meta>
+	<meta name="author" content=""></meta>
+	<title>VacinaWeb</title>
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js" />
+
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" />
+
+	<link rel="stylesheet" href="css/teste.css" />
+	<link rel="stylesheet" href="css/tabela.css" />
+</h:head>
+<h:body>
+<div class="blended_grid">
+		<div class="topo">
+			<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="nav">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+						aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="2_telaCarteirinha.xhtml"><i
+								class="fa fa-heartbeat"></i></a></li>
+				
+								<li><a href="2_telaCarteirinha.xhtml">Minha Carteirinha <i
+										class="fa fa-cart-plus"></i>
+										<li><a href="3_telaCalendario.xhtml">Meu Calendário <i
+								class="fa fa-search"></i>
+								</a></li>
+								
+								<li role="presentation" class="dropdown"><a
+									class="dropdown-toggle" data-toggle="dropdown" href="#"
+									role="button" aria-haspopup="true" aria-expanded="false">
+										Categoria <span class="caret"></span>
+								</a>
+									</li>
+								<li><p>		
+								<h:outputLabel style="color: white;" rendered="${not empty loginMB.usuario}">Logado como: ${loginMB.usuario}</h:outputLabel>
+										<a href="http://localhost:8080/Livraria/1_PortalPrincipal.html"
+											class="btn btn-info btn-lg"> <span
+											class="glyphicon glyphicon-log-out"></span> Voltar
+										</a>																		
+									</p></li>
+						</a></li>
+					</ul>
+				</div>
+			</div>
+			</nav>
+		</div>
+	<h:form>
+	<h2>Minha Carteirinha</h2>
+	
+	<div class="form-group">
+			<h:outputLabel for="txtISBN" class="col-md-4 control-label"
+							value="N° Identificador:" />
+						
+							<h:inputText id="txtISBN" class="col-md-4" styleClass="form-control"
+								value="${livroMB.livroAtual.ISBN}" />	
+								<h:commandButton  class="btn btn-primary" value="Pesquisar"/>		
+						
+					
+				
+		<p:dataTable var="car" value="#{dtBasicView.cars}">
+    <p:column headerText="Vacina">
+        <h:outputText value="#{personMB.vaccine}" />
+    </p:column>
+ 
+    <p:column headerText="Ano">
+        <h:outputText value="#{personmB.year}" />
+    </p:column>
+ 
+    <p:column headerText="Enfermeiro(a)">
+        <h:outputText value="#{personMB.enfermeiro}" />
+    </p:column>
+ 
+    <p:column headerText="Descrição">
+        <h:outputText value="#{personMB.description}" />
+    </p:column>
+</p:dataTable></div>
+	</h:form>
+	
+
+	<center>
+	<div class="rodape">
+		<span>Site em Desenvolvimento ® All Rights Reserved 2016 - <a
+			href="https://facebook.com" target="_blank"><i
+				class="fa fa-facebook-official"></i> Facebook</a> / <a
+			href="https://google.com" target="_blank"><i class="fa fa-google"></i>
+				Google</a></span>
+	</div>
+	</center></div>
+</h:body>
+
+</html>

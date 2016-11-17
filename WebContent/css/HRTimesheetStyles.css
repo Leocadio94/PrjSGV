@@ -1,0 +1,31 @@
+.btn {
+  background-color: rgba(0, 60, 40, 1);
+  padding-botton: 20px;  
+}
+
+.btn:hover {
+  transition: 0.3s;  
+  box-shadow: 5px 5px 5px #000000;
+}
+
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td {
+	text-align: left;
+	padding: 3px;
+	
+}
+
+tr:nth-child(even) {
+	background-color: #C0D9D9
+}
+
+th {
+	background-color: #3299CC;
+	color: white;
+}
+

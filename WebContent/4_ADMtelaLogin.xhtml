@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge; charset=utf-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<meta name="description" content=""></meta>
+	<meta name="author" content=""></meta>
+	<title>Sistema Gerenciador de Vacinas</title>
+
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js" />
+
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" />
+	<link
+		href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+		rel="stylesheet" />
+	<link rel="stylesheet" href="css/teste.css" />
+</h:head>
+<h:body>
+
+
+
+	
+	<div class="top-content">
+
+		<div class="inner-bg">
+			<div class="container">
+
+				<div class="row"> 
+					<img src="http://www.canalalagoinhas.com.br/wp-content/uploads/2015/05/vacina-1024x640.jpg"
+						class="img-rounded" style="width: 300px; height: 150px;"></img>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-5">
+
+						<div class="form-box">
+							<div class="form-top">
+								<div class="form-top-left">
+									<h3>Acessar Conta</h3>
+									<p>Usuário/Email:</p>
+								</div>
+								<div class="form-top-right">
+									<i class="fa fa-lock"></i>
+								</div>
+							</div>
+							<div class="form-bottom">
+								<h:form role="form" action="" method="post" class="login-form">
+									<div class="form-group">
+										<h:inputSecret id="txtUsuario" class="sr-only" for="form-password" value="Usuário"/>
+										 <h:inputText  value="#{loginMB.usuario}" type="text" name="form-username" placeholder="Usuario..."
+											class="form-username form-control" id="form-username"
+											/>
+									</div>
+									<div class="form-group">
+										<h:inputSecret value="#{loginMB.senha}" id="txtSenha" class="sr-only" for="form-password" />
+										<h:inputSecret value="#{loginMB.senha}" type="password" name="form-password" placeholder="Senha..."
+											class="form-password form-control" id="form-password"
+											/>
+									</div>
+									<div>
+							
+								
+									
+									<h:form>
+    <h:commandButton action="5_ADMtelaAutenticaLogin.xhtml" class="btn btn-primary" value="Logar"/>
+</h:form>
+									
+					</div>
+								</h:form>
+							</div>
+						</div>
+
+
+
+					</div>
+
+					<div class="col-sm-1 middle-border"></div>
+					<div class="col-sm-1"></div>
+
+					<div class="col-sm-5">
+
+						<div class="form-box">
+							<div class="form-top">
+								<div class="form-top-left">
+									<h3>Cadastro</h3>
+									<p>Complete o formulário para poder acessar:</p>
+								</div>
+								<div class="form-top-right">
+									<i class="fa fa-pencil"></i>
+								</div>
+							</div>
+							<div class="form-bottom">
+								<h:form role="form" action="" method="post"
+									class="registration-form">
+									<div class="form-group">
+										<h:outputText class="sr-only" for="form-last-name" value="Nome Completo"/> 
+										<input type="text" name="form-first-name"
+											placeholder="Nome..." class="form-first-name form-control"
+											id="form-first-name"></input>
+									</div>
+									<div class="form-group">
+										<h:outputText id="txtUsuario" class="sr-only" for="form-last-name" value="Usuário"/> 
+										<input type="text" name="form-last-name" placeholder="Sobrenome..."
+											class="form-last-name form-control" id="form-last-name"></input>
+									</div>
+									<div class="form-group">
+										<h:inputSecret id="txtSenha" class="sr-only" for="form-password" value="Senha"/> <input
+											type="password" name="form-password" placeholder="Senha..."
+											class="form-password form-control" id="form-password"></input>
+									</div>
+									<h:commandButton type="submit" class="btn btn-primary"  
+									value="Cadastrar" 
+									action="${loginMB.adicionaCliente()}"/>
+								</h:form>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Footer -->
+	<footer>
+	<div class="container">
+		<div class="row">
+
+			<div class="col-sm-8 col-sm-offset-2">
+				<div class="footer-border"></div>
+			</div>
+
+		</div>
+	</div>
+	</footer>
+
+	<!-- Javascript -->
+	<script src="assets/js/jquery-1.11.1.min.js"></script>
+	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/js/jquery.backstretch.min.js"></script>
+	<script src="assets/js/scripts.js"></script>
+
+	<!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+
+
+
+
+
+</h:body>
+</html>
+
+
+

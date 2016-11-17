@@ -1,0 +1,20 @@
+Crud vacina
+Crud pessoa 
+
+Tem login de pessoa (consulta vacinas que tomou e proximas vacinas)
+
+Login de funcion�rio (mant�m vacinas/altera, tem a quest�o das quantidades, quando aplicada no cara tal a quantidade daquela vacina diminui.
+
+Tendo o funcion�rio com seu crud e as pessoas com suas consultas                     
+
+� a caderneta de vacinas digital
+
+Vacina e Usu�rio. Imagina o cara cadastra a vacina. Vc como usu�rio vai aplicar x vacina.. isso tem q ser controlado tanto pro funcion�rio ver as quantidades como pro usu�rio que quer ver qual ele tomou a data e pr�ximas vacinas.. ah e quem aplicou tb acho q tem essa info tb
+
+O que precisar é registrar vacinação . Vacinas e pessoas praticamente, ter uma carteirinha online com o histórico de vacinações e um calendário mostrando as próximas
+	hidden form ou process form
+
+adicionar tudo ao bd (endereços, emails, etc.) 
+
+https://github.com/Jacksoncyborg/PrjSGV
+https://github.com/luizferreira094/vacinaWeb

@@ -1,0 +1,127 @@
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	background-image: url("http://wallpaper.zone/img/9535.jpg");
+	background-color: #ffffff;
+}
+
+p {
+	padding: 10px;
+}
+
+#cabecalho {
+	margin: 0 auto;
+	width: 1000px;
+}
+
+#lancamento {
+	margin: 0 auto;
+	width: 1400px;
+}
+
+#historico {
+	float: left;
+	height: 150px;
+	width: 1000px;
+}
+
+#botao {
+	height: 40px;
+	width: 1000px;
+	clear: both;
+}
+
+#listaProjetos {
+	height: 42px;
+	width: 1px;
+	margin-left: 1px;
+	float: bottom;
+}
+
+#textHoraentrada {
+	height: 5px;
+	width: 5px;
+	margin-top: 20px;
+}
+
+#textHoraentrada2 {
+	height: 5px;
+	width: 15px;
+	margin-top: 20px;
+}
+
+#textHorasaida {
+	height: 5px;
+	width: 15px;
+	margin-top: 20px;
+}
+
+#textHorasaida2 {
+height: 5px;
+	width: 15px;
+	margin-top: 20px;
+}
+
+#doisPontos {
+	height: 5px;
+	width: 15px;
+	margin-top: 20px;
+}
+
+#textJustificativa {
+	float: left;
+}
+
+#scroll {
+	width: 400px;
+	height: 200px;
+}
+
+#labelProjetos {
+	float: left;
+	margin-left: 1px;
+	height: 1px;
+	width: 50px;
+}
+
+#labelProjetos1 {
+	float: left;
+	margin-left: 1px;
+	height: 1px;
+	width: 50px;
+}
+
+#labelProjetos2 {
+	float: left;
+	margin-left: 1px;
+	height: 1px;
+	width: 50px;
+}
+
+#labelProjetos3 {
+	float: left;
+	margin-left: 1px;
+	height: 1px;
+	width: 50px;
+}
+
+#labelEntrada {
+	float: left;
+	margin-left: 1px;
+	height: 1px;
+	width: 1px;
+}
+
+#labelSaida {
+	float: left;
+	margin-left: 1px;
+	height: 1px;
+	width: 1px;
+}
+
+#labelJustificativa {
+	float: left;
+	margin-left: 1px;
+	height: 1px;
+	width: 1px;
+}

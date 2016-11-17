@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge; charset=utf-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<meta name="description" content=""></meta>
+	<meta name="author" content=""></meta>
+	
+	<title>Teste do Mercado</title>
+	
+	<script 
+		src="https://code.jquery.com/jquery-1.12.0.min.js"/>
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" />
+	<link rel="stylesheet" 
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />	
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" />
+		
+	<link rel="stylesheet" href="css/styles.css" />
+	
+</h:head>
+<h:body>
+	<div class="container">
+		<nav class="navbar navbar-default">
+	        <div class="container-fluid">
+	          <div class="navbar-header">
+	            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	              <span class="sr-only">Toggle navigation</span>
+	              <span class="icon-bar"></span>
+	              <span class="icon-bar"></span>
+	              <span class="icon-bar"></span>
+	            </button>
+	            <a class="navbar-brand" href="index.xhtml"><i class="fa fa-home fa-fw"> </i> Teste do Mercado</a>
+	          </div>
+	          <div id="navbar" class="navbar-collapse collapse">
+	            <ul class="nav navbar-nav">
+	              <li><a href="index.xhtml">Início</a></li>
+	              <li class="active"><a href="#">Operações</a></li>
+	            </ul>
+	          </div><!--/.nav-collapse -->
+	        </div><!--/.container-fluid -->
+	      </nav>
+	      <div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header text-center">Lista de Operações</h1>
+								
+				<p:messages id="messages" autoUpdate="true" globalOnly="true" closable="true"/>
+				<h:form>			
+					<h:panelGroup rendered="${empty(mercadoriaMB.mercadorias)}"> 
+						<h4>Não há operações cadastradas no sistema.</h4>
+					</h:panelGroup>
+					<div class="table-responsive">	
+						<h:dataTable value="${mercadoriaMB.mercadorias}" var="mer" border="2"
+											rendered="${not empty(mercadoriaMB.mercadorias)}"
+											styleClass="table table-striped table-bordered table-hover">
+							<h:column>
+								<f:facet name="header"> Código da Mercadoria </f:facet>
+									${mer.id}
+							</h:column>
+							<h:column>
+								<f:facet name="header"> Nome da Mercadoria </f:facet>
+									${mer.nome}
+							</h:column>
+							<h:column>
+								<f:facet name="header"> Tipo da Mercadoria </f:facet>
+									${mer.tipo}
+							</h:column>
+							<h:column>
+								<f:facet name="header"> Quantidade </f:facet>
+									${mer.quantidade}
+							</h:column>
+							<h:column>
+								<f:facet name="header"> Preço da Mercadoria </f:facet>
+									R$ ${mer.preco}
+							</h:column>
+							<h:column>
+								<f:facet name="header"> Tipo do Negócio </f:facet>
+									${mer.tipoNegocio}
+							</h:column>
+	
+							<h:column>
+								<f:facet name="header"></f:facet>
+								<h:commandButton action="${mercadoriaMB.remover(mer)}"
+									value="Excluir"
+									styleClass="pull-right btn btn-danger btn-xs" />
+								<h:commandButton action="index"
+									actionListener="${mercadoriaMB.editar(mer)}" value="Editar"
+									styleClass="pull-right btn btn-primary btn-xs" />
+	
+							</h:column>
+	
+						</h:dataTable>
+					</div>
+				</h:form>	
+				<hr/>
+				
+				<div class="footer text-center center-block">
+					<span>Desenvolvido por Gabriel Leocádio - <a href="https://br.linkedin.com/in/gabrielleocadio" target="_blank"><i class="fa fa-linkedin"></i>
+					Linkedin</a> / <a href="https://github.com/Leocadio94" target="_blank"><i class="fa fa-github"></i>
+					 GitHub</a></span>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</h:body>
+</html>
