@@ -52,8 +52,10 @@ public class PersonMB implements Serializable {
 
 	public PersonMB() {
 		showForm = false;
-
+		
 		initialize();
+		//teste();
+		
 		personDAO = new PersonDAOImpl();
 		vaccineDAO = new VaccineDAOImpl();
 
@@ -191,17 +193,17 @@ public class PersonMB implements Serializable {
 		}
 	}
 
-/*
-	public void teste() {
-
-		currentPerson.setCpf(11L);
-		currentPerson.setDtBirth(new Date());
-		currentPerson.setHas_tattoo(true);
-		currentPerson.setName("kpe");
-		currentPerson.setRg("11233");
-		currentPerson.setWeight(100);
-		
-	}*/
+	
+//	public void teste() {
+//
+//		currentPerson.setCpf(11L);
+//		currentPerson.setDtBirth(new Date());
+//		currentPerson.setHas_tattoo(true);
+//		currentPerson.setName("kpe");
+//		currentPerson.setRg("11233");
+//		currentPerson.setWeight(100);
+//		
+//	}
 	
 	public Person getCurrentPerson() {
 		return currentPerson;

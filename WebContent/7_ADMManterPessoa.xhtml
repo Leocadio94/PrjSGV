@@ -137,9 +137,12 @@
 								<p:calendar id="txtDataNasc"
 									value="${personMB.currentPerson.dtBirth}" pattern="dd/MM/yyyy"
 									mask="true" locale="br" navigator="true" />
-								<p:commandButton value="Próximo" action="#{personMB.addPerson}"
-									process="@form" rendered="${!personMB.showForm}" update="@all"/>
 							</div>
+						</div>
+
+						<div class="form-group text-center">
+							<p:commandButton value="Próximo" action="#{personMB.addPerson}"
+								process="@form" rendered="${!personMB.showForm}" update="@all" />
 						</div>
 
 					</h:panelGroup>

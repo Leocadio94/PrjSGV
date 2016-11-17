@@ -129,7 +129,7 @@ COMMENT ON TABLE vacinacao.tb_dependents IS 'Tabela de dependentes';
 COMMENT ON COLUMN vacinacao.tb_dependents.id_dependence_type IS 'id do tipo de dependencia';
 
 
-CREATE SEQUENCE vacinacao.tb_addresses_seq_address_seq;
+CREATE SEQUENCE vacinacao._seq_address_seq;
 
 CREATE TABLE vacinacao.tb_addresses (
                 seq_address INTEGER NOT NULL DEFAULT nextval('vacinacao.tb_addresses_seq_address_seq'),

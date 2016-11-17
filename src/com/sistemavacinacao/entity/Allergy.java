@@ -23,7 +23,7 @@ public class Allergy implements Serializable {
 	private Integer idAllergy;
 	private Person person;
 	private String description;
-	
+
 	@GeneratedValue
 	@Id
     @Column(name="id_allergy")
@@ -33,10 +33,10 @@ public class Allergy implements Serializable {
 	public void setIdAllergy(Integer idAllergy) {
 		this.idAllergy = idAllergy;
 	}
-	
+
 	@Id
 	@ManyToOne(targetEntity=Person.class)
-	@JoinColumn(name = "cpf")
+	@JoinColumn(name="cpf")
 	public Person getPerson() {
 		return person;
 	}

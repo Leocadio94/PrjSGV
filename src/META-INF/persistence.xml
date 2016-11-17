@@ -6,13 +6,14 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0">
 	<persistence-unit name="vacinacao">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>com.sistemavacinacao.entity.Person</class>
 		<class>com.sistemavacinacao.entity.Address</class>
 		<class>com.sistemavacinacao.entity.Allergy</class>
 		<class>com.sistemavacinacao.entity.Disease</class>
 		<class>com.sistemavacinacao.entity.Email</class>
-		<class>com.sistemavacinacao.entity.Person</class>
 		<class>com.sistemavacinacao.entity.Phone</class>
 		<class>com.sistemavacinacao.entity.Vaccine</class>
+		<class>com.sistemavacinacao.entity.Vaccination</class>
 		
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
