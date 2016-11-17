@@ -44,7 +44,7 @@ public class PersonDAOImpl implements IPersonDAO {
 	@Override
 	public void insertAddress(Address address) throws SQLException {
 		EntityManager em = JPAUtil.getConnection();
-
+		
 		em.getTransaction().begin();
 		
 		if (em.contains(address)){

@@ -3,6 +3,7 @@ package com.sistemavacinacao.controller;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -26,7 +27,7 @@ import com.sistemavacinacao.entity.Vaccine;
 public class PersonMB implements Serializable {
 
 	private static final long serialVersionUID = -4909314215002235519L;
-	
+
 	private Person currentPerson;
 	private Address currentAddress;
 	private Email currentEmail;
@@ -34,7 +35,7 @@ public class PersonMB implements Serializable {
 	private Dependent currentDependent;
 	private Disease currentDisease;
 	private Allergy currentAllergy;
-	
+
 	private List<Person> people;
 	private List<Address> addresses;
 	private List<Email> emails;
@@ -43,101 +44,51 @@ public class PersonMB implements Serializable {
 	private List<Dependent> dependents;
 	private List<Disease> diseases;
 	private List<Allergy> allergies;
-	
+
 	private IPersonDAO personDAO;
 	private IVaccineDAO vaccineDAO;
-	
-	public PersonMB(){
-		initializePerson();
-		
-		personDAO = new PersonDAOImpl();	
+
+	private boolean showForm;
+
+	public PersonMB() {
+		showForm = false;
+
+		initialize();
+		personDAO = new PersonDAOImpl();
 		vaccineDAO = new VaccineDAOImpl();
-		
-		people = new ArrayList<Person>();	
+
+		people = new ArrayList<Person>();
 		vaccines = new ArrayList<Vaccine>();
-		
-		read();
+
+		// read();
 	}
 	
-	public void initializePerson() {
-		currentPerson = new Person();	
+	public void initialize() {
+		currentPerson = new Person();
 		currentAddress = new Address();
 		currentEmail = new Email();
 		currentVaccination = new Vaccination();
 		currentDependent = new Dependent();
 		currentDisease = new Disease();
 		currentAllergy = new Allergy();
-		
-		addresses = new ArrayList<Address>();	
-		emails = new ArrayList<Email>();	
-		vaccinations = new ArrayList<Vaccination>();	
-		dependents = new ArrayList<Dependent>();	
-		diseases = new ArrayList<Disease>();		
+
+		addresses = new ArrayList<Address>();
+		emails = new ArrayList<Email>();
+		vaccinations = new ArrayList<Vaccination>();
+		dependents = new ArrayList<Dependent>();
+		diseases = new ArrayList<Disease>();
 		allergies = new ArrayList<Allergy>();
 	}
-	
+
 	public void create() {
-		try {
-			List<Address> auxAdresses = new ArrayList<Address>();
-			for (Address a : addresses) {
-				a.setCpf(currentPerson.getCpf());
-				personDAO.insertAddress(a);
-				auxAdresses.add(a);
-			}
-			
-			List<Email> auxEmails = new ArrayList<Email>();
-			for (Email e : emails) {
-				e.setCpf(currentPerson.getCpf());
-				personDAO.insertEmail(e);
-				auxEmails.add(e);
-			}
-			
-			List<Vaccination> auxVaccinations = new ArrayList<Vaccination>();
-			for (Vaccination v : vaccinations) {
-				v.setCpf(currentPerson.getCpf());
-				personDAO.insertVaccination(v);
-				auxVaccinations.add(v);
-			}
-			
-			List<Dependent> auxDependents = new ArrayList<Dependent>();
-			for (Dependent d : dependents) {
-				d.setCpf(currentPerson.getCpf());
-				personDAO.insertDependent(d);
-				auxDependents.add(d);
-			}
-			
-			List<Disease> auxDiseases = new ArrayList<Disease>();
-			for (Disease di : diseases) {
-				di.setCpf(currentPerson.getCpf());
-				personDAO.insertDisease(di);
-				auxDiseases.add(di);
-			}
+		addPerson();
 
-			List<Allergy> auxAllergies = new ArrayList<Allergy>();
-			for (Allergy al : allergies) {
-				al.setCpf(currentPerson.getCpf());
-				personDAO.insertAllergy(al);
-				auxAllergies.add(al);
-			}
-			
-			currentPerson.setAddresses(auxAdresses);
-			currentPerson.setEmails(auxEmails);
-			currentPerson.setVaccinations(auxVaccinations);
-			currentPerson.setDependents(auxDependents);
-			currentPerson.setDiseases(auxDiseases);
-			currentPerson.setAllergies(auxAllergies);
-			
-			personDAO.insertPerson(currentPerson);
+		read();
 
-			read();
-			
-			initializePerson();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
+		initialize();
+
 	}
-	
+
 	public void read() {
 		try {
 			people = personDAO.selectAllPeople();
@@ -146,12 +97,12 @@ public class PersonMB implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
-	public void update(Person p){
+
+	public void update(Person p) {
 		currentPerson = p;
 	}
 
-	public void delete(Person p){
+	public void delete(Person p) {
 		try {
 			personDAO.deletePerson(p);
 
@@ -162,57 +113,108 @@ public class PersonMB implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
+
+	public void addPerson() {
+		try {
+			personDAO.insertPerson(currentPerson);
+			showForm = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	public void addAddress() {
 		try {
-			currentPerson.getAddresses();
-			personDAO.insertPerson(currentPerson);
-			currentAddress.setCpf(currentPerson.getCpf());
-			personDAO.insertAddress(currentAddress);
-			addresses.add(currentAddress);
+			currentAddress.setPerson(getCurrentPerson());
+			personDAO.insertAddress(getCurrentAddress());
+			addresses.add(getCurrentAddress());
 			currentAddress = new Address();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void addEmail() {
-		emails.add(currentEmail);
-		currentEmail = new Email();
+
+		try {
+			currentEmail.setPerson(getCurrentPerson());
+			personDAO.insertEmail(getCurrentEmail());
+			emails.add(getCurrentEmail());
+			currentEmail = new Email();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 	public void addVaccination() {
-		vaccinations.add(currentVaccination);
-		currentVaccination = new Vaccination();
+		try {
+			currentVaccination.setPerson(getCurrentPerson());
+			personDAO.insertVaccination(currentVaccination);
+			vaccinations.add(currentVaccination);
+			currentVaccination = new Vaccination();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 	public void addDependent() {
-		dependents.add(currentDependent);
-		currentDependent = new Dependent();
+		try {
+			currentDependent.setPerson(getCurrentPerson());
+			personDAO.insertDependent(currentDependent);
+			dependents.add(currentDependent);
+			currentDependent = new Dependent();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 	public void addDisease() {
-		diseases.add(currentDisease);
-		currentDisease = new Disease();
+		try {
+			currentDisease.setPerson(getCurrentPerson());
+			personDAO.insertDisease(currentDisease);
+			diseases.add(currentDisease);
+			currentDisease = new Disease();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 	public void addAllergy() {
-		allergies.add(currentAllergy);
-		currentAllergy = new Allergy();
+		try {
+			currentAllergy.setPerson(getCurrentPerson());
+			personDAO.insertAllergy(currentAllergy);
+			allergies.add(currentAllergy);
+			currentAllergy = new Allergy();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
+
+/*
+	public void teste() {
+
+		currentPerson.setCpf(11L);
+		currentPerson.setDtBirth(new Date());
+		currentPerson.setHas_tattoo(true);
+		currentPerson.setName("kpe");
+		currentPerson.setRg("11233");
+		currentPerson.setWeight(100);
+		
+	}*/
 	
 	public Person getCurrentPerson() {
 		return currentPerson;
 	}
-	
+
 	public void setCurrentPerson(Person currentPerson) {
 		this.currentPerson = currentPerson;
 	}
-	
+
 	public List<Person> getPeople() {
 		return people;
 	}
-	
+
 	public void setPeople(List<Person> people) {
 		this.people = people;
 	}
@@ -220,6 +222,7 @@ public class PersonMB implements Serializable {
 	public Address getCurrentAddress() {
 		return currentAddress;
 	}
+
 	public void setCurrentAddress(Address currentAddress) {
 		this.currentAddress = currentAddress;
 	}
@@ -243,10 +246,11 @@ public class PersonMB implements Serializable {
 	public List<Vaccination> getVaccinations() {
 		return vaccinations;
 	}
+
 	public void setVaccinations(List<Vaccination> vaccinations) {
 		this.vaccinations = vaccinations;
 	}
-	
+
 	public List<Dependent> getDependents() {
 		return dependents;
 	}
@@ -282,6 +286,7 @@ public class PersonMB implements Serializable {
 	public Vaccination getCurrentVaccination() {
 		return currentVaccination;
 	}
+
 	public void setCurrentVaccination(Vaccination currentVaccination) {
 		this.currentVaccination = currentVaccination;
 	}
@@ -316,6 +321,14 @@ public class PersonMB implements Serializable {
 
 	public void setVaccines(List<Vaccine> vaccines) {
 		this.vaccines = vaccines;
+	}
+
+	public boolean isShowForm() {
+		return showForm;
+	}
+
+	public void setShowForm(boolean showForm) {
+		this.showForm = showForm;
 	}
 
 }

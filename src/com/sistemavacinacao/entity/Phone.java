@@ -18,17 +18,18 @@ import javax.persistence.ManyToOne;
 public class Phone implements Serializable {
 
 	private static final long serialVersionUID = 2923087035730278561L;
-	private Long cpf;
+	private Person person;
 	private Integer seqAddress;
 	private Long phoneNumber;
 	
 	@Id
-	@Column(name = "cpf")
-	public Long getCpf() {
-		return cpf;
+	@ManyToOne(targetEntity=Person.class)
+	@JoinColumn(name = "cpf")
+	public Person getPerson() {
+		return person;
 	}
-	public void setCpf(Long cpf) {
-		this.cpf = cpf;
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 	
 	@Id
@@ -52,7 +53,7 @@ public class Phone implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Phone [cpf=" + cpf + ", seqAddress=" + seqAddress + ", phoneNumber=" + phoneNumber + "]";
+		return "Phone [cpf=" + person.getCpf() + ", seqAddress=" + seqAddress + ", phoneNumber=" + phoneNumber + "]";
 	}
 
 }

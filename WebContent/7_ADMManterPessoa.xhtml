@@ -72,7 +72,7 @@
 
 		<div class="content">
 			<div class="col-md-6">
-				<h:form id="form1" role="form" class="form-horizontal"
+				<h:form id="formp" role="form" class="form-horizontal"
 					enctype="multipart/form-data">
 					<img
 						src="http://www.big1news.com.br/wp-content/uploads/2013/08/Campanha-Nacional-de-Vacina%C3%A7%C3%A3o-1.jpg"
@@ -137,20 +137,24 @@
 								<p:calendar id="txtDataNasc"
 									value="${personMB.currentPerson.dtBirth}" pattern="dd/MM/yyyy"
 									mask="true" locale="br" navigator="true" />
+								<p:commandButton value="Próximo" action="#{personMB.addPerson}"
+									process="@form" rendered="${!personMB.showForm}" update="@all"/>
 							</div>
 						</div>
 
 					</h:panelGroup>
 					<hr />
-
-					<h:panelGroup id="pAddress">
+				</h:form>
+				<h:form id="form1" role="form" class="form-horizontal"
+					enctype="multipart/form-data" rendered="${personMB.showForm}">
+					<h:panelGroup id="pAddress" disabled="true">
 						<div class="form-group">
 
 							<h:outputLabel class="col-md-4 control-label"
 								value="Endereço(s):" />
 							<div class="col-md-4">
 								<h:inputText id="txtAddress" styleClass="form-control"
-									value="${personMB.currentAddress.address}" required="true"
+									value="#{personMB.currentAddress.address}" required="true"
 									label="Endereço" />
 								<p:message for="txtAddress" />
 							</div>
@@ -160,21 +164,21 @@
 								value="Número do endereço:" />
 							<div class="col-md-4">
 								<h:inputText id="txtNumberAdr" styleClass="form-control"
-									value="${personMB.currentAddress.number}" required="true"
+									value="#{personMB.currentAddress.number}" required="true"
 									label="Número">
 									<f:validateDoubleRange minimum="1" />
 								</h:inputText>
 								<p:message for="txtNumberAdr" />
 								<p:commandLink value="Adicionar endereço"
 									action="#{personMB.addAddress}" update="dAddress"
-									process="@this form1:pAddress form1:pPrincipal" />
+									process="@this form1:pAddress" />
 							</div>
 						</div>
 						<div class="form-group">
 							<h:outputLabel class="col-md-4 control-label" value="" />
 							<div class="col-md-4">
 								<p:outputPanel id="dAddress">
-									<p:dataList value="${personMB.addresses}" var="adr"
+									<p:dataList value="#{personMB.addresses}" var="adr"
 										emptyMessage="Nenhum endereço.">
 						            #{adr.address} - #{adr.number}
 						        </p:dataList>

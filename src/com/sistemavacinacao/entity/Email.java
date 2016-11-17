@@ -4,7 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,11 +22,11 @@ public class Email implements Serializable {
 	
 	private static final long serialVersionUID = 8827665063646935820L;
 	private Integer seqEmail;
-	private Long cpf;
+	private Person person;
 	private String email;
 	
-	@GeneratedValue
 	@Id
+	@GeneratedValue
 	@Column(name = "seq_email")	
 	public Integer getSeqEmail() {
 		return seqEmail;
@@ -35,12 +37,13 @@ public class Email implements Serializable {
 	}
 	
 	@Id
-	@Column(name = "cpf")
-	public Long getCpf() {
-		return cpf;
+	@ManyToOne(targetEntity=Person.class)
+	@JoinColumn(name = "cpf", referencedColumnName="cpf")
+	public Person getPerson() {
+		return person;
 	}
-	public void setCpf(Long cpf) {
-		this.cpf = cpf;
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 	
 	@Column(name = "email")
@@ -54,7 +57,7 @@ public class Email implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Email [seqEmail=" + seqEmail + ", cpf=" + cpf + ", email=" + email + "]";
+		return "Email [seqEmail=" + seqEmail + ", cpf=" + person.getCpf() + ", email=" + email + "]";
 	}
 
 }

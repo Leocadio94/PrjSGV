@@ -19,7 +19,7 @@ public class Dependent implements Serializable {
 	
 	private static final long serialVersionUID = -4054847029987948714L;
 	private Integer cpfDependent;
-	private Long cpf;
+	private Person person;
 	
 	@Id
     @Column(name="cpf_dependent")
@@ -30,17 +30,18 @@ public class Dependent implements Serializable {
 		this.cpfDependent = cpfDependent;
 	}
 	
-	@Column(name = "cpf")
-	public Long getCpf() {
-		return cpf;
+	@ManyToOne(targetEntity=Person.class)
+	@JoinColumn(name = "cpf")
+	public Person getPerson() {
+		return person;
 	}
-	public void setCpf(Long cpf) {
-		this.cpf = cpf;
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 	
 	@Override
 	public String toString() {
-		return "Dependent [cpfDependent=" + cpfDependent + ", cpf=" + cpf + "]";
+		return "Dependent [cpfDependent=" + cpfDependent + ", cpf=" + person.getCpf() + "]";
 	}
 
 	

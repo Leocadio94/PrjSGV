@@ -4,7 +4,7 @@ CREATE SCHEMA IF NOT EXISTS vacinacao;
 CREATE SEQUENCE vacinacao.dm_dependence_type_id_dependence_type_seq_1;
 
 CREATE TABLE vacinacao.dm_dependence_type (
-                id_dependence_type INTEGER NOT NULL DEFAULT nextval('dm_dependence_type_id_dependence_type_seq_1'),
+                id_dependence_type INTEGER NOT NULL DEFAULT nextval('vacinacao.dm_dependence_type_id_dependence_type_seq_1'),
                 description VARCHAR NOT NULL,
                 CONSTRAINT id_dependence_type PRIMARY KEY (id_dependence_type)
 );
@@ -106,7 +106,7 @@ COMMENT ON COLUMN vacinacao.tb_employees.cpf IS 'CPF do registro';
 CREATE SEQUENCE vacinacao.tb_emails_seq_email_seq;
 
 CREATE TABLE vacinacao.tb_emails (
-                seq_email INTEGER NOT NULL DEFAULT nextval('tb_emails_seq_email_seq'),
+                seq_email INTEGER NOT NULL DEFAULT nextval('vacinacao.tb_emails_seq_email_seq'),
                 cpf BIGINT NOT NULL,
                 email VARCHAR NOT NULL,
                 CONSTRAINT tb_emails_pk PRIMARY KEY (seq_email, cpf)
@@ -132,7 +132,7 @@ COMMENT ON COLUMN vacinacao.tb_dependents.id_dependence_type IS 'id do tipo de d
 CREATE SEQUENCE vacinacao.tb_addresses_seq_address_seq;
 
 CREATE TABLE vacinacao.tb_addresses (
-                seq_address INTEGER NOT NULL DEFAULT nextval('tb_addresses_seq_address_seq'),
+                seq_address INTEGER NOT NULL DEFAULT nextval('vacinacao.tb_addresses_seq_address_seq'),
                 cpf BIGINT NOT NULL,
                 address VARCHAR NOT NULL,
                 number INTEGER NOT NULL,
@@ -177,7 +177,7 @@ CREATE SEQUENCE vacinacao.tb_phones_seq_phone_seq;
 
 CREATE TABLE vacinacao.tb_phones (
                 cpf BIGINT NOT NULL,
-                seq_phone INTEGER NOT NULL DEFAULT nextval('tb_phones_seq_phone_seq'),
+                seq_phone INTEGER NOT NULL DEFAULT nextval('vacinacao.tb_phones_seq_phone_seq'),
                 phone_number BIGINT NOT NULL,
                 CONSTRAINT tb_phones_pk PRIMARY KEY (cpf, seq_phone)
 );
@@ -204,122 +204,122 @@ COMMENT ON COLUMN vacinacao.tb_vaccinations.id_vaccine IS 'Id da vacina';
 COMMENT ON COLUMN vacinacao.tb_vaccinations.date_vaccination IS 'Data da vacinação';
 COMMENT ON COLUMN vacinacao.tb_vaccinations.cre IS 'Número do CRE';
 COMMENT ON COLUMN vacinacao.tb_vaccinations.id_local IS 'Id do local de trabalho';
-COMMENT ON COLUMN tb_vaccinations.dose IS 'Dose da vacina';
+COMMENT ON COLUMN  vacinacao.tb_vaccinations.dose IS 'Dose da vacina';
 
 
-ALTER TABLE vacinacao.tb_dependents ADD CONSTRAINT dm_dependence_type_tb_dependents_fk
+ALTER TABLE vacinacao.tb_dependents add constraint dm_dependence_type_tb_dependents_fk
 FOREIGN KEY (id_dependence_type)
 REFERENCES vacinacao.dm_dependence_type (id_dependence_type)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE vacinacao.tb_vaccines ADD CONSTRAINT dm_vaccine_type_vaccine_fk
+ALTER TABLE vacinacao.tb_vaccines add constraint dm_vaccine_type_vaccine_fk
 FOREIGN KEY (id_type)
 REFERENCES vacinacao.dm_vaccine_type (id_type)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE vacinacao.tb_allergies ADD CONSTRAINT dm_allergy_allergy_fk
+ALTER TABLE vacinacao.tb_allergies add constraint dm_allergy_allergy_fk
 FOREIGN KEY (id_allergy)
 REFERENCES vacinacao.dm_allergy (id_allergy)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE vacinacao.tb_diseases ADD CONSTRAINT dm_disease_disease_fk
+ALTER TABLE vacinacao.tb_diseases add constraint dm_disease_disease_fk
 FOREIGN KEY (id_disease)
 REFERENCES vacinacao.dm_disease (id_disease)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE vacinacao.tb_employees ADD CONSTRAINT dm_local_tb_employees_fk
+ALTER TABLE vacinacao.tb_employees add constraint dm_local_tb_employees_fk
 FOREIGN KEY (id_local)
 REFERENCES vacinacao.dm_local (id_local)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE vacinacao.tb_vaccinations ADD CONSTRAINT vaccine_vaccination_fk
+ALTER TABLE vacinacao.tb_vaccinations add constraint vaccine_vaccination_fk
 FOREIGN KEY (id_vaccine)
 REFERENCES vacinacao.tb_vaccines (id_vaccine)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE vacinacao.tb_vaccinations ADD CONSTRAINT pessoa_vacinacao_fk
+ALTER TABLE vacinacao.tb_vaccinations add constraint pessoa_vacinacao_fk
 FOREIGN KEY (cpf)
 REFERENCES vacinacao.tb_person (cpf)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE vacinacao.tb_phones ADD CONSTRAINT pessoa_telefone_fk
+ALTER TABLE vacinacao.tb_phones add constraint pessoa_telefone_fk
 FOREIGN KEY (cpf)
 REFERENCES vacinacao.tb_person (cpf)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE vacinacao.tb_diseases ADD CONSTRAINT pessoa_disease_fk
+ALTER TABLE vacinacao.tb_diseases add constraint pessoa_disease_fk
 FOREIGN KEY (cpf)
 REFERENCES vacinacao.tb_person (cpf)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE vacinacao.tb_allergies ADD CONSTRAINT pessoa_allergy_fk
+ALTER TABLE vacinacao.tb_allergies add constraint pessoa_allergy_fk
 FOREIGN KEY (cpf)
 REFERENCES vacinacao.tb_person (cpf)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE vacinacao.tb_access ADD CONSTRAINT pessoa_acesso_fk
+ALTER TABLE vacinacao.tb_access add constraint pessoa_acesso_fk
 FOREIGN KEY (cpf)
 REFERENCES vacinacao.tb_person (cpf)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE vacinacao.tb_addresses ADD CONSTRAINT pessoa_endereco_fk
+ALTER TABLE vacinacao.tb_addresses add constraint pessoa_endereco_fk
 FOREIGN KEY (cpf)
 REFERENCES vacinacao.tb_person (cpf)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE vacinacao.tb_dependents ADD CONSTRAINT person_dependents_fk
+ALTER TABLE vacinacao.tb_dependents add constraint person_dependents_fk
 FOREIGN KEY (cpf)
 REFERENCES vacinacao.tb_person (cpf)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE vacinacao.tb_dependents ADD CONSTRAINT person_dependents_fk1
+ALTER TABLE vacinacao.tb_dependents add constraint person_dependents_fk1
 FOREIGN KEY (cpf_dependent)
 REFERENCES vacinacao.tb_person (cpf)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE vacinacao.tb_emails ADD CONSTRAINT tb_person_tb_emails_fk
+ALTER TABLE vacinacao.tb_emails add constraint tb_person_tb_emails_fk
 FOREIGN KEY (cpf)
 REFERENCES vacinacao.tb_person (cpf)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE vacinacao.tb_employees ADD CONSTRAINT tb_person_tb_employees_fk
+ALTER TABLE vacinacao.tb_employees add constraint tb_person_tb_employees_fk
 FOREIGN KEY (cpf)
 REFERENCES vacinacao.tb_person (cpf)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE vacinacao.tb_vaccinations ADD CONSTRAINT tb_employees_tb_vaccinations_fk
+ALTER TABLE vacinacao.tb_vaccinations add constraint tb_employees_tb_vaccinations_fk
 FOREIGN KEY (cre, id_local)
 REFERENCES vacinacao.tb_employees (cre, id_local)
 ON DELETE NO ACTION

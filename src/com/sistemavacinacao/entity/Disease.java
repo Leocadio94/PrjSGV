@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -21,7 +22,7 @@ public class Disease implements Serializable {
 	private static final long serialVersionUID = -4088554684620809084L;
 	private Integer idDisease;
 	private String description;
-	private Long cpf;
+	private Person person;
 	
 	@GeneratedValue
 	@Id
@@ -34,12 +35,13 @@ public class Disease implements Serializable {
 	}
 	
 	@Id
-	@Column(name="cpf")
-	public Long getCpf() {
-		return cpf;
+	@ManyToOne(targetEntity=Person.class)
+	@JoinColumn(name = "cpf")
+	public Person getPerson() {
+		return person;
 	}
-	public void setCpf(Long cpf) {
-		this.cpf = cpf;
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 	
     @Column(name="description")

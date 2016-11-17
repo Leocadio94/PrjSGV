@@ -20,7 +20,7 @@ public class Vaccination implements Serializable {
 	
 	private static final long serialVersionUID = -1493041090973345379L;
 	private Integer idVaccination;
-	private Long cpf;
+	private Person person;
 	private Vaccine vaccine;
 	private Date dateVaccination;
 	private Integer dose;
@@ -36,12 +36,13 @@ public class Vaccination implements Serializable {
 	}
 	
 	@Id
-	@Column(name="cpf")	
-	public Long getCpf() {
-		return cpf;
+	@ManyToOne(targetEntity=Person.class)
+	@JoinColumn(name = "cpf")
+	public Person getPerson() {
+		return person;
 	}
-	public void setCpf(Long cpf) {
-		this.cpf = cpf;
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 	
 	@Id

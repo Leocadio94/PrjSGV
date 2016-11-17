@@ -73,7 +73,7 @@ public class VaccineDAOImpl implements IVaccineDAO{
 
 		TypedQuery<Vaccination> qry = em.createQuery("select va from tb_vaccinations as va "
 				+ "where va.cpf = :cpf and va.date_vaccination >= current_date "
-				+ "order by va.date_vaccination", Vaccination.class); // TODO
+				+ "order by va.date_vaccination", Vaccination.class); 
 		qry.setParameter("cpf", person.getCpf());
 
 		List<Vaccination> vacs = qry.getResultList();
@@ -89,7 +89,7 @@ public class VaccineDAOImpl implements IVaccineDAO{
 
 		TypedQuery<Vaccination> qry = em.createQuery("select va from tb_vaccinations as va "
 				+ "where va.cpf = :cpf and va.date_vaccination < current_date "
-				+ "order by va.date_vaccination", Vaccination.class); // TODO
+				+ "order by va.date_vaccination", Vaccination.class); 
 		qry.setParameter("cpf", person.getCpf());
 
 		List<Vaccination> vacs = qry.getResultList();
