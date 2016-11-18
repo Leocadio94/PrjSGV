@@ -13,50 +13,52 @@ import javax.persistence.OneToMany;
 
 /**
  * Classe entidade do objeto Doenças referentes a tabela tb_diseases
+ * 
  * @author luiz
  *
  */
-@Entity (name="tb_diseases")
-public class Disease implements Serializable {
-	
+@Entity(name = "tb_diseases")
+public class Diseases implements Serializable {
+
 	private static final long serialVersionUID = -4088554684620809084L;
 	private Integer idDisease;
-	private String name;
 	private Person person;
-	
+	private String name;
+
 	@GeneratedValue
 	@Id
-    @Column(name="id_disease")
+	@Column(name = "id_disease")
 	public Integer getIdDisease() {
 		return idDisease;
 	}
+
 	public void setIdDisease(Integer idDisease) {
 		this.idDisease = idDisease;
 	}
-	
+
 	@Id
-	@ManyToOne(targetEntity=Person.class)
+	@ManyToOne(targetEntity = Person.class)
 	@JoinColumn(name = "cpf")
 	public Person getPerson() {
 		return person;
 	}
+
 	public void setPerson(Person person) {
 		this.person = person;
 	}
-	
-    @Column(name="name")
+
+	@Column(name = "name")
 	public String getName() {
 		return name;
 	}
-    public void setName(String name) {
+
+	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Disease [idDisease=" + idDisease + ", name=" + name + "]";
+		return "Disease [idDisease=" + idDisease + "]";
 	}
-	
-	
 
 }

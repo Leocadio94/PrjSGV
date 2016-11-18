@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,12 +20,12 @@ public class Phone implements Serializable {
 
 	private static final long serialVersionUID = 2923087035730278561L;
 	private Person person;
-	private Integer seqAddress;
+	private Integer seqPhone;
 	private Long phoneNumber;
 	
 	@Id
 	@ManyToOne(targetEntity=Person.class)
-	@JoinColumn(name = "cpf")
+	@JoinColumn(name="cpf")
 	public Person getPerson() {
 		return person;
 	}
@@ -33,13 +34,13 @@ public class Phone implements Serializable {
 	}
 	
 	@Id
-    @Column(name="seq_address")
-	public Integer getSeqAddress() {
-		return seqAddress;
+	@GeneratedValue
+    @Column(name="seq_phone")
+	public Integer getSeqPhone() {
+		return seqPhone;
 	}
-
-	public void setSeqAddress(Integer seqAddress) {
-		this.seqAddress = seqAddress;
+	public void setSeqPhone(Integer seqPhone) {
+		this.seqPhone = seqPhone;
 	}
 	
     @Column(name="phone_number")
@@ -53,7 +54,7 @@ public class Phone implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Phone [cpf=" + person.getCpf() + ", seqAddress=" + seqAddress + ", phoneNumber=" + phoneNumber + "]";
+		return "Phone [cpf=" + person.getCpf() + ", seqPhone=" + seqPhone + ", phoneNumber=" + phoneNumber + "]";
 	}
 
 }

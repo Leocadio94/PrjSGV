@@ -16,13 +16,13 @@ import javax.persistence.OneToMany;
  * @author luiz
  *
  */
-@Entity (name="dm_allergy")
+@Entity (name="tb_allergies")
 public class Allergy implements Serializable {
 	
 	private static final long serialVersionUID = -598624495299201208L;
 	private Integer idAllergy;
 	private Person person;
-	private String description;
+	private String name;
 
 	@GeneratedValue
 	@Id
@@ -44,17 +44,17 @@ public class Allergy implements Serializable {
 		this.person = person;
 	}
 	
-	@Column(name="description")
-	public String getDescription() {
-		return description;
+	@Column(name="name")
+	public String getName() {
+		return name;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setName(String name) {
+		this.name = name;
 	}
 		
 	@Override
 	public String toString() {
-		return "Allergy [idAllergy=" + idAllergy + ", description=" + description + "]";
+		return "Allergy [idAllergy=" + idAllergy + ", name=" + name + "]";
 	}
 	
 

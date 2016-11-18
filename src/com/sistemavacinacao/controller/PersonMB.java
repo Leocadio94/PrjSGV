@@ -17,9 +17,10 @@ import com.sistemavacinacao.entity.Address;
 import com.sistemavacinacao.entity.Allergy;
 import com.sistemavacinacao.entity.DependenceType;
 import com.sistemavacinacao.entity.Dependent;
-import com.sistemavacinacao.entity.Disease;
+import com.sistemavacinacao.entity.Diseases;
 import com.sistemavacinacao.entity.Email;
 import com.sistemavacinacao.entity.Person;
+import com.sistemavacinacao.entity.Phone;
 import com.sistemavacinacao.entity.Vaccination;
 import com.sistemavacinacao.entity.Vaccine;
 
@@ -34,16 +35,18 @@ public class PersonMB implements Serializable {
 	private Email currentEmail;
 	private Vaccination currentVaccination;
 	private Dependent currentDependent;
-	private Disease currentDisease;
+	private Diseases currentDisease;
 	private Allergy currentAllergy;
+	private Phone currentPhone;
 
 	private List<Person> people;
 	private List<Address> addresses;
+	private List<Phone> phones;
 	private List<Email> emails;
 	private List<Vaccine> vaccines;
 	private List<Vaccination> vaccinations;
 	private List<Dependent> dependents;
-	private List<Disease> diseases;
+	private List<Diseases> diseases;
 	private List<Allergy> allergies;
 	private List<DependenceType> dependenceTypes;
 
@@ -69,17 +72,19 @@ public class PersonMB implements Serializable {
 	public void initialize() {
 		currentPerson = new Person();
 		currentAddress = new Address();
+		setCurrentPhone(new Phone());
 		currentEmail = new Email();
 		currentVaccination = new Vaccination();
 		currentDependent = new Dependent();
-		currentDisease = new Disease();
+		currentDisease = new Diseases();
 		currentAllergy = new Allergy();
 
 		addresses = new ArrayList<Address>();
 		emails = new ArrayList<Email>();
+		phones = new ArrayList<Phone>();
 		vaccinations = new ArrayList<Vaccination>();
 		dependents = new ArrayList<Dependent>();
-		diseases = new ArrayList<Disease>();
+		diseases = new ArrayList<Diseases>();
 		allergies = new ArrayList<Allergy>();
 		dependenceTypes = new ArrayList<DependenceType>();
 	}
@@ -137,6 +142,17 @@ public class PersonMB implements Serializable {
 			e.printStackTrace();
 		}
 	}
+	
+	public void addPhone() {
+		try {
+			currentPhone.setPerson(currentPerson);
+			personDAO.insertObjects(currentPerson,currentPhone);
+			phones.add(getCurrentPhone());
+			currentPhone = new Phone();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void addEmail() {
 
@@ -177,7 +193,7 @@ public class PersonMB implements Serializable {
 			currentDisease.setPerson(currentPerson);
 			personDAO.insertObjects(currentPerson, currentDisease);
 			diseases.add(currentDisease);
-			currentDisease = new Disease();
+			currentDisease = new Diseases();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -251,11 +267,11 @@ public class PersonMB implements Serializable {
 		this.dependents = dependents;
 	}
 
-	public List<Disease> getDiseases() {
+	public List<Diseases> getDiseases() {
 		return diseases;
 	}
 
-	public void setDiseases(List<Disease> diseases) {
+	public void setDiseases(List<Diseases> diseases) {
 		this.diseases = diseases;
 	}
 
@@ -291,11 +307,11 @@ public class PersonMB implements Serializable {
 		this.currentDependent = currentDependent;
 	}
 
-	public Disease getCurrentDisease() {
+	public Diseases getCurrentDisease() {
 		return currentDisease;
 	}
 
-	public void setCurrentDisease(Disease currentDisease) {
+	public void setCurrentDisease(Diseases currentDisease) {
 		this.currentDisease = currentDisease;
 	}
 
@@ -329,6 +345,22 @@ public class PersonMB implements Serializable {
 
 	public void setDependenceTypes(List<DependenceType> dependenceTypes) {
 		this.dependenceTypes = dependenceTypes;
+	}
+
+	public Phone getCurrentPhone() {
+		return currentPhone;
+	}
+
+	public void setCurrentPhone(Phone currentPhone) {
+		this.currentPhone = currentPhone;
+	}
+
+	public List<Phone> getPhones() {
+		return phones;
+	}
+
+	public void setPhones(List<Phone> phones) {
+		this.phones = phones;
 	}
 
 }

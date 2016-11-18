@@ -12,7 +12,7 @@ import com.sistemavacinacao.entity.Address;
 import com.sistemavacinacao.entity.Allergy;
 import com.sistemavacinacao.entity.DependenceType;
 import com.sistemavacinacao.entity.Dependent;
-import com.sistemavacinacao.entity.Disease;
+import com.sistemavacinacao.entity.Diseases;
 import com.sistemavacinacao.entity.Email;
 import com.sistemavacinacao.entity.Person;
 import com.sistemavacinacao.entity.Vaccination;

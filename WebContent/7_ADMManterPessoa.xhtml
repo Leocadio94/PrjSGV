@@ -150,7 +150,7 @@
 				</h:form>
 				<h:form id="form1" role="form" class="form-horizontal"
 					enctype="multipart/form-data" rendered="${personMB.showForm}">
-					<h:panelGroup id="pAddress" disabled="true">
+					<h:panelGroup id="pAddress">
 						<div class="form-group">
 							<h:outputLabel class="col-md-4 control-label"
 								value="Endereço(s):" />
@@ -183,6 +183,37 @@
 									<p:dataList value="#{personMB.addresses}" var="adr"
 										emptyMessage="Nenhum endereço.">
 						            #{adr.address} - #{adr.number}
+						        </p:dataList>
+								</p:outputPanel>
+							</div>
+						</div>
+					</h:panelGroup>
+
+					<hr />
+
+					<h:panelGroup id="pPhone">
+						<div class="form-group">
+							<h:outputLabel class="col-md-4 control-label"
+								value="Telefone(s):" />
+							<div class="col-md-4">
+								<h:inputText id="txtPhone" styleClass="form-control"
+									value="#{personMB.currentPhone.phoneNumber}" required="true"
+									label="Telefone">
+									<f:validateDoubleRange minimum="1" />
+								</h:inputText>
+								<p:message for="txtPhone" />
+								<p:commandLink value="Adicionar telefone"
+									action="#{personMB.addPhone}" update="dPhone"
+									process="@this form1:pPhone" />
+							</div>
+						</div>
+						<div class="form-group">
+							<h:outputLabel class="col-md-4 control-label" value="" />
+							<div class="col-md-4">
+								<p:outputPanel id="dPhone">
+									<p:dataList value="#{personMB.phones}" var="pho"
+										emptyMessage="Nenhum endereço.">
+						            #{pho.phoneNumber}
 						        </p:dataList>
 								</p:outputPanel>
 							</div>
@@ -229,7 +260,8 @@
 							<div class="col-md-4">
 								<h:selectOneMenu id="slctDepType" styleClass="form-control"
 									converter="dependenceTypeConverter"
-									value="${personMB.currentDependent.dependenceType}" label="Tipo da Dependência">
+									value="${personMB.currentDependent.dependenceType}"
+									label="Tipo da Dependência">
 									<f:selectItem itemLabel="Selecione o tipo..."
 										noSelectionOption="true" itemValue="" />
 									<f:selectItems value="#{personMB.dependenceTypes}" var="depty"
@@ -286,7 +318,7 @@
 								<p:outputPanel id="dDisease">
 									<p:dataList value="${personMB.diseases}" var="doe"
 										emptyMessage="Nenhum doença">
-						            #{doe.description}
+						            #{doe.name}
 						        </p:dataList>
 								</p:outputPanel>
 							</div>
@@ -301,7 +333,7 @@
 							<h:outputLabel class="col-md-4 control-label" value="Alergia(s):" />
 							<div class="col-md-4">
 								<h:inputText id="txtAllergy" styleClass="form-control"
-									value="${personMB.currentAllergy.description}" required="true"
+									value="${personMB.currentAllergy.name}" required="true"
 									label="Alergia" />
 								<p:message for="txtAllergy" />
 								<p:commandLink value="Adicionar alergia"
@@ -315,7 +347,7 @@
 								<p:outputPanel id="dAllergy">
 									<p:dataList value="${personMB.allergies}" var="aller"
 										emptyMessage="Nenhuma alergia">
-						            #{aller.description}
+						            #{aller.name}
 						        </p:dataList>
 								</p:outputPanel>
 							</div>
