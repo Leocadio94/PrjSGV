@@ -129,7 +129,7 @@ COMMENT ON TABLE vacinacao.tb_dependents IS 'Tabela de dependentes';
 COMMENT ON COLUMN vacinacao.tb_dependents.id_dependence_type IS 'id do tipo de dependencia';
 
 
-CREATE SEQUENCE vacinacao._seq_address_seq;
+CREATE SEQUENCE vacinacao.tb_addresses_seq_address_seq;
 
 CREATE TABLE vacinacao.tb_addresses (
                 seq_address INTEGER NOT NULL DEFAULT nextval('vacinacao.tb_addresses_seq_address_seq'),
@@ -298,13 +298,6 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE vacinacao.tb_dependents add constraint person_dependents_fk1
-FOREIGN KEY (cpf_dependent)
-REFERENCES vacinacao.tb_person (cpf)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
-
 ALTER TABLE vacinacao.tb_emails add constraint tb_person_tb_emails_fk
 FOREIGN KEY (cpf)
 REFERENCES vacinacao.tb_person (cpf)
@@ -328,3 +321,9 @@ NOT DEFERRABLE;
 
 insert into vacinacao.dm_vaccine_type values (1, 'Imunização');
 insert into vacinacao.dm_vaccine_type values (2, 'Virais');
+
+insert into vacinacao.dm_dependence_type values (1, 'Filho');
+insert into vacinacao.dm_dependence_type values (2, 'Filha');
+insert into vacinacao.dm_dependence_type values (3, 'Marido');
+insert into vacinacao.dm_dependence_type values (4, 'Esposa');
+insert into vacinacao.dm_dependence_type values (5, 'Outros');

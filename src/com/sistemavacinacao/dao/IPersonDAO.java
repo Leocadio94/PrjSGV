@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.sistemavacinacao.entity.Address;
 import com.sistemavacinacao.entity.Allergy;
+import com.sistemavacinacao.entity.DependenceType;
 import com.sistemavacinacao.entity.Dependent;
 import com.sistemavacinacao.entity.Disease;
 import com.sistemavacinacao.entity.Email;
@@ -22,19 +23,22 @@ import com.sistemavacinacao.entity.Vaccine;
 public interface IPersonDAO {
 	
 	/**
-	 * Método responsável por inserir registros na base de dados
+	 * Método responsável por inserir pessoas na base de dados
 	 * @param pgDB
 	 * @param person
 	 * @return
 	 * @throws SQLException
 	 */
 	public void insertPerson(Person person) throws SQLException;
-	public void insertAddress(Address address) throws SQLException;
-	public void insertEmail(Email email) throws SQLException;
-	public void insertVaccination(Vaccination vaccination) throws SQLException;
-	public void insertDependent(Dependent dependent) throws SQLException;
-	public void insertDisease(Disease disease) throws SQLException;
-	public void insertAllergy(Allergy allergy) throws SQLException;
+
+	/**
+	 * Método responsável por inserir registros na base de dados
+	 * @param pgDB
+	 * @param person
+	 * @return
+	 * @throws SQLException
+	 */
+	public void insertObjects(Object object1, Object object2) throws SQLException;
 	
 	/**
 	 * Método responsável por buscar todos os registros de pessoas da base de dados
@@ -43,6 +47,14 @@ public interface IPersonDAO {
 	 * @throws SQLException
 	 */
 	public List<Person> selectAllPeople() throws SQLException;
+
+	/**
+	 * Método responsável por buscar todos os registros de pessoas da base de dados
+	 * @param pgDB
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<DependenceType> selectAllDependenceTypes() throws SQLException;
 	
 	/**
 	 * Método responsável por buscar registro de uma pessoa na base de dados

@@ -15,6 +15,7 @@ import com.sistemavacinacao.dao.impl.PersonDAOImpl;
 import com.sistemavacinacao.dao.impl.VaccineDAOImpl;
 import com.sistemavacinacao.entity.Address;
 import com.sistemavacinacao.entity.Allergy;
+import com.sistemavacinacao.entity.DependenceType;
 import com.sistemavacinacao.entity.Dependent;
 import com.sistemavacinacao.entity.Disease;
 import com.sistemavacinacao.entity.Email;
@@ -44,6 +45,7 @@ public class PersonMB implements Serializable {
 	private List<Dependent> dependents;
 	private List<Disease> diseases;
 	private List<Allergy> allergies;
+	private List<DependenceType> dependenceTypes;
 
 	private IPersonDAO personDAO;
 	private IVaccineDAO vaccineDAO;
@@ -54,7 +56,6 @@ public class PersonMB implements Serializable {
 		showForm = false;
 		
 		initialize();
-		//teste();
 		
 		personDAO = new PersonDAOImpl();
 		vaccineDAO = new VaccineDAOImpl();
@@ -62,7 +63,7 @@ public class PersonMB implements Serializable {
 		people = new ArrayList<Person>();
 		vaccines = new ArrayList<Vaccine>();
 
-		// read();
+		read();
 	}
 	
 	public void initialize() {
@@ -80,11 +81,10 @@ public class PersonMB implements Serializable {
 		dependents = new ArrayList<Dependent>();
 		diseases = new ArrayList<Disease>();
 		allergies = new ArrayList<Allergy>();
+		dependenceTypes = new ArrayList<DependenceType>();
 	}
 
 	public void create() {
-		addPerson();
-
 		read();
 
 		initialize();
@@ -94,6 +94,7 @@ public class PersonMB implements Serializable {
 	public void read() {
 		try {
 			people = personDAO.selectAllPeople();
+			dependenceTypes = personDAO.selectAllDependenceTypes();
 			vaccines = vaccineDAO.selectAllVaccines();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -128,8 +129,8 @@ public class PersonMB implements Serializable {
 
 	public void addAddress() {
 		try {
-			currentAddress.setPerson(getCurrentPerson());
-			personDAO.insertAddress(getCurrentAddress());
+			currentAddress.setPerson(currentPerson);
+			personDAO.insertObjects(currentPerson,getCurrentAddress());
 			addresses.add(getCurrentAddress());
 			currentAddress = new Address();
 		} catch (SQLException e) {
@@ -140,8 +141,8 @@ public class PersonMB implements Serializable {
 	public void addEmail() {
 
 		try {
-			currentEmail.setPerson(getCurrentPerson());
-			personDAO.insertEmail(getCurrentEmail());
+			currentEmail.setPerson(currentPerson);
+			personDAO.insertObjects(currentPerson, getCurrentEmail());
 			emails.add(getCurrentEmail());
 			currentEmail = new Email();
 		} catch (SQLException e) {
@@ -151,8 +152,8 @@ public class PersonMB implements Serializable {
 
 	public void addVaccination() {
 		try {
-			currentVaccination.setPerson(getCurrentPerson());
-			personDAO.insertVaccination(currentVaccination);
+			currentVaccination.setPerson(currentPerson);
+			personDAO.insertObjects(currentPerson, currentVaccination);
 			vaccinations.add(currentVaccination);
 			currentVaccination = new Vaccination();
 		} catch (SQLException e) {
@@ -162,8 +163,8 @@ public class PersonMB implements Serializable {
 
 	public void addDependent() {
 		try {
-			currentDependent.setPerson(getCurrentPerson());
-			personDAO.insertDependent(currentDependent);
+			currentDependent.setPerson(currentPerson);
+			personDAO.insertObjects(currentPerson, currentDependent);
 			dependents.add(currentDependent);
 			currentDependent = new Dependent();
 		} catch (SQLException e) {
@@ -173,8 +174,8 @@ public class PersonMB implements Serializable {
 
 	public void addDisease() {
 		try {
-			currentDisease.setPerson(getCurrentPerson());
-			personDAO.insertDisease(currentDisease);
+			currentDisease.setPerson(currentPerson);
+			personDAO.insertObjects(currentPerson, currentDisease);
 			diseases.add(currentDisease);
 			currentDisease = new Disease();
 		} catch (SQLException e) {
@@ -184,8 +185,8 @@ public class PersonMB implements Serializable {
 
 	public void addAllergy() {
 		try {
-			currentAllergy.setPerson(getCurrentPerson());
-			personDAO.insertAllergy(currentAllergy);
+			currentAllergy.setPerson(currentPerson);
+			personDAO.insertObjects(currentPerson, currentAllergy);
 			allergies.add(currentAllergy);
 			currentAllergy = new Allergy();
 		} catch (SQLException e) {
@@ -193,17 +194,6 @@ public class PersonMB implements Serializable {
 		}
 	}
 
-	
-//	public void teste() {
-//
-//		currentPerson.setCpf(11L);
-//		currentPerson.setDtBirth(new Date());
-//		currentPerson.setHas_tattoo(true);
-//		currentPerson.setName("kpe");
-//		currentPerson.setRg("11233");
-//		currentPerson.setWeight(100);
-//		
-//	}
 	
 	public Person getCurrentPerson() {
 		return currentPerson;
@@ -331,6 +321,14 @@ public class PersonMB implements Serializable {
 
 	public void setShowForm(boolean showForm) {
 		this.showForm = showForm;
+	}
+
+	public List<DependenceType> getDependenceTypes() {
+		return dependenceTypes;
+	}
+
+	public void setDependenceTypes(List<DependenceType> dependenceTypes) {
+		this.dependenceTypes = dependenceTypes;
 	}
 
 }

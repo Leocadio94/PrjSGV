@@ -16,12 +16,12 @@ import javax.persistence.OneToMany;
  * @author luiz
  *
  */
-@Entity (name="dm_disease")
+@Entity (name="tb_diseases")
 public class Disease implements Serializable {
 	
 	private static final long serialVersionUID = -4088554684620809084L;
 	private Integer idDisease;
-	private String description;
+	private String name;
 	private Person person;
 	
 	@GeneratedValue
@@ -44,17 +44,17 @@ public class Disease implements Serializable {
 		this.person = person;
 	}
 	
-    @Column(name="description")
-	public String getDescription() {
-		return description;
+    @Column(name="name")
+	public String getName() {
+		return name;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+    public void setName(String name) {
+		this.name = name;
 	}
 	
 	@Override
 	public String toString() {
-		return "Disease [idDisease=" + idDisease + ", description=" + description + "]";
+		return "Disease [idDisease=" + idDisease + ", name=" + name + "]";
 	}
 	
 	

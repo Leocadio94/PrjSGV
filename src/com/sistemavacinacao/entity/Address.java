@@ -29,7 +29,7 @@ public class Address implements Serializable {
 
 	@Id
 	@GeneratedValue
-	@Column(name="seq_address")
+	@Column(name = "seq_address")
 	public Integer getSeqAddress() {
 		return seqAddress;
 	}
@@ -39,11 +39,12 @@ public class Address implements Serializable {
 	}
 
 	@Id
-	@ManyToOne(targetEntity=Person.class)
+	@ManyToOne
 	@JoinColumn(name = "cpf")
 	public Person getPerson() {
 		return person;
 	}
+
 	public void setPerson(Person person) {
 		this.person = person;
 	}
@@ -68,8 +69,8 @@ public class Address implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Address [seqAddress=" + seqAddress + ", cpf=" + person.getCpf() + ", address=" + address + ", number=" + number
-				+ "]";
+		return "Address [seqAddress=" + seqAddress + ", cpf=" + person.getCpf() + ", address=" + address + ", number="
+				+ number + "]";
 	}
 
 }

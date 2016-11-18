@@ -12,6 +12,9 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 		<class>com.sistemavacinacao.entity.Disease</class>
 		<class>com.sistemavacinacao.entity.Email</class>
 		<class>com.sistemavacinacao.entity.Phone</class>
+		<class>com.sistemavacinacao.entity.DependenceType</class>
+		<class>com.sistemavacinacao.entity.Dependent</class>
+		<class>com.sistemavacinacao.entity.VaccineType</class>
 		<class>com.sistemavacinacao.entity.Vaccine</class>
 		<class>com.sistemavacinacao.entity.Vaccination</class>
 		
