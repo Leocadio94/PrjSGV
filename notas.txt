@@ -16,5 +16,32 @@ O que precisar é registrar vacinação . Vacinas e pessoas praticamente, ter um
 
 adicionar tudo ao bd (endereços, emails, etc.) 
 
+=====================================================
+cara, falei com o professor ele falo assim pra gente tirar a vacinacao da tela de cadastrar pessoa e fazer em uma tela a parte                        
+ vc acha q da pra fazer?                        
+- tela vacinacao- tela carteirinha
+- tela calendario    
+                    
+Na sequencia fica:
+-Tela Crud pessoa
+-Tela Crud vacina
+-Tela vacinacao
+-Tela carteirinha
+
+-Tela calendario                        
+ Bugs::
+Tela Crud Pessoa                        
+ - so ta aceitando inserir pessoa com dependente (ela pode ou n ter dependente)                        
+idade minima ta 2006                        
+ doenças e alergias acho melhor buscar nas respectivas tabelas                        
+limpar campos quando adiciona (por exemplo, email, endereço, essas parada,.. )                        
+ to deixando um resumo ok                        
+ pra vc ir se organizando                       
+vlw abraço                        
+ele vai me mandar um email com a data ai eu te passoi                        
+ mas acho que ganhamos ai umas 2 semanas                        
+ da pra tocar ne ?                        
+Me passa sua conta e agencia por favor vou depositar pra vc a grana
+=======================================================
 https://github.com/Jacksoncyborg/PrjSGV
 https://github.com/luizferreira094/vacinaWeb

@@ -30,42 +30,7 @@
 
 	<div class="blended_grid">
 		<div class="topo">
-			<nav class="navbar navbar-inverse">
-			<div class="container-fluid">
-				<div class="nav">
-					<button type="button" class="navbar-toggle collapsed"
-						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-						aria-controls="navbar"></button>
-
-				</div>
-				<div id="navbar" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li class="active"><a href="6_ADMManterPessoa.xhtml"><i
-								class="fa fa-book"></i></a></li>
-						<li><a href="telaPesquisa.xhtml"><i class="fa fa-search"></i>
-								<li><a href="6_ADMManterVacina.xhtml"> <i
-										class="fa fa-cart-plus"></i>
-								</a></li>
-								<li><a href="6_ADMManterVacina.xhtml">Vacinas</a></li>
-								<li><a href="7_ADMManterPessoa.xhtml">Pessoas</a></li>
-								<li role="presentation" class="dropdown"><a
-									class="dropdown-toggle" data-toggle="dropdown" href="#"
-									role="button" aria-haspopup="true" aria-expanded="false">
-										Categoria <span class="caret"></span>
-								</a></li>
-								<li><p>
-										<h:outputLabel style="color: white;"
-											rendered="${not empty loginMB.usuario}">Logado como: ${loginMB.usuario}</h:outputLabel>
-										<a
-											href="http://localhost:8080/Livraria/1_PortalPrincipal.html"
-											class="btn btn-info btn-lg"> <span
-											class="glyphicon glyphicon-log-out"></span> Log out
-										</a>
-									</p></li> </a></li>
-					</ul>
-				</div>
-			</div>
-			</nav>
+			<ui:include src="templates/cabecalho.xhtml"/>
 		</div>
 
 		<p:messages />
@@ -355,66 +320,6 @@
 					</h:panelGroup>
 
 					<hr />
-
-					<h:panelGroup id="pVaccination">
-
-						<div class="form-group">
-							<h:outputLabel class="col-md-4 control-label" value="Vacina:" />
-
-							<div class="col-md-4">
-								<h:selectOneMenu id="slctVaccine" styleClass="form-control"
-									converter="vaccineConverter"
-									value="${personMB.currentVaccination.vaccine}" label="Vacina">
-									<f:selectItem itemLabel="Selecione a vacina..."
-										noSelectionOption="true" itemValue="" />
-									<f:selectItems value="#{personMB.vaccines}" var="vacc"
-										itemValue="#{vacc}" itemLabel="#{vacc.name}" />
-								</h:selectOneMenu>
-								<p:message for="slctVaccine" />
-							</div>
-						</div>
-
-						<div class="form-group">
-							<h:outputLabel class="col-md-4 control-label"
-								value="Data da vacinação:" />
-							<div class="col-md-4">
-								<p:calendar id="txtDateVac"
-									value="${personMB.currentVaccination.dateVaccination}"
-									pattern="dd/MM/yyyy" mask="true" locale="br" navigator="true"
-									required="true" label="Data da vacinação" />
-								<p:message for="txtDateVac" />
-							</div>
-						</div>
-
-						<div class="form-group">
-							<h:outputLabel class="col-md-4 control-label" value="Dose:" />
-							<div class="col-md-4">
-								<h:inputText id="txtDose" styleClass="form-control"
-									value="${personMB.currentVaccination.dose}" required="true"
-									label="Dose" />
-								<p:message for="txtDose" />
-								<p:commandLink value="Adicionar vacinação"
-									action="#{personMB.addVaccination}" update="dVaccination"
-									process="@this form1:pVaccination" />
-							</div>
-						</div>
-
-						<div class="form-group">
-							<h:outputLabel class="col-md-4 control-label" value="" />
-							<div class="col-md-4">
-								<p:outputPanel id="dVaccination">
-									<p:dataList value="${personMB.vaccinations}" var="vac"
-										emptyMessage="Nenhuma vacinação">
-						            #{vac.vaccine.name} - #{vac.dose} ml
-						        </p:dataList>
-								</p:outputPanel>
-							</div>
-						</div>
-
-					</h:panelGroup>
-
-					<hr />
-
 					<center>
 					<div class="grupoBotao">
 

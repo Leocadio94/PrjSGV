@@ -43,47 +43,59 @@
 						src="http://www.big1news.com.br/wp-content/uploads/2013/08/Campanha-Nacional-de-Vacina%C3%A7%C3%A3o-1.jpg"
 						class="img-rounded" style="width: 400px; height: 230px;"></img>
 
-					<h2>Administração de Vacinas</h2>
+					<h2>Administração de Vacinações</h2>
 
 					<div class="form-group">
-						<h:outputLabel class="col-md-4 control-label" value="Nome:" />
+						<h:outputLabel class="col-md-4 control-label" value="Pessoa:" />
+
 						<div class="col-md-4">
-							<h:inputText styleClass="form-control"
-								value="${vaccineMB.currentVaccine.name}" />
+							<h:selectOneMenu id="slctPeople" styleClass="form-control"
+								converter="personConverter"
+								value="${vaccinationMB.currentVaccination.person}" label="Pessoa">
+								<f:selectItem itemLabel="Selecione a pessoa..."
+									noSelectionOption="true" itemValue="" />
+								<f:selectItems value="#{vaccinationMB.people}" var="p"
+									itemValue="#{p}" itemLabel="#{p.name}" />
+							</h:selectOneMenu>
+							<p:message for="slctPeople" />
 						</div>
 					</div>
-
+					
 					<div class="form-group">
-						<h:outputLabel for="txtVal" class="col-md-4 control-label"
-							value="Data de Validade:" />
-						<div class="col-md-4">
-							<p:calendar id="txtVal"
-								value="${vaccineMB.currentVaccine.validate}"
-								pattern="dd/MM/yyyy" mask="true" locale="br" navigator="true" />
-						</div>
-					</div>
+						<h:outputLabel class="col-md-4 control-label" value="Vacina:" />
 
-					<div class="form-group">
-						<h:outputLabel class="col-md-4 control-label" value="Lote:" />
 						<div class="col-md-4">
-							<h:inputText styleClass="form-control"
-								value="${vaccineMB.currentVaccine.lot}" />
+							<h:selectOneMenu id="slctVaccine" styleClass="form-control"
+								converter="vaccineConverter"
+								value="${vaccinationMB.currentVaccination.vaccine}" label="Vacina">
+								<f:selectItem itemLabel="Selecione a vacina..."
+									noSelectionOption="true" itemValue="" />
+								<f:selectItems value="#{vaccinationMB.vaccines}" var="vacc"
+									itemValue="#{vacc}" itemLabel="#{vacc.name}" />
+							</h:selectOneMenu>
+							<p:message for="slctVaccine" />
 						</div>
 					</div>
 
 					<div class="form-group">
 						<h:outputLabel class="col-md-4 control-label"
-							value="Tipo:" />
-
+							value="Data da vacinação:" />
 						<div class="col-md-4">
-							<h:selectOneMenu styleClass="form-control"
-								converter="vaccineTypeConverter"
-								value="${vaccineMB.currentVaccine.vaccineType}" >
-								<f:selectItem itemLabel="Selecione o tipo..."
-									noSelectionOption="true" itemValue="" />
-								<f:selectItems value="#{vaccineMB.vaccineTypes}" var="vac" 
-												itemValue="#{vac}" itemLabel="#{vac.name}"/>
-							</h:selectOneMenu>
+							<p:calendar id="txtDateVac"
+								value="${vaccinationMB.currentVaccination.dateVaccination}"
+								pattern="dd/MM/yyyy" mask="true" locale="br" navigator="true"
+								required="true" label="Data da vacinação" />
+							<p:message for="txtDateVac" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<h:outputLabel class="col-md-4 control-label" value="Dose:" />
+						<div class="col-md-4">
+							<h:inputText id="txtDose" styleClass="form-control"
+								value="${vaccinationMB.currentVaccination.dose}" required="true"
+								label="Dose" />
+							<p:message for="txtDose" />
 						</div>
 					</div>
 
@@ -104,16 +116,16 @@
 					</center>
 
 				</h:form>
-				
-				<hr/>
-				
+
+				<hr />
+
 				<h:form role="form" class="form-horizontal"
 					enctype="multipart/form-data">
 					<h2>Busca Avançada</h2>
 				</h:form>
-				
-				<hr/>
-				
+
+				<hr />
+
 				<h:form>
 					<h2>Relatório</h2>
 					<h:panelGrid columns="2">
@@ -123,7 +135,7 @@
 					</h:panelGrid>
 				</h:form>
 
-				<hr/>
+				<hr />
 
 				<center>
 				<div class="rodape">

@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import com.sistemavacinacao.dao.IPersonDAO;
 import com.sistemavacinacao.dao.IVaccineDAO;
@@ -90,9 +92,14 @@ public class PersonMB implements Serializable {
 	}
 
 	public void create() {
-		read();
 
 		initialize();
+		read();
+		
+		FacesContext.getCurrentInstance().addMessage(
+                null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Pessoa cadastrada com sucesso!",
+                            "SUCESSO"));
 
 	}
 
@@ -103,6 +110,10 @@ public class PersonMB implements Serializable {
 			vaccines = vaccineDAO.selectAllVaccines();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro na leitura das pessoas!",
+                                "ERRO"));
 		}
 	}
 
@@ -119,6 +130,10 @@ public class PersonMB implements Serializable {
 			currentPerson = new Person();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro na exclusão da pessoa!",
+                                "ERRO"));
 		}
 	}
 
@@ -128,6 +143,10 @@ public class PersonMB implements Serializable {
 			showForm = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro da pessoa!",
+                                "ERRO"));
 		}
 
 	}
@@ -140,6 +159,10 @@ public class PersonMB implements Serializable {
 			currentAddress = new Address();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do endereço!",
+                                "ERRO"));
 		}
 	}
 	
@@ -151,6 +174,10 @@ public class PersonMB implements Serializable {
 			currentPhone = new Phone();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do telefone!",
+                                "ERRO"));
 		}
 	}
 
@@ -163,6 +190,10 @@ public class PersonMB implements Serializable {
 			currentEmail = new Email();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do e-mail!",
+                                "ERRO"));
 		}
 	}
 
@@ -174,6 +205,10 @@ public class PersonMB implements Serializable {
 			currentVaccination = new Vaccination();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro da vacinação!",
+                                "ERRO"));
 		}
 	}
 
@@ -185,6 +220,10 @@ public class PersonMB implements Serializable {
 			currentDependent = new Dependent();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do dependente!",
+                                "ERRO"));
 		}
 	}
 
@@ -196,6 +235,10 @@ public class PersonMB implements Serializable {
 			currentDisease = new Diseases();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro da doença!",
+                                "ERRO"));
 		}
 	}
 
@@ -207,6 +250,10 @@ public class PersonMB implements Serializable {
 			currentAllergy = new Allergy();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro da alergia!",
+                                "ERRO"));
 		}
 	}
 
