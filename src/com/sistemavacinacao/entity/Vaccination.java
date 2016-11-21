@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 
 /**
@@ -19,22 +20,12 @@ import javax.persistence.ManyToOne;
 public class Vaccination implements Serializable {
 	
 	private static final long serialVersionUID = -1493041090973345379L;
-	private Integer idVaccination;
 	private Person person;
 	private Vaccine vaccine;
 	private Date dateVaccination;
+	private Employee employee;
 	private Integer dose;
 
-	@GeneratedValue
-	@Id
-	@Column(name="id_vaccination")
-	public Integer getIdVaccination() {
-		return idVaccination;
-	}
-	public void setIdVaccination(Integer idVaccination) {
-		this.idVaccination = idVaccination;
-	}
-	
 	@Id
 	@ManyToOne(targetEntity=Person.class)
 	@JoinColumn(name = "cpf")
@@ -55,12 +46,26 @@ public class Vaccination implements Serializable {
 		this.vaccine = vaccine;
 	}
 	
+	@Id
 	@Column(name="date_vaccination")
 	public Date getDateVaccination() {
 		return dateVaccination;
 	}
 	public void setDateVaccination(Date dateVaccination) {
 		this.dateVaccination = dateVaccination;
+	}
+	
+	@Id
+	@ManyToOne(targetEntity=Employee.class)
+	@JoinColumns({
+		  @JoinColumn(name = "id_local"),
+		  @JoinColumn(name = "cre")
+		})
+	public Employee getEmployee() {
+		return employee;
+	}
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 	
 	@Column(name="dose")

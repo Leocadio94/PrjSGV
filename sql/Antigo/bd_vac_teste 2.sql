@@ -94,13 +94,13 @@ COMMENT ON COLUMN vacinacao.tb_person.dt_birth IS 'Data de nascimento do registr
 CREATE TABLE vacinacao.tb_employees (
                 cre BIGINT NOT NULL,
                 id_local INTEGER NOT NULL,
-                nome VARCHAR NOT NULL,
+                cpf BIGINT NOT NULL,
                 CONSTRAINT tb_employees_pk PRIMARY KEY (cre, id_local)
 );
 COMMENT ON TABLE vacinacao.tb_employees IS 'Tabela de empregados';
 COMMENT ON COLUMN vacinacao.tb_employees.cre IS 'Número do CRE';
 COMMENT ON COLUMN vacinacao.tb_employees.id_local IS 'Id do local de trabalho';
-COMMENT ON COLUMN vacinacao.tb_employees.nome IS 'Nome do empregado';
+COMMENT ON COLUMN vacinacao.tb_employees.cpf IS 'CPF do registro';
 
 
 CREATE SEQUENCE vacinacao.tb_emails_seq_email_seq;
@@ -305,6 +305,13 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
+ALTER TABLE vacinacao.tb_employees add constraint tb_person_tb_employees_fk
+FOREIGN KEY (cpf)
+REFERENCES vacinacao.tb_person (cpf)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
 ALTER TABLE vacinacao.tb_vaccinations add constraint tb_employees_tb_vaccinations_fk
 FOREIGN KEY (cre, id_local)
 REFERENCES vacinacao.tb_employees (cre, id_local)
@@ -320,11 +327,3 @@ insert into vacinacao.dm_dependence_type values (2, 'Filha');
 insert into vacinacao.dm_dependence_type values (3, 'Marido');
 insert into vacinacao.dm_dependence_type values (4, 'Esposa');
 insert into vacinacao.dm_dependence_type values (5, 'Outros');
-
-INSERT INTO vacinacao.dm_local (id_local, address, name) VALUES (1, 'Av A - 0', 'Hospital A');
-INSERT INTO vacinacao.dm_local (id_local, address, name) VALUES (2, 'Av B - 0', 'Hospital B');
-INSERT INTO vacinacao.dm_local (id_local, address, name) VALUES (3, 'Av C  - 0', 'Hospital C');
-
-INSERT INTO vacinacao.tb_employees VALUES (123, 1, 'José');
-INSERT INTO vacinacao.tb_employees VALUES (456, 2, 'Maria');
-INSERT INTO vacinacao.tb_employees VALUES (789, 3, 'João');

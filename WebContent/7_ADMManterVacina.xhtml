@@ -27,6 +27,9 @@
 
 </h:head>
 <h:body>
+	<f:metadata>
+		<f:viewAction action="#{vaccineMB.read}" />
+	</f:metadata>
 
 	<div class="blended_grid">
 		<div class="topo">
@@ -105,26 +108,6 @@
 
 				</h:form>
 				
-				<hr/>
-				
-				<h:form role="form" class="form-horizontal"
-					enctype="multipart/form-data">
-					<h2>Busca Avançada</h2>
-				</h:form>
-				
-				<hr/>
-				
-				<h:form>
-					<h2>Relatório</h2>
-					<h:panelGrid columns="2">
-						<a href="pdf/relatorio.pdf" class="btn btn-info btn-lg"> <span
-							class="glyphicon glyphicon-log-out"></span> Visualizar Relatório
-						</a>
-					</h:panelGrid>
-				</h:form>
-
-				<hr/>
-
 				<center>
 				<div class="rodape">
 					<span>VacinaWeb - Site em Desenvolvimento ® All Rights

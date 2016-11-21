@@ -27,10 +27,13 @@
 
 </h:head>
 <h:body>
+	<f:metadata>
+		<f:viewAction action="#{vaccinationMB.read}" />
+	</f:metadata>
 
 	<div class="blended_grid">
 		<div class="topo">
-			<ui:include src="templates/cabecalho.xhtml"/>
+			<ui:include src="templates/cabecalho.xhtml" />
 		</div>
 
 		<p:messages />
@@ -44,14 +47,32 @@
 						class="img-rounded" style="width: 400px; height: 230px;"></img>
 
 					<h2>Administração de Vacinações</h2>
+					
+					<div class="form-group">
+						<h:outputLabel class="col-md-4 control-label" value="Vacina:" />
 
+						<div class="col-md-4">
+							<h:selectOneMenu id="slctVaccine" styleClass="form-control"
+								converter="vaccineConverter"
+								value="${vaccinationMB.currentVaccination.vaccine}"
+								label="Vacina">
+								<f:selectItem itemLabel="Selecione a vacina..."
+									noSelectionOption="true" itemValue="" />
+								<f:selectItems value="#{vaccinationMB.vaccines}" var="v"
+									itemValue="#{v}" itemLabel="#{v.name}" />
+							</h:selectOneMenu>
+							<p:message for="slctVaccine" />
+						</div>
+					</div>
+					
 					<div class="form-group">
 						<h:outputLabel class="col-md-4 control-label" value="Pessoa:" />
 
 						<div class="col-md-4">
 							<h:selectOneMenu id="slctPeople" styleClass="form-control"
 								converter="personConverter"
-								value="${vaccinationMB.currentVaccination.person}" label="Pessoa">
+								value="${vaccinationMB.currentVaccination.person}"
+								label="Pessoa">
 								<f:selectItem itemLabel="Selecione a pessoa..."
 									noSelectionOption="true" itemValue="" />
 								<f:selectItems value="#{vaccinationMB.people}" var="p"
@@ -60,22 +81,25 @@
 							<p:message for="slctPeople" />
 						</div>
 					</div>
-					
+
 					<div class="form-group">
-						<h:outputLabel class="col-md-4 control-label" value="Vacina:" />
+						<h:outputLabel class="col-md-4 control-label" value="Funcionário:" />
 
 						<div class="col-md-4">
-							<h:selectOneMenu id="slctVaccine" styleClass="form-control"
-								converter="vaccineConverter"
-								value="${vaccinationMB.currentVaccination.vaccine}" label="Vacina">
-								<f:selectItem itemLabel="Selecione a vacina..."
+							<h:selectOneMenu id="slctEmployee" styleClass="form-control"
+								converter="employeeConverter"
+								value="${vaccinationMB.currentVaccination.employee}"
+								label="Funcionário">
+								<f:selectItem itemLabel="Selecione o funcionário..."
 									noSelectionOption="true" itemValue="" />
-								<f:selectItems value="#{vaccinationMB.vaccines}" var="vacc"
-									itemValue="#{vacc}" itemLabel="#{vacc.name}" />
+								<f:selectItems value="#{vaccinationMB.employees}" var="emp"
+									itemValue="#{emp}"
+									itemLabel="#{emp.nome} - (#{emp.local.name})" />
 							</h:selectOneMenu>
-							<p:message for="slctVaccine" />
+							<p:message for="slctEmployee" />
 						</div>
 					</div>
+
 
 					<div class="form-group">
 						<h:outputLabel class="col-md-4 control-label"
@@ -105,9 +129,7 @@
 
 						<div class="botao">
 							<h:commandButton styleClass="btn btn-success" value="Gravar"
-								action="${vaccineMB.create()}" />
-							<h:commandButton styleClass="btn btn-danger" value="Excluir"
-								action="${vaccineMB.remove()}" />
+								action="${vaccinationMB.create()}" />
 
 
 						</div>
@@ -116,26 +138,6 @@
 					</center>
 
 				</h:form>
-
-				<hr />
-
-				<h:form role="form" class="form-horizontal"
-					enctype="multipart/form-data">
-					<h2>Busca Avançada</h2>
-				</h:form>
-
-				<hr />
-
-				<h:form>
-					<h2>Relatório</h2>
-					<h:panelGrid columns="2">
-						<a href="pdf/relatorio.pdf" class="btn btn-info btn-lg"> <span
-							class="glyphicon glyphicon-log-out"></span> Visualizar Relatório
-						</a>
-					</h:panelGrid>
-				</h:form>
-
-				<hr />
 
 				<center>
 				<div class="rodape">
