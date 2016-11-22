@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sistemavacinacao.entity.Address;
+import com.sistemavacinacao.entity.Allergies;
 import com.sistemavacinacao.entity.Allergy;
 import com.sistemavacinacao.entity.DependenceType;
 import com.sistemavacinacao.entity.Dependent;
+import com.sistemavacinacao.entity.Disease;
 import com.sistemavacinacao.entity.Diseases;
 import com.sistemavacinacao.entity.Email;
 import com.sistemavacinacao.entity.Person;
@@ -55,6 +57,22 @@ public interface IPersonDAO {
 	 * @throws SQLException
 	 */
 	public List<DependenceType> selectAllDependenceTypes() throws SQLException;
+
+	/**
+	 * Método responsável por buscar todos os registros de doenças da base de dados
+	 * @param pgDB
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<Disease> selectAllDisease() throws SQLException;
+
+	/**
+	 * Método responsável por buscar todos os registros de alergias da base de dados
+	 * @param pgDB
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<Allergy> selectAllAllergy() throws SQLException;
 	
 	/**
 	 * Método responsável por buscar registro de uma pessoa na base de dados

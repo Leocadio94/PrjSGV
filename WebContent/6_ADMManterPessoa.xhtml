@@ -33,7 +33,7 @@
 
 	<div class="blended_grid">
 		<div class="topo">
-			<ui:include src="templates/cabecalho.xhtml"/>
+			<ui:include src="templates/cabecalho.xhtml" />
 		</div>
 
 		<p:messages />
@@ -49,11 +49,12 @@
 					<h2>Cadastro de Usuários</h2>
 					<h:panelGroup id="pPrincipal">
 
+						<h4>Dados Principais</h4>
 						<div class="form-group">
 							<h:outputLabel for="txtCPF" class="col-md-4 control-label"
 								value="CPF:" />
 							<div class="col-md-4">
-								<h:inputText id="txtCPF" styleClass="form-control"
+								<p:inputText id="txtCPF" styleClass="form-control"
 									value="${personMB.currentPerson.cpf}" />
 							</div>
 						</div>
@@ -61,7 +62,7 @@
 						<div class="form-group">
 							<h:outputLabel class="col-md-4 control-label" value="Nome:" />
 							<div class="col-md-4">
-								<h:inputText styleClass="form-control"
+								<p:inputText styleClass="form-control"
 									value="${personMB.currentPerson.name}" />
 							</div>
 						</div>
@@ -69,7 +70,7 @@
 						<div class="form-group">
 							<h:outputLabel class="col-md-4 control-label" value="RG:" />
 							<div class="col-md-4">
-								<h:inputText styleClass="form-control"
+								<p:inputText styleClass="form-control"
 									value="${personMB.currentPerson.rg}" />
 							</div>
 						</div>
@@ -77,7 +78,7 @@
 						<div class="form-group">
 							<h:outputLabel class="col-md-4 control-label" value="Peso:" />
 							<div class="col-md-4">
-								<h:inputText styleClass="form-control"
+								<p:inputText styleClass="form-control"
 									value="${personMB.currentPerson.weight}" />
 							</div>
 						</div>
@@ -97,16 +98,41 @@
 							</div>
 						</div>
 
-
 						<div class="form-group">
 							<h:outputLabel for="txtDataNasc" class="col-md-4 control-label"
 								value="Data da Nascimento:" />
 							<div class="col-md-4">
-								<p:calendar id="txtDataNasc"
+								<p:calendar id="txtDataNasc" size="8"
 									value="${personMB.currentPerson.dtBirth}" pattern="dd/MM/yyyy"
-									mask="true" locale="br" navigator="true" yearRange="c-100:c+0"/>
+									mask="true" locale="br" navigator="true" yearRange="c-100:c+0" />
 							</div>
 						</div>
+
+						<hr />
+
+						<h4>Dados de Acesso</h4>
+						<div class="form-group">
+							<h:outputLabel class="col-md-4 control-label" value="Login:" />
+							<div class="col-md-4">
+								<p:inputText id="txtLogin" styleClass="form-control"
+									value="#{personMB.currentAccess.login}" required="true"
+									label="Login" />
+								<p:message for="txtLogin" />
+							</div>
+						</div>
+						<div class="form-group">
+							<h:outputLabel class="col-md-4 control-label" value="Senha:" />
+							<div class="col-md-4">
+								<p:password id="txtPassword" styleClass="form-control"
+									value="#{personMB.currentAccess.password}" required="true"
+									label="Senha" feedback="true"
+									promptLabel="Por favor, digite uma senha." weakLabel="Fraco"
+									goodLabel="Bom" strongLabel="Ótimo" />
+								<p:message for="txtPassword" />
+							</div>
+						</div>
+
+						<hr />
 
 						<div class="form-group text-center">
 							<p:commandButton value="Próximo" action="#{personMB.addPerson}"
@@ -114,16 +140,16 @@
 						</div>
 
 					</h:panelGroup>
-					<hr />
 				</h:form>
 				<h:form id="form1" role="form" class="form-horizontal"
 					enctype="multipart/form-data" rendered="${personMB.showForm}">
+					<h4>Dados Adicionais</h4>
 					<h:panelGroup id="pAddress">
 						<div class="form-group">
 							<h:outputLabel class="col-md-4 control-label"
 								value="Endereço(s):" />
 							<div class="col-md-4">
-								<h:inputText id="txtAddress" styleClass="form-control"
+								<p:inputText id="txtAddress" styleClass="form-control"
 									value="#{personMB.currentAddress.address}" required="true"
 									label="Endereço" />
 								<p:message for="txtAddress" />
@@ -191,9 +217,7 @@
 					<hr />
 
 					<h:panelGroup id="pEmail">
-
 						<div class="form-group">
-
 							<h:outputLabel class="col-md-4 control-label" value="E-mail(s):" />
 							<div class="col-md-4">
 								<h:inputText id="txtEmail" styleClass="form-control"
@@ -268,13 +292,21 @@
 					<hr />
 
 					<h:panelGroup id="pDisease">
+
 						<div class="form-group">
-							<h:outputLabel class="col-md-4 control-label" value="Doença(s):" />
+							<h:outputLabel for="slctDisease" class="col-md-4 control-label"
+								value="Doença(s):" />
+
 							<div class="col-md-4">
-								<h:inputText id="txtDisease" styleClass="form-control"
-									value="${personMB.currentDisease.name}" required="true"
-									label="Doença" />
-								<p:message for="txtDisease" />
+								<h:selectOneMenu id="slctDisease" styleClass="form-control"
+									converter="diseaseConverter"
+									value="${personMB.currentDiseases.disease}" label="Doença">
+									<f:selectItem itemLabel="Selecione a doença..."
+										noSelectionOption="true" itemValue="" />
+									<f:selectItems value="${personMB.disease}" var="d"
+										itemValue="#{d}" itemLabel="#{d.name}" />
+								</h:selectOneMenu>
+								<p:message for="slctDisease" />
 								<p:commandLink value="Adicionar doença"
 									action="#{personMB.addDisease}" update="dDisease"
 									process="@this form1:pDisease" />
@@ -286,7 +318,7 @@
 								<p:outputPanel id="dDisease">
 									<p:dataList value="${personMB.diseases}" var="doe"
 										emptyMessage="Nenhum doença">
-						            #{doe.name}
+						            #{doe.disease.name}
 						        </p:dataList>
 								</p:outputPanel>
 							</div>
@@ -300,10 +332,16 @@
 						<div class="form-group">
 							<h:outputLabel class="col-md-4 control-label" value="Alergia(s):" />
 							<div class="col-md-4">
-								<h:inputText id="txtAllergy" styleClass="form-control"
-									value="${personMB.currentAllergy.name}" required="true"
-									label="Alergia" />
-								<p:message for="txtAllergy" />
+								<h:selectOneMenu id="slctAllergy" styleClass="form-control"
+									converter="allergyConverter"
+									value="${personMB.currentAllergies.allergy}" label="Alergia">
+									<f:selectItem itemLabel="Selecione a alergia..."
+										noSelectionOption="true" itemValue="" />
+									<f:selectItems value="${personMB.allergy}" var="a"
+										itemValue="#{a}" itemLabel="#{a.name}" />
+								</h:selectOneMenu>
+								<p:message for="slctAllergy" />
+
 								<p:commandLink value="Adicionar alergia"
 									action="#{personMB.addAllergy}" update="dAllergy"
 									process="@this form1:pAllergy" />
@@ -315,7 +353,7 @@
 								<p:outputPanel id="dAllergy">
 									<p:dataList value="${personMB.allergies}" var="aller"
 										emptyMessage="Nenhuma alergia">
-						            #{aller.name}
+						            #{aller.allergy.name}
 						        </p:dataList>
 								</p:outputPanel>
 							</div>

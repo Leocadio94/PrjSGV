@@ -12,38 +12,40 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
- * Classe entidade do objeto Alergias referente a tabela tb_allergies
+ * Classe entidade do objeto Doenças referentes a tabela tb_diseases
+ * 
  * @author luiz
  *
  */
-@Entity (name="dm_allergy")
-public class Allergy implements Serializable {
-	
-	private static final long serialVersionUID = -598624495299201208L;
-	private Integer idAllergy;
+@Entity(name = "dm_disease")
+public class Disease implements Serializable {
+
+	private static final long serialVersionUID = -4088554684620809084L;
+	private Integer idDisease;
 	private String name;
 
 	@Id
-    @Column(name="id_allergy")
-	public Integer getIdAllergy() {
-		return idAllergy;
+	@Column(name = "id_disease")
+	public Integer getIdDisease() {
+		return idDisease;
 	}
-	public void setIdAllergy(Integer idAllergy) {
-		this.idAllergy = idAllergy;
+
+	public void setIdDisease(Integer idDisease) {
+		this.idDisease = idDisease;
 	}
-	
-	@Column(name="name")
+
+	@Column(name = "name")
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-		
+
 	@Override
 	public String toString() {
-		return "Allergy [idAllergy=" + idAllergy + ", name=" + name + "]";
+		return "Disease [idDisease=" + idDisease + "]";
 	}
-	
 
 }

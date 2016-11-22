@@ -328,3 +328,11 @@ INSERT INTO vacinacao.dm_local (id_local, address, name) VALUES (3, 'Av C  - 0',
 INSERT INTO vacinacao.tb_employees VALUES (123, 1, 'José');
 INSERT INTO vacinacao.tb_employees VALUES (456, 2, 'Maria');
 INSERT INTO vacinacao.tb_employees VALUES (789, 3, 'João');
+
+INSERT INTO vacinacao.dm_disease VALUES (1, 'Doença A');
+INSERT INTO vacinacao.dm_disease VALUES (2, 'Doença B');
+INSERT INTO vacinacao.dm_disease VALUES (3, 'Doença C');
+
+INSERT INTO vacinacao.dm_allergy VALUES (1, 'Alergia A');
+INSERT INTO vacinacao.dm_allergy VALUES (2, 'Alergia B');
+INSERT INTO vacinacao.dm_allergy VALUES (3, 'Alergia C');

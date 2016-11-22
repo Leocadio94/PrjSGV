@@ -21,19 +21,17 @@ import javax.persistence.OneToMany;
 public class Diseases implements Serializable {
 
 	private static final long serialVersionUID = -4088554684620809084L;
-	private Integer idDisease;
+	private Disease disease;
 	private Person person;
-	private String name;
 
-	@GeneratedValue
 	@Id
-	@Column(name = "id_disease")
-	public Integer getIdDisease() {
-		return idDisease;
+	@ManyToOne(targetEntity = Disease.class)
+	@JoinColumn(name = "id_disease")
+	public Disease getDisease() {
+		return disease;
 	}
-
-	public void setIdDisease(Integer idDisease) {
-		this.idDisease = idDisease;
+	public void setDisease(Disease disease) {
+		this.disease = disease;
 	}
 
 	@Id
@@ -42,23 +40,13 @@ public class Diseases implements Serializable {
 	public Person getPerson() {
 		return person;
 	}
-
 	public void setPerson(Person person) {
 		this.person = person;
 	}
 
-	@Column(name = "name")
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	@Override
 	public String toString() {
-		return "Disease [idDisease=" + idDisease + "]";
+		return "Diseases []";
 	}
 
 }

@@ -16,33 +16,37 @@ import javax.persistence.OneToMany;
  * @author luiz
  *
  */
-@Entity (name="dm_allergy")
-public class Allergy implements Serializable {
+@Entity (name="tb_allergies")
+public class Allergies implements Serializable {
 	
 	private static final long serialVersionUID = -598624495299201208L;
-	private Integer idAllergy;
-	private String name;
+	private Allergy allergy;
+	private Person person;
 
 	@Id
-    @Column(name="id_allergy")
-	public Integer getIdAllergy() {
-		return idAllergy;
+	@ManyToOne(targetEntity=Allergy.class)
+	@JoinColumn(name="id_allergy")
+	public Allergy getAllergy() {
+		return allergy;
+	}	
+	public void setAllergy(Allergy allergy) {
+		this.allergy = allergy;
 	}
-	public void setIdAllergy(Integer idAllergy) {
-		this.idAllergy = idAllergy;
+
+	@Id
+	@ManyToOne(targetEntity=Person.class)
+	@JoinColumn(name="cpf")
+	public Person getPerson() {
+		return person;
+	}
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 	
-	@Column(name="name")
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
 		
 	@Override
 	public String toString() {
-		return "Allergy [idAllergy=" + idAllergy + ", name=" + name + "]";
+		return "Allergy []";
 	}
 	
 
