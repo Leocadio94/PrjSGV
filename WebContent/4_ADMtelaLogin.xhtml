@@ -10,9 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
 	<meta name="description" content=""></meta>
 	<meta name="author" content=""></meta>
-	<title>Sistema Gerenciador de Vacinas</title>
-
-	<script src="https://code.jquery.com/jquery-1.12.0.min.js" />
+	<title>VacinaWeb</title>
 
 	<link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
@@ -22,15 +20,11 @@
 		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" />
-	<link
-		href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
-		rel="stylesheet" />
+
 	<link rel="stylesheet" href="css/teste.css" />
+	<link rel="stylesheet" href="css/styles.css" />
 </h:head>
 <h:body>
-
-
-
 
 	<div class="top-content">
 
@@ -41,7 +35,7 @@
 						src="http://www.canalalagoinhas.com.br/wp-content/uploads/2015/05/vacina-1024x640.jpg"
 						class="img-rounded" style="width: 300px; height: 150px;"></img> </center>
 				</div>
-
+				<p:messages />
 				<div class="row">
 					<div class="col-md-3"></div>
 					<div class="col-md-6">
@@ -57,20 +51,22 @@
 								</div>
 							</div>
 							<div class="form-bottom">
-								<h:form role="form" class="form-horizontal login-form"
+								<h:form role="form" class="form-horizontal"
 									enctype="multipart/form-data">
 									<div class="form-group">
-										<h:inputText value="#{accessMB.currentAccess.login}"
+										<p:inputText value="${accessMB.currentAccess.login}"
 											type="text" name="form-username" placeholder="Usuario..."
-											class="form-username form-control" id="form-username" />
+											class="form-username form-control" id="form-username"
+											required="true" label="Usuário" />
 									</div>
 									<div class="form-group">
-										<h:inputSecret value="#{accessMB.currentAccess.password}"
+										<p:password value="${accessMB.currentAccess.password}"
 											type="password" name="form-password" placeholder="Senha..."
-											class="form-password form-control" id="form-password" />
+											class="form-password form-control" id="form-password"
+											required="true" label="Senha" feedback="false" />
 									</div>
 									<div class="form-group">
-										<h:commandButton action="#(accessMB.login)"
+										<h:commandButton action="$(accessMB.login())"
 											class="btn btn-primary" value="Logar" />
 
 									</div>
@@ -103,20 +99,6 @@
 		</div>
 	</div>
 	</footer>
-
-	<!-- Javascript -->
-	<script src="assets/js/jquery-1.11.1.min.js"></script>
-	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<script src="assets/js/jquery.backstretch.min.js"></script>
-	<script src="assets/js/scripts.js"></script>
-
-	<!--[if lt IE 10]>
-            <script src="assets/js/placeholder.js"></script>
-        <![endif]-->
-
-
-
-
 
 </h:body>
 </html>

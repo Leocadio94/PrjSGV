@@ -11,6 +11,7 @@ import javax.faces.context.FacesContext;
 import com.sistemavacinacao.dao.IAccessDAO;
 import com.sistemavacinacao.dao.impl.AccessDAOImpl;
 import com.sistemavacinacao.entity.Access;
+import com.sistemavacinacao.entity.Person;
 
 @ManagedBean
 @SessionScoped
@@ -22,51 +23,38 @@ public class AccessMB implements Serializable {
 
 	public AccessMB() {
 		currentAccess = new Access();
+		currentAccess.setPerson(new Person());
 		accessDAO = new AccessDAOImpl();
+		System.out.println("I!M IN 1");
 	}
 
 	public String login() {
-		try {
-			currentAccess = accessDAO.login(currentAccess);
-			System.out.println(currentAccess);
+		System.out.println("I!M IN 2");
+		currentAccess = accessDAO.login(currentAccess);
 
-			if (currentAccess == null) {
-				currentAccess = new Access();
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-						"Usuário não encontrado ou senha inválida!", "Erro no Login!"));
-				return null;
-			} else {
-				return "5_ADMtelaAutenticaLogin?faces-redirect=true";
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+		if (currentAccess == null) {
+			currentAccess = new Access();
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"Login inválido!", "Erro no Login!"));
-			return null;
+					"Usuário não encontrado ou senha inválida!", "Erro no Login!"));
+			return "";
+		} else {
+			return "5_ADMtelaAutenticaLogin?faces-redirect=true";
 		}
 	}
 
 	public String logout() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		
+
 		currentAccess = new Access();
 		accessDAO = new AccessDAOImpl();
-		
+
 		return "4_ADMtelaLogin?faces-redirect=true";
-	}
-
-	public IAccessDAO getAccessDAO() {
-		return accessDAO;
-	}
-
-	public void setAccessDAO(IAccessDAO accessDAO) {
-		this.accessDAO = accessDAO;
 	}
 
 	public Access getCurrentAccess() {
 		return currentAccess;
 	}
-	
+
 	public void setCurrentAccess(Access currentAccess) {
 		this.currentAccess = currentAccess;
 	}

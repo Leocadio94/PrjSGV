@@ -26,7 +26,8 @@ import com.sistemavacinacao.entity.Vaccine;
 @SessionScoped
 public class VaccinationMB implements Serializable {
 
-	private static final long serialVersionUID = -4909314215002235519L;
+	private static final long serialVersionUID = -7454473737374646395L;
+
 	private Vaccination currentVaccination;
 	
 	private List<Person> people;
