@@ -27,6 +27,20 @@ public class AccessMB implements Serializable {
 		accessDAO = new AccessDAOImpl();
 	}
 
+	public static void main(String[] args) {
+		Access access = new Access();
+		access.setLogin("abc");
+		access.setPassword("123");
+		IAccessDAO aDAO = new AccessDAOImpl();
+		Access test = aDAO.login(access);
+		if (test == null) {
+			test = new Access();
+			System.out.println("Usuário não encontrado ou senha inválida!");
+		} else {
+			System.out.println("Login realizado com sucesso!");
+		}
+	}
+
 	public String login() {
 		System.out.println("I!M IN 2");
 		currentAccess = accessDAO.login(currentAccess);

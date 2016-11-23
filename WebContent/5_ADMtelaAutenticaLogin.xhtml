@@ -30,27 +30,42 @@
 <h:body class="align">
 	<div class="siteContainer">
 		<div class="row">
-			<img src="http://www.canalalagoinhas.com.br/wp-content/uploads/2015/05/vacina-1024x640.jpg"
-						class="img-rounded" style="width: 300px; height: 150px;"></img>
+			<img
+				src="http://www.canalalagoinhas.com.br/wp-content/uploads/2015/05/vacina-1024x640.jpg"
+				class="img-rounded" style="width: 300px; height: 150px;"></img>
 		</div>
 		<div>
 			<h:outputLabel class="labelTitulo" value="Seja bem vindo, usuário " />
 			<h:outputLabel id="tituloNome" class="labelTituloNome"
-				value="#{UsuarioMB.nomeUsuarioTela}" />
+				value="#{accessMB.currentAccess.person.name}" />
 			<h:outputLabel class="labelTitulo" value="." />
-			<br /> <br />
+		</div>
+
+		<div class="container">
 			<h2>
 				<h:outputLabel class="labelSubTitulo" value="Menu do Usuário" />
 			</h2>
-			<br /> <br />
-		</div>
+			<ul class="nav nav-justified">
+				<li><a class="text-center" href="2_telaCarteirinha.xhtml"><i
+						class="fa fa-tag fa-5x"></i> <br></br>Carteirinha Virtual</a></li>
+				<li><a class="text-center" href="3_telaCalendario.xhtml"><i
+						class="fa fa-calendar fa-5x"></i> <br></br>Calendário</a></li>
+			</ul>
 
-			<div class="container">
-  <ul class="nav nav-justified">
-  	<li><a class="text-center" href="6_ADMManterPessoa.xhtml"><i class="fa fa-tag fa-5x"></i> <br></br>Cadastrar Pessoa</a></li>
-    <li><a class="text-center" href="6_ADMManterVacina.xhtml"><i class="fa fa-bookmark fa-5x"></i> <br></br>Cadastrar Vacina</a></li>
-  </ul>
-</div>
+			<h2>
+				<h:outputLabel class="labelSubTitulo" value="Menu de Administração" />
+			</h2>
+			<ul class="nav nav-justified">
+				<li><a class="text-center" href="6_ADMManterPessoa.xhtml"><i
+						class="fa fa-user fa-5x"></i> <br></br>Manter Pessoa</a></li>
+				<li><a class="text-center" href="6_ADMManterVacina.xhtml"><i
+						class="fa fa-medkit fa-5x"></i> <br></br>Manter Vacina</a></li>
+				<li><a class="text-center" href="6_ADMManterVacina.xhtml"><i
+						class="fa fa-heartbeat fa-5x"></i> <br></br>Manter Vacinação</a></li>
+			</ul>
+
+			<hr />
+		</div>
 	</div>
 </h:body>
 </html>
