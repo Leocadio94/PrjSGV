@@ -60,8 +60,9 @@ public class VaccineMB implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	public void update(Vaccine v){
+	public String update(Vaccine v){
 		currentVaccine = v;
+		return "7_ADMManterVacina?faces-redirect=true";
 	}
 
 	public void delete(Vaccine v){

@@ -129,8 +129,9 @@ public class PersonMB implements Serializable {
 		}
 	}
 
-	public void update(Person p) {
+	public String update(Person p) {
 		currentPerson = p;
+		return "6_ADMManterPessoa?faces-redirect=true";
 	}
 
 	public void delete(Person p) {

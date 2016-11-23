@@ -48,6 +48,8 @@ public class VaccinationCardMB implements Serializable {
 		readPerson();
 		readPrevious();
 		readNext();
+		
+		currentPerson = new Person();
 	}
 
 	public void readPerson() { // TODO test - mudar pro usuário logado
@@ -74,7 +76,7 @@ public class VaccinationCardMB implements Serializable {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public List<Vaccination> getPreviousVaccinations() {
 		return previousVaccinations;
 	}

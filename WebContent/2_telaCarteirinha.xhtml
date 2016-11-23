@@ -60,7 +60,7 @@
 										<h:outputLabel style="color: white;"
 											rendered="${not empty loginMB.usuario}">Logado como: ${loginMB.usuario}</h:outputLabel>
 										<a
-											href="http://localhost:8080/Livraria/1_PortalPrincipal.html"
+											href="1_PortalPrincipal.xhtml"
 											class="btn btn-info btn-lg"> <span
 											class="glyphicon glyphicon-log-out"></span> Voltar
 										</a>
@@ -76,11 +76,12 @@
 
 			<div class="form-group">
 				<h:outputLabel for="txtISBN" class="col-md-4 control-label"
-					value="N° Identificador:" />
+					value="CPF:" />
 
 				<h:inputText id="txtISBN" class="col-md-4" styleClass="form-control"
-					value="${livroMB.livroAtual.ISBN}" />
-				<h:commandButton class="btn btn-primary" value="Pesquisar" />
+					value="${vaccinationCardMB.currentPerson.cpf}" />
+				<h:commandButton class="btn btn-primary" value="Pesquisar" 
+					action="${vaccinationCardMB.readPrevious()}"/>
 
 
 
