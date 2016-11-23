@@ -43,34 +43,6 @@ public interface IVaccineDAO {
 
 	/**
 	 * 
-	 * @param pgDB
-	 * @param cpf
-	 * @return
-	 * @throws SQLException
-	 */
-
-	/**
-	 * Método que busca vacinas pendentes para pessoa na base de dados
-	 * 
-	 * @param pgDB
-	 * @param person
-	 * @return
-	 * @throws SQLException
-	 */
-	public List<Vaccination> selectAllPendingVaccinesForPerson(Person person) throws SQLException;
-
-	/**
-	 * Método que busca as vacinas anteriores de uma pessoa na base de dados
-	 * 
-	 * @param pgDB
-	 * @param person
-	 * @return
-	 * @throws SQLException
-	 */
-	public List<Vaccination> selectAllPreviousVaccinesForPerson(Person person) throws SQLException;
-
-	/**
-	 * 
 	 * @param cpf
 	 * @return
 	 * @throws SQLException

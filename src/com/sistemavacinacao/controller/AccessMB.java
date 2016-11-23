@@ -25,7 +25,6 @@ public class AccessMB implements Serializable {
 		currentAccess = new Access();
 		currentAccess.setPerson(new Person());
 		accessDAO = new AccessDAOImpl();
-		System.out.println("I!M IN 1");
 	}
 
 	public String login() {

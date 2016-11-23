@@ -26,7 +26,7 @@ public interface IVaccinationDAO {
 	 * @throws SQLException
 	 */
 	public void insertVaccination(Vaccination vaccination) throws SQLException;
-	
+
 	/**
 	 * 
 	 * @param pgDB
@@ -34,7 +34,6 @@ public interface IVaccinationDAO {
 	 * @throws SQLException
 	 */
 	public List<Vaccination> selectAllVaccinations() throws SQLException;
-	
 
 	/**
 	 * 
@@ -43,6 +42,26 @@ public interface IVaccinationDAO {
 	 * @throws SQLException
 	 */
 	public List<Employee> selectAllEmployees() throws SQLException;
+
+	/**
+	 * Método que busca vacinas pendentes para pessoa na base de dados
+	 * 
+	 * @param pgDB
+	 * @param person
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<Vaccination> selectAllPendingVaccinesForPerson(Person person) throws SQLException;
+
+	/**
+	 * Método que busca as vacinas anteriores de uma pessoa na base de dados
+	 * 
+	 * @param pgDB
+	 * @param person
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<Vaccination> selectAllPreviousVaccinesForPerson(Person person) throws SQLException;
 
 	/**
 	 * 

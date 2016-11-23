@@ -68,38 +68,6 @@ public class VaccineDAOImpl implements IVaccineDAO{
 	}
 	
 	@Override
-	public List<Vaccination> selectAllPendingVaccinesForPerson(Person person) throws SQLException {
-		EntityManager em = JPAUtil.getConnection();
-
-		TypedQuery<Vaccination> qry = em.createQuery("select va from tb_vaccinations as va "
-				+ "where va.cpf = :cpf and va.date_vaccination >= current_date "
-				+ "order by va.date_vaccination", Vaccination.class); 
-		qry.setParameter("cpf", person.getCpf());
-
-		List<Vaccination> vacs = qry.getResultList();
-
-		em.close();
-
-		return vacs;
-	}
-	
-	@Override
-	public List<Vaccination> selectAllPreviousVaccinesForPerson(Person person) throws SQLException {
-		EntityManager em = JPAUtil.getConnection();
-
-		TypedQuery<Vaccination> qry = em.createQuery("select va from tb_vaccinations as va "
-				+ "where va.cpf = :cpf and va.date_vaccination < current_date "
-				+ "order by va.date_vaccination", Vaccination.class); 
-		qry.setParameter("cpf", person.getCpf());
-
-		List<Vaccination> vacs = qry.getResultList();
-
-		em.close();
-
-		return vacs;
-	}
-	
-	@Override
 	public List<Vaccine> selectVaccine(Integer idVaccine) throws SQLException {
 		EntityManager em = JPAUtil.getConnection();
 

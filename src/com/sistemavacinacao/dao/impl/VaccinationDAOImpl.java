@@ -9,6 +9,7 @@ import javax.persistence.TypedQuery;
 import com.sistemavacinacao.dao.IVaccinationDAO;
 import com.sistemavacinacao.entity.Employee;
 import com.sistemavacinacao.entity.Local;
+import com.sistemavacinacao.entity.Person;
 import com.sistemavacinacao.entity.Vaccination;
 import com.sistemavacinacao.entity.Vaccine;
 import com.sistemavacinacao.util.JPAUtil;
@@ -56,6 +57,40 @@ public class VaccinationDAOImpl implements IVaccinationDAO {
 		em.close();
 
 		return employees;
+	}
+	
+
+	
+	@Override
+	public List<Vaccination> selectAllPendingVaccinesForPerson(Person person) throws SQLException {
+		EntityManager em = JPAUtil.getConnection();
+
+		TypedQuery<Vaccination> qry = em.createQuery("select va from tb_vaccinations as va "
+				+ "where va.person.cpf = :cpf and va.dateVaccination >= current_date "
+				+ "order by va.dateVaccination", Vaccination.class); 
+		qry.setParameter("cpf", person.getCpf());
+
+		List<Vaccination> vacs = qry.getResultList();
+
+		em.close();
+
+		return vacs;
+	}
+	
+	@Override
+	public List<Vaccination> selectAllPreviousVaccinesForPerson(Person person) throws SQLException {
+		EntityManager em = JPAUtil.getConnection();
+
+		TypedQuery<Vaccination> qry = em.createQuery("select va from tb_vaccinations as va "
+				+ "where va.person.cpf = :cpf and va.dateVaccination < current_date "
+				+ "order by va.dateVaccination", Vaccination.class); 
+		qry.setParameter("cpf", person.getCpf());
+
+		List<Vaccination> vacs = qry.getResultList();
+
+		em.close();
+
+		return vacs;
 	}
 
 	@Override
