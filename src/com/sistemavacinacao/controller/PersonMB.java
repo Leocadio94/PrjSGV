@@ -131,6 +131,10 @@ public class PersonMB implements Serializable {
 
 	public String update(Person p) {
 		currentPerson = p;
+		//currentAccess = personDAO.selectAccess(currentPerson);
+		showForm = false;
+		currentAccess = new Access();
+		// TODO alguma coisa pra fazer sumir o form de acesso
 		return "6_ADMManterPessoa?faces-redirect=true";
 	}
 
@@ -154,8 +158,11 @@ public class PersonMB implements Serializable {
 		try {
 			personDAO.insertPerson(currentPerson);
 			currentAccess.setPerson(currentPerson);
-			personDAO.insertObjects(currentPerson,currentAccess);		
+			if (currentAccess.getLogin() != null || currentAccess.getPassword() != null) {
+				personDAO.insertObjects(currentPerson,currentAccess);		
+			}
 			showForm = true;
+			read();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			FacesContext.getCurrentInstance().addMessage(
@@ -164,21 +171,6 @@ public class PersonMB implements Serializable {
                                 "ERRO"));
 		}
 
-	}
-
-	public void addAccess() {
-		try {
-			currentAddress.setPerson(currentPerson);
-			personDAO.insertObjects(currentPerson,getCurrentAddress());
-			addresses.add(getCurrentAddress());
-			currentAddress = new Address();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			FacesContext.getCurrentInstance().addMessage(
-                    null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do endereço!",
-                                "ERRO"));
-		}
 	}
 	
 	public void addAddress() {

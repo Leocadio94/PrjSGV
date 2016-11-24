@@ -57,31 +57,31 @@
 										value="CPF:" />
 									<div class="col-md-4">
 										<p:inputText id="txtCPF" styleClass="form-control"
-											value="${personMB.currentPerson.cpf}" />
+											value="${personMB.currentPerson.cpf}" required="true"/>
 									</div>
 								</div>
 
 								<div class="form-group">
 									<h:outputLabel class="col-md-4 control-label" value="Nome:" />
 									<div class="col-md-4">
-										<p:inputText styleClass="form-control"
-											value="${personMB.currentPerson.name}" />
+										<p:inputText id="txtName" styleClass="form-control"
+											value="${personMB.currentPerson.name}" required="true"/>
 									</div>
 								</div>
 
 								<div class="form-group">
 									<h:outputLabel class="col-md-4 control-label" value="RG:" />
 									<div class="col-md-4">
-										<p:inputText styleClass="form-control"
-											value="${personMB.currentPerson.rg}" />
+										<p:inputText id="txtRg" styleClass="form-control"
+											value="${personMB.currentPerson.rg}" required="true" />
 									</div>
 								</div>
 
 								<div class="form-group">
 									<h:outputLabel class="col-md-4 control-label" value="Peso:" />
 									<div class="col-md-4">
-										<p:inputText styleClass="form-control"
-											value="${personMB.currentPerson.weight}" />
+										<p:inputText id="txtWeight" styleClass="form-control"
+											value="${personMB.currentPerson.weight}" required="true"/>
 									</div>
 								</div>
 
@@ -90,7 +90,7 @@
 									<h:outputLabel class="col-md-4 control-label" value="Tatuagem:" />
 
 									<div class="col-md-4">
-										<h:selectOneMenu styleClass="form-control"
+										<h:selectOneMenu id="slctTattoo" styleClass="form-control"
 											value="${personMB.currentPerson.has_tattoo}">
 											<f:selectItem itemLabel="Selecione a opção..."
 												noSelectionOption="true" itemValue="" />
@@ -107,7 +107,7 @@
 										<p:calendar id="txtDataNasc" size="8"
 											value="${personMB.currentPerson.dtBirth}"
 											pattern="dd/MM/yyyy" mask="true" locale="br" navigator="true"
-											yearRange="c-100:c+0" />
+											yearRange="c-100:c+0" required="true"/>
 									</div>
 								</div>
 
@@ -118,7 +118,7 @@
 									<h:outputLabel class="col-md-4 control-label" value="Login:" />
 									<div class="col-md-4">
 										<p:inputText id="txtLogin" styleClass="form-control"
-											value="#{personMB.currentAccess.login}" required="true"
+											value="#{personMB.currentAccess.login}" 
 											label="Login" />
 										<p:message for="txtLogin" />
 									</div>
@@ -127,7 +127,7 @@
 									<h:outputLabel class="col-md-4 control-label" value="Senha:" />
 									<div class="col-md-4">
 										<p:password id="txtPassword" styleClass="form-control"
-											value="#{personMB.currentAccess.password}" required="true"
+											value="#{personMB.currentAccess.password}" 
 											label="Senha" feedback="true"
 											promptLabel="Por favor, digite uma senha." weakLabel="Fraco"
 											goodLabel="Bom" strongLabel="Ótimo" />

@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sistemavacinacao.entity.Access;
 import com.sistemavacinacao.entity.Address;
 import com.sistemavacinacao.entity.Allergies;
 import com.sistemavacinacao.entity.Allergy;
@@ -41,6 +42,16 @@ public interface IPersonDAO {
 	 * @throws SQLException
 	 */
 	public void insertObjects(Object object1, Object object2) throws SQLException;
+	
+
+	/**
+	 * Método responsável por inserir registros na base de dados
+	 * @param pgDB
+	 * @param person
+	 * @return
+	 * @throws SQLException
+	 */
+	public void insertObjectsMerge(Object object1, Object object2) throws SQLException;
 	
 	/**
 	 * Método responsável por buscar todos os registros de pessoas da base de dados
@@ -82,6 +93,15 @@ public interface IPersonDAO {
 	 * @throws SQLException
 	 */
 	public List<Person> selectPerson(Long cpf) throws SQLException;
+	
+	/**
+	 * Método responsável por buscar registro de um "Access" na base de dados
+	 * @param pgDB
+	 * @param cpf
+	 * @return
+	 * @throws SQLException
+	 */
+	public Access selectAccess(Person person) throws SQLException;
 	
 	/**
 	 * Método responsável por deletar registro de uma pessoa na base de dados
