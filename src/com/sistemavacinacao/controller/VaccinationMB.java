@@ -5,8 +5,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
@@ -16,6 +18,7 @@ import com.sistemavacinacao.dao.IVaccineDAO;
 import com.sistemavacinacao.dao.impl.PersonDAOImpl;
 import com.sistemavacinacao.dao.impl.VaccinationDAOImpl;
 import com.sistemavacinacao.dao.impl.VaccineDAOImpl;
+import com.sistemavacinacao.entity.Access;
 import com.sistemavacinacao.entity.Employee;
 import com.sistemavacinacao.entity.Local;
 import com.sistemavacinacao.entity.Person;
@@ -117,6 +120,4 @@ public class VaccinationMB implements Serializable {
 	public void setEmployees(List<Employee> employees) {
 		this.employees = employees;
 	}
-
-
 }

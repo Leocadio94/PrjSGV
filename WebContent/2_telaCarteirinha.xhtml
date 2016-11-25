@@ -26,66 +26,24 @@
 	<link rel="stylesheet" href="css/tabela.css" />
 </h:head>
 <h:body>
+	<f:metadata>
+		<f:viewAction action="#{vaccinationCardMB.init}" />
+	</f:metadata>
+
 	<div class="blended_grid">
+
 		<div class="topo">
-			<nav class="navbar navbar-inverse">
-			<div class="container-fluid">
-				<div class="nav">
-					<button type="button" class="navbar-toggle collapsed"
-						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-						aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-
-				</div>
-				<div id="navbar" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li class="active"><a href="2_telaCarteirinha.xhtml"><i
-								class="fa fa-heartbeat"></i></a></li>
-
-						<li><a href="2_telaCarteirinha.xhtml">Minha Carteirinha <i
-								class="fa fa-cart-plus"></i>
-								<li><a href="3_telaCalendario.xhtml">Meu Calendário <i
-										class="fa fa-search"></i>
-								</a></li>
-
-								<li role="presentation" class="dropdown"><a
-									class="dropdown-toggle" data-toggle="dropdown" href="#"
-									role="button" aria-haspopup="true" aria-expanded="false">
-										Categoria <span class="caret"></span>
-								</a></li>
-								<li><p>
-										<h:outputLabel style="color: white;"
-											rendered="${not empty loginMB.usuario}">Logado como: ${loginMB.usuario}</h:outputLabel>
-										<a
-											href="1_PortalPrincipal.xhtml"
-											class="btn btn-info btn-lg"> <span
-											class="glyphicon glyphicon-log-out"></span> Voltar
-										</a>
-									</p></li>
-						</a></li>
-					</ul>
-				</div>
-			</div>
-			</nav>
+			<ui:include src="templates/navegacao_pessoa.xhtml" />
 		</div>
+
+		<p:messages autoUpdate="true" />
+		
 		<h:form>
-			<h2>Minha Carteirinha</h2>
+			<h2>Minha Carteirinha - A Vacinar</h2>
 
 			<div class="form-group">
-				<h:outputLabel for="txtISBN" class="col-md-4 control-label"
-					value="CPF:" />
-
-				<h:inputText id="txtISBN" class="col-md-4" styleClass="form-control"
-					value="${vaccinationCardMB.currentPerson.cpf}" />
-				<h:commandButton class="btn btn-primary" value="Pesquisar" 
-					action="${vaccinationCardMB.readPrevious()}"/>
-
-
-
-				<p:dataTable var="v" value="#{vaccinationCardMB.previousVaccinations}">
+				<p:dataTable var="v"
+					value="#{vaccinationCardMB.previousVaccinations}">
 					<p:column headerText="Vacina">
 						<h:outputText value="#{v.vaccine.name}" />
 					</p:column>

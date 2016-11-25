@@ -5,8 +5,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
@@ -33,7 +35,7 @@ import com.sistemavacinacao.entity.Vaccine;
 public class PersonMB implements Serializable {
 
 	private static final long serialVersionUID = -4909314215002235519L;
-
+	
 	private Person currentPerson;
 	private Address currentAddress;
 	private Email currentEmail;
@@ -79,7 +81,7 @@ public class PersonMB implements Serializable {
 
 		read();
 	}
-	
+
 	public void initialize() {
 		currentPerson = new Person();
 		currentAddress = new Address();
@@ -279,7 +281,6 @@ public class PersonMB implements Serializable {
 		}
 	}
 
-	
 	public Person getCurrentPerson() {
 		return currentPerson;
 	}
@@ -436,30 +437,17 @@ public class PersonMB implements Serializable {
 		this.currentAccess = currentAccess;
 	}
 
-	/**
-	 * @return the disease
-	 */
 	public List<Disease> getDisease() {
 		return disease;
 	}
 
-	/**
-	 * @param disease the disease to set
-	 */
 	public void setDisease(List<Disease> disease) {
 		this.disease = disease;
 	}
 
-	/**
-	 * @return the allergy
-	 */
 	public List<Allergy> getAllergy() {
 		return allergy;
 	}
-
-	/**
-	 * @param allergy the allergy to set
-	 */
 	public void setAllergy(List<Allergy> allergy) {
 		this.allergy = allergy;
 	}

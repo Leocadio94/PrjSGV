@@ -10,7 +10,6 @@ color: rgba(0,0,0,1);
 }
 .blended_grid{
 display : block;
-width : 1300px;
 overflow : auto;
 margin : 30px auto 0 auto;
 }
@@ -48,13 +47,4 @@ height : 100px;
 width : 900px;
 text-align: justify;
 text-indent: 50px;
-}
-.btn {
-  background-color: rgba(0, 60, 40, 1);
-  padding-botton: 20px;  
-}
-
-.btn:hover {
-  transition: 0.3s;  
-  box-shadow: 5px 5px 5px #000000;
 }
