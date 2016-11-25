@@ -2,7 +2,9 @@ package com.sistemavacinacao.controller;
 
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,18 +14,13 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-import com.sistemavacinacao.dao.IPersonDAO;
+import org.primefaces.event.SelectEvent;
+
 import com.sistemavacinacao.dao.IVaccinationDAO;
-import com.sistemavacinacao.dao.IVaccineDAO;
-import com.sistemavacinacao.dao.impl.PersonDAOImpl;
 import com.sistemavacinacao.dao.impl.VaccinationDAOImpl;
-import com.sistemavacinacao.dao.impl.VaccineDAOImpl;
 import com.sistemavacinacao.entity.Access;
-import com.sistemavacinacao.entity.Employee;
-import com.sistemavacinacao.entity.Local;
 import com.sistemavacinacao.entity.Person;
 import com.sistemavacinacao.entity.Vaccination;
-import com.sistemavacinacao.entity.Vaccine;
 
 @ManagedBean
 @SessionScoped
@@ -37,6 +34,7 @@ public class VaccinationCardMB implements Serializable {
 	private Access login;
 	private Person currentPerson;
 	private Vaccination currentVaccination;
+	private Date currentDate;
 
 	private List<Vaccination> previousVaccinations;
 	private List<Vaccination> nextVaccinations;
@@ -46,6 +44,7 @@ public class VaccinationCardMB implements Serializable {
 	public VaccinationCardMB() {
 		currentPerson = new Person();
 		currentVaccination = new Vaccination();
+		currentDate = new Date();
 
 		previousVaccinations = new ArrayList<Vaccination>();
 		nextVaccinations = new ArrayList<Vaccination>();
@@ -62,7 +61,7 @@ public class VaccinationCardMB implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário não encontrado!", "ERRO"));
 		}
-		
+
 		readPrevious();
 		readNext();
 	}
@@ -85,6 +84,13 @@ public class VaccinationCardMB implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro na leitura das próximas vacinas!", "ERRO"));
 		}
+	}
+
+	public void onDateSelect(SelectEvent event) {
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		facesContext.addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Data selecionada: " + format.format(event.getObject()), "INFO"));
 	}
 
 	public List<Vaccination> getPreviousVaccinations() {
@@ -125,5 +131,13 @@ public class VaccinationCardMB implements Serializable {
 
 	public void setLogin(Access login) {
 		this.login = login;
+	}
+
+	public Date getCurrentDate() {
+		return currentDate;
+	}
+
+	public void setCurrentDate(Date currentDate) {
+		this.currentDate = currentDate;
 	}
 }

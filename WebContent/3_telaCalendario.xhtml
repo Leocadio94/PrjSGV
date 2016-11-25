@@ -33,13 +33,13 @@
 
 	<div class="blended_grid">
 		<div class="topo">
-			<ui:include src="templates/navegacao_pessoa.xhtml"/>
+			<ui:include src="templates/navegacao_pessoa.xhtml" />
 		</div>
 
-		<p:messages autoUpdate="true" />
+		<p:messages id="msgs" autoUpdate="true" />
 
 		<div class="content">
-			<div class="col-md-6">
+			<div class="col-md-12">
 				<h:form role="form" class="form-horizontal"
 					enctype="multipart/form-data">
 					<img
@@ -48,46 +48,55 @@
 
 
 					<h2>Calendário - Próximas Vacinas</h2>
-					<!-- Search input-->
-					<div class="container">
-						<ul class="nav nav-justified">
 
-							<li><a class="text-center" href="#"><i
-									class="fa fa-calendar fa-5x"></i> <br></br>Calendário de
-									Vacinação</a></li>
-							<p:calendar>Mês de Vacinação: </p:calendar>
+					<hr />
 
-							<h:commandButton action="${livroMB.editarLivro(l)}"
-								value="Pesquisar" styleClass="pull-right btn btn-primary btn-xs" />
+					<h4>Calendário de Vacinação</h4>
+					<p:calendar id="inline" mode="inline"
+						value="#{vaccinationCardMB.currentDate}">
+						<p:ajax event="dateSelect"
+							listener="#{vaccinationCardMB.onDateSelect}" update="msgs" />
+					</p:calendar>
 
+					<hr />
 
+					<h4>Próximas Vacinas</h4>
+					<p:dataTable var="v" value="#{vaccinationCardMB.nextVaccinations}">
+						<p:column headerText="Vacina">
+							<h:outputText value="#{v.vaccine.name}" />
+						</p:column>
 
-							<p:dataTable var="v"
-								value="#{vaccinationCardMB.nextVaccinations}">
-								<p:column headerText="Vacina">
-									<h:outputText value="#{v.vaccine.name}" />
-								</p:column>
+						<p:column headerText="Dosagem">
+							<h:outputText value="#{v.dose} ml" />
+						</p:column>
 
-								<p:column headerText="Dosagem">
-									<h:outputText value="#{v.dose} ml" />
-								</p:column>
+						<p:column headerText="Data">
+							<h:outputText value="#{v.dateVaccination}">
+								<f:convertDateTime pattern="dd-MM-yyyy" />
+							</h:outputText>
+						</p:column>
 
-								<p:column headerText="Data">
-									<h:outputText value="#{v.dateVaccination}" />
-								</p:column>
+						<p:column headerText="Enfermeiro(a)">
+							<h:outputText value="#{v.employee.name}" />
+						</p:column>
 
-								<p:column headerText="Posto de Atendimento">
-									<h:outputText value="#{v.employee.local.name}" />
-								</p:column>
-							</p:dataTable>
-
-
-						</ul>
-					</div>
+						<p:column headerText="Posto de Atendimento">
+							<h:outputText value="#{v.employee.local.name}" />
+						</p:column>
+					</p:dataTable>
 				</h:form>
 			</div>
 		</div>
 	</div>
+
+	<hr />
+	<center> <footer class="rodape"> <span>VacinaWeb
+		- Site em Desenvolvimento ® All Rights Reserved 2016 - <a
+		href="https://facebook.com" target="_blank"><i
+			class="fa fa-facebook-official"></i> Facebook</a> / <a
+		href="https://google.com" target="_blank"><i class="fa fa-google"></i>
+			Google</a>
+	</span> </footer> </center>
 </h:body>
 </html>
 

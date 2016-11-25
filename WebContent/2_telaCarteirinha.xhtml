@@ -37,43 +37,54 @@
 		</div>
 
 		<p:messages autoUpdate="true" />
-		
-		<h:form>
-			<h2>Minha Carteirinha - A Vacinar</h2>
 
-			<div class="form-group">
-				<p:dataTable var="v"
-					value="#{vaccinationCardMB.previousVaccinations}">
-					<p:column headerText="Vacina">
-						<h:outputText value="#{v.vaccine.name}" />
-					</p:column>
+		<div class="content">
+			<div class="col-md-12">
+				<h:form>
+					<img
+						src="http://www.big1news.com.br/wp-content/uploads/2013/08/Campanha-Nacional-de-Vacina%C3%A7%C3%A3o-1.jpg"
+						class="img" style="width: 300px; height: 200px;"></img>
+					<h2>Minha Carteirinha - A Vacinar</h2>
 
-					<p:column headerText="Data de Vacinação">
-						<h:outputText value="#{v.dateVaccination}" />
-					</p:column>
+					<div class="form-group">
+						<p:dataTable var="v"
+							value="#{vaccinationCardMB.previousVaccinations}">
+							<p:column headerText="Vacina">
+								<h:outputText value="#{v.vaccine.name}" />
+							</p:column>
 
-					<p:column headerText="Enfermeiro(a)">
-						<h:outputText value="#{v.employee.nome}" />
-					</p:column>
+							<p:column headerText="Dosagem">
+								<h:outputText value="#{v.dose} ml" />
+							</p:column>
 
-					<p:column headerText="Dose">
-						<h:outputText value="#{v.dose} ml" />
-					</p:column>
-				</p:dataTable>
+							<p:column headerText="Data">
+								<h:outputText value="#{v.dateVaccination}">
+									<f:convertDateTime pattern="dd-MM-yyyy" />
+								</h:outputText>
+							</p:column>
+
+							<p:column headerText="Enfermeiro(a)">
+								<h:outputText value="#{v.employee.name}" />
+							</p:column>
+
+							<p:column headerText="Posto de Atendimento">
+								<h:outputText value="#{v.employee.local.name}" />
+							</p:column>
+						</p:dataTable>
+					</div>
+				</h:form>
 			</div>
-		</h:form>
-
-
-		<center>
-		<div class="rodape">
-			<span>Site em Desenvolvimento ® All Rights Reserved 2016 - <a
-				href="https://facebook.com" target="_blank"><i
-					class="fa fa-facebook-official"></i> Facebook</a> / <a
-				href="https://google.com" target="_blank"><i
-					class="fa fa-google"></i> Google</a></span>
 		</div>
-		</center>
 	</div>
+
+	<hr />
+	<center> <footer class="rodape"> <span>VacinaWeb
+		- Site em Desenvolvimento ® All Rights Reserved 2016 - <a
+		href="https://facebook.com" target="_blank"><i
+			class="fa fa-facebook-official"></i> Facebook</a> / <a
+		href="https://google.com" target="_blank"><i class="fa fa-google"></i>
+			Google</a>
+	</span> </footer> </center>
 </h:body>
 
 </html>
