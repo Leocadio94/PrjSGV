@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import com.sistemavacinacao.dao.IVaccineDAO;
@@ -88,6 +89,11 @@ public class VaccineDAOImpl implements IVaccineDAO{
 		EntityManager em = JPAUtil.getConnection();
 
 		em.getTransaction().begin();
+
+		Query qry = em.createQuery("delete from tb_vaccinations as va where va.vaccine.id_vaccine = :idv");
+		qry.setParameter("idv", vaccine.getIdVaccine());
+		qry.executeUpdate();
+		
 		Vaccine v1 = em.getReference(Vaccine.class, vaccine.getIdVaccine());
 		em.remove(v1);
 		em.getTransaction().commit();

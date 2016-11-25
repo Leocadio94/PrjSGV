@@ -57,7 +57,7 @@
 										value="CPF:" />
 									<div class="col-md-4">
 										<p:inputText id="txtCPF" styleClass="form-control"
-											value="${personMB.currentPerson.cpf}" required="true"/>
+											value="${personMB.currentPerson.cpf}" required="true" />
 									</div>
 								</div>
 
@@ -65,7 +65,7 @@
 									<h:outputLabel class="col-md-4 control-label" value="Nome:" />
 									<div class="col-md-4">
 										<p:inputText id="txtName" styleClass="form-control"
-											value="${personMB.currentPerson.name}" required="true"/>
+											value="${personMB.currentPerson.name}" required="true" />
 									</div>
 								</div>
 
@@ -81,7 +81,7 @@
 									<h:outputLabel class="col-md-4 control-label" value="Peso:" />
 									<div class="col-md-4">
 										<p:inputText id="txtWeight" styleClass="form-control"
-											value="${personMB.currentPerson.weight}" required="true"/>
+											value="${personMB.currentPerson.weight}" required="true" />
 									</div>
 								</div>
 
@@ -107,7 +107,7 @@
 										<p:calendar id="txtDataNasc" size="8"
 											value="${personMB.currentPerson.dtBirth}"
 											pattern="dd/MM/yyyy" mask="true" locale="br" navigator="true"
-											yearRange="c-100:c+0" required="true"/>
+											yearRange="c-100:c+0" required="true" />
 									</div>
 								</div>
 
@@ -118,8 +118,7 @@
 									<h:outputLabel class="col-md-4 control-label" value="Login:" />
 									<div class="col-md-4">
 										<p:inputText id="txtLogin" styleClass="form-control"
-											value="#{personMB.currentAccess.login}" 
-											label="Login" />
+											value="#{personMB.currentAccess.login}" label="Login" />
 										<p:message for="txtLogin" />
 									</div>
 								</div>
@@ -127,10 +126,9 @@
 									<h:outputLabel class="col-md-4 control-label" value="Senha:" />
 									<div class="col-md-4">
 										<p:password id="txtPassword" styleClass="form-control"
-											value="#{personMB.currentAccess.password}" 
-											label="Senha" feedback="true"
-											promptLabel="Por favor, digite uma senha." weakLabel="Fraco"
-											goodLabel="Bom" strongLabel="Ótimo" />
+											value="#{personMB.currentAccess.password}" label="Senha"
+											feedback="true" promptLabel="Por favor, digite uma senha."
+											weakLabel="Fraco" goodLabel="Bom" strongLabel="Ótimo" />
 										<p:message for="txtPassword" />
 									</div>
 								</div>
@@ -387,39 +385,51 @@
 							enctype="multipart/form-data">
 							<p:dataTable var="p" value="#{personMB.people}"
 								styleClass="table table-striped table-bordered table-hover">
-								<p:column headerText="CPF">
+								<p:column headerText="CPF" colspan="2">
 									<h:outputText value="#{p.cpf}" />
 								</p:column>
 
-								<p:column headerText="Nome">
+								<p:column headerText="Nome" colspan="2">
 									<h:outputText value="#{p.name}" />
 								</p:column>
 
-								<p:column headerText="Data de Nascimento">
+								<p:column headerText="Data de Nascimento" colspan="3">
 									<h:outputText value="#{p.dtBirth}" />
 								</p:column>
 
-								<p:column headerText="RG">
+								<p:column headerText="RG" colspan="2">
 									<h:outputText value="#{p.rg}" />
 								</p:column>
 
-								<p:column headerText="Peso">
+								<p:column headerText="Peso" colspan="2">
 									<h:outputText value="#{p.weight}" />
 								</p:column>
 
-								<p:column headerText="Tem tattoo?">
+								<p:column headerText="Tem tattoo?" colspan="2">
 									<h:outputText value="#{p.has_tattoo ? 'Sim' : 'Não'}" />
 								</p:column>
 
-								<p:column>
-									<h:commandButton actionListener="${personMB.delete(p)}"
-										value="Excluir" styleClass="pull-right btn btn-danger btn-xs"
-										update="@all" />
-									<h:commandButton action="${personMB.update(p)}" value="Alterar"
-										styleClass="pull-right btn btn-primary btn-xs" update="@all" />
+								<p:column colspan="3">
+									<p:commandButton actionListener="${personMB.delete(p)}"
+										value="Excluir" styleClass="ui-priority-primary pull-right btn btn-xs"
+										update="@all" icon="fa fa-fw fa-remove">
+										<p:confirm header="Confirmação" message="Tem certeza?"
+											icon="ui-icon-alert" />
+									</p:commandButton>
+									<p:commandButton action="${personMB.update(p)}" value="Alterar"
+										styleClass="ui-priority-primary pull-right btn btn-xs" update="@all" icon="fa fa-fw fa-edit"/>
 
 								</p:column>
 							</p:dataTable>
+
+
+							<p:confirmDialog global="true" showEffect="fade"
+								hideEffect="fade">
+								<p:commandButton value="Sim"
+									styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+								<p:commandButton value="Não"
+									styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+							</p:confirmDialog>
 						</h:form>
 
 
