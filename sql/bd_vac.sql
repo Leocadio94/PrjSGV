@@ -341,15 +341,18 @@ INSERT INTO vacinacao.dm_allergy VALUES (2, 'Alergia B');
 INSERT INTO vacinacao.dm_allergy VALUES (3, 'Alergia C');
 
 insert into vacinacao.tb_person (cpf,dt_birth,has_tattoo,name,rg,weight) values 
+(999999, '1980-01-01', false, 'Administrador', 999999, 80),
 (11111, '1980-01-01', false, 'José', 11111, 80),
 (22222, '1980-01-01', false, 'Maria', 22222, 80),
 (33333, '1980-01-01', false, 'João', 33333, 80)
 
-INSERT INTO vacinacao.tb_employees VALUES (123, 1, 'José', 11111);
-INSERT INTO vacinacao.tb_employees VALUES (456, 2, 'Maria', 22222);
-INSERT INTO vacinacao.tb_employees VALUES (789, 3, 'João', 33333);
+INSERT INTO vacinacao.tb_employees VALUES (123, 1, 11111);
+INSERT INTO vacinacao.tb_employees VALUES (123, 1, 11111);
+INSERT INTO vacinacao.tb_employees VALUES (456, 2, 22222);
+INSERT INTO vacinacao.tb_employees VALUES (789, 3, 33333);
 
 insert into vacinacao.tb_access (cpf, is_admin, login, password) values 
+(999999, true, 'admin' , 'admin'),
 (11111, true, 'jose', 'jose'),
 (22222, true, 'maria', 'maria'),
 (33333, true, 'joao', 'joao')

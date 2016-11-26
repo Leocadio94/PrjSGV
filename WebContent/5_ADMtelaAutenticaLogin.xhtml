@@ -35,33 +35,38 @@
 				class="img-rounded" style="width: 300px; height: 150px;"></img>
 		</div>
 		<div>
-			<h:outputLabel class="labelTitulo" value="Seja bem vindo, usuário #{accessMB.currentAccess.person.name}." />
+			<h:outputLabel class="labelTitulo"
+				value="Seja bem vindo, usuário #{accessMB.currentAccess.person.name}." />
 		</div>
 
 		<div class="container">
-			<h2>
-				<h:outputLabel class="labelSubTitulo" value="Menu do Usuário" />
-			</h2>
-			<ul class="nav nav-justified">
-				<li><a class="text-center" href="2_telaCarteirinha.xhtml"><i
-						class="fa fa-tag fa-5x"></i> <br></br>Carteirinha Virtual</a></li>
-				<li><a class="text-center" href="3_telaCalendario.xhtml"><i
-						class="fa fa-calendar fa-5x"></i> <br></br>Calendário</a></li>
-			</ul>
+			<h:panelGroup rendered="#{not accessMB.currentAccess.isAdmin}">
+				<h2>
+					<h:outputLabel class="labelSubTitulo" value="Menu do Usuário" />
+				</h2>
+				<ul class="nav nav-justified">
+					<li><a class="text-center" href="2_telaCarteirinha.xhtml"><i
+							class="fa fa-tag fa-5x"></i> <br></br>Carteirinha Virtual</a></li>
+					<li><a class="text-center" href="3_telaCalendario.xhtml"><i
+							class="fa fa-calendar fa-5x"></i> <br></br>Calendário</a></li>
+				</ul>
 
-			<h2>
-				<h:outputLabel class="labelSubTitulo" value="Menu de Administração" />
-			</h2>
-			<ul class="nav nav-justified">
-				<li><a class="text-center" href="6_ADMManterPessoa.xhtml"><i
-						class="fa fa-user fa-5x"></i> <br></br>Manter Pessoa</a></li>
-				<li><a class="text-center" href="7_ADMManterVacina.xhtml"><i
-						class="fa fa-medkit fa-5x"></i> <br></br>Manter Vacina</a></li>
-				<li><a class="text-center" href="8_ADMManterVacinacao.xhtml"><i
-						class="fa fa-heartbeat fa-5x"></i> <br></br>Manter Vacinação</a></li>
-			</ul>
+			</h:panelGroup>
 
-			<hr />
+
+			<h:panelGroup rendered="#{accessMB.currentAccess.isAdmin}">
+				<h2>
+					<h:outputLabel class="labelSubTitulo" value="Menu de Administração" />
+				</h2>
+				<ul class="nav nav-justified">
+					<li><a class="text-center" href="6_ADMManterPessoa.xhtml"><i
+							class="fa fa-user fa-5x"></i> <br></br>Manter Pessoa</a></li>
+					<li><a class="text-center" href="7_ADMManterVacina.xhtml"><i
+							class="fa fa-medkit fa-5x"></i> <br></br>Manter Vacina</a></li>
+					<li><a class="text-center" href="8_ADMManterVacinacao.xhtml"><i
+							class="fa fa-heartbeat fa-5x"></i> <br></br>Manter Vacinação</a></li>
+				</ul>
+			</h:panelGroup>
 		</div>
 	</div>
 </h:body>
