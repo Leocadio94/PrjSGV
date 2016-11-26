@@ -20,7 +20,7 @@ public class Employee implements Serializable {
 	private static final long serialVersionUID = -4054847029987948714L;
 	private Long cre;
 	private Local local;
-	private String nome;
+	private Person person;
 	
 	@Id
     @Column(name="cre")
@@ -40,21 +40,19 @@ public class Employee implements Serializable {
 	public void setLocal(Local local) {
 		this.local = local;
 	}
-	
-	@Column(name = "nome")
-	public String getNome() {
-		return nome;
+
+	@ManyToOne(targetEntity=Person.class)
+	@JoinColumn(name = "cpf")	
+	public Person getPerson() {
+		return person;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setPerson(Person person) {
+		this.person = person;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Employee []";
 	}
-
-	
-	
 
 }

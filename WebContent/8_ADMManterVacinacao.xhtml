@@ -52,15 +52,15 @@
 						<h:outputLabel class="col-md-4 control-label" value="Vacina:" />
 
 						<div class="col-md-4">
-							<h:selectOneMenu id="slctVaccine" styleClass="form-control"
+							<p:selectOneMenu id="slctVaccine"
 								converter="vaccineConverter"
 								value="${vaccinationMB.currentVaccination.vaccine}"
-								label="Vacina">
+								label="Vacina" filter="true" filterMatchMode="contains">
 								<f:selectItem itemLabel="Selecione a vacina..."
 									noSelectionOption="true" itemValue="" />
 								<f:selectItems value="#{vaccinationMB.vaccines}" var="v"
 									itemValue="#{v}" itemLabel="#{v.name}" />
-							</h:selectOneMenu>
+							</p:selectOneMenu>
 							<p:message for="slctVaccine" />
 						</div>
 					</div>
@@ -69,15 +69,15 @@
 						<h:outputLabel class="col-md-4 control-label" value="Pessoa:" />
 
 						<div class="col-md-4">
-							<h:selectOneMenu id="slctPeople" styleClass="form-control"
+							<p:selectOneMenu id="slctPeople"
 								converter="personConverter"
 								value="${vaccinationMB.currentVaccination.person}"
-								label="Pessoa">
+								label="Pessoa" filter="true" filterMatchMode="contains">
 								<f:selectItem itemLabel="Selecione a pessoa..."
 									noSelectionOption="true" itemValue="" />
 								<f:selectItems value="#{vaccinationMB.people}" var="p"
-									itemValue="#{p}" itemLabel="#{p.name}" />
-							</h:selectOneMenu>
+									itemValue="#{p}" itemLabel="#{p.name} (CPF: #{p.cpf})" />
+							</p:selectOneMenu>
 							<p:message for="slctPeople" />
 						</div>
 					</div>
@@ -86,16 +86,16 @@
 						<h:outputLabel class="col-md-4 control-label" value="Funcionário:" />
 
 						<div class="col-md-4">
-							<h:selectOneMenu id="slctEmployee" styleClass="form-control"
+							<p:selectOneMenu id="slctEmployee" 
 								converter="employeeConverter"
 								value="${vaccinationMB.currentVaccination.employee}"
-								label="Funcionário">
+								label="Funcionário" filter="true" filterMatchMode="contains">
 								<f:selectItem itemLabel="Selecione o funcionário..."
 									noSelectionOption="true" itemValue="" />
 								<f:selectItems value="#{vaccinationMB.employees}" var="emp"
 									itemValue="#{emp}"
-									itemLabel="#{emp.nome} - (#{emp.local.name})" />
-							</h:selectOneMenu>
+									itemLabel="#{emp.person.name} - (#{emp.local.name})" />
+							</p:selectOneMenu>
 							<p:message for="slctEmployee" />
 						</div>
 					</div>

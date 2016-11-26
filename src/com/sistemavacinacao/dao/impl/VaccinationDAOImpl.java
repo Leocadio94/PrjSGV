@@ -71,7 +71,7 @@ public class VaccinationDAOImpl implements IVaccinationDAO {
 		qry.setParameter("cpf", person.getCpf());
 
 		List<Vaccination> vacs = qry.getResultList();
-
+	
 		em.close();
 
 		return vacs;

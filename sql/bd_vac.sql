@@ -94,13 +94,13 @@ COMMENT ON COLUMN vacinacao.tb_person.dt_birth IS 'Data de nascimento do registr
 CREATE TABLE vacinacao.tb_employees (
                 cre BIGINT NOT NULL,
                 id_local INTEGER NOT NULL,
-                nome VARCHAR NOT NULL,
+                cpf BIGINT NOT NULL,
                 CONSTRAINT tb_employees_pk PRIMARY KEY (cre, id_local)
 );
 COMMENT ON TABLE vacinacao.tb_employees IS 'Tabela de empregados';
 COMMENT ON COLUMN vacinacao.tb_employees.cre IS 'Número do CRE';
 COMMENT ON COLUMN vacinacao.tb_employees.id_local IS 'Id do local de trabalho';
-COMMENT ON COLUMN vacinacao.tb_employees.nome IS 'Nome do empregado';
+COMMENT ON COLUMN vacinacao.tb_employees.cpf IS 'CPF do registro';
 
 
 CREATE SEQUENCE vacinacao.tb_emails_seq_email_seq;
@@ -305,6 +305,13 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
+ALTER TABLE vacinacao.tb_employees ADD CONSTRAINT tb_person_tb_employees_fk
+FOREIGN KEY (cpf)
+REFERENCES vacinacao.tb_person (cpf)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
 ALTER TABLE vacinacao.tb_vaccinations add constraint tb_employees_tb_vaccinations_fk
 FOREIGN KEY (cre, id_local)
 REFERENCES vacinacao.tb_employees (cre, id_local)
@@ -325,10 +332,6 @@ INSERT INTO vacinacao.dm_local (id_local, address, name) VALUES (1, 'Av A - 0', 
 INSERT INTO vacinacao.dm_local (id_local, address, name) VALUES (2, 'Av B - 0', 'Hospital B');
 INSERT INTO vacinacao.dm_local (id_local, address, name) VALUES (3, 'Av C  - 0', 'Hospital C');
 
-INSERT INTO vacinacao.tb_employees VALUES (123, 1, 'José');
-INSERT INTO vacinacao.tb_employees VALUES (456, 2, 'Maria');
-INSERT INTO vacinacao.tb_employees VALUES (789, 3, 'João');
-
 INSERT INTO vacinacao.dm_disease VALUES (1, 'Doença A');
 INSERT INTO vacinacao.dm_disease VALUES (2, 'Doença B');
 INSERT INTO vacinacao.dm_disease VALUES (3, 'Doença C');
@@ -336,3 +339,17 @@ INSERT INTO vacinacao.dm_disease VALUES (3, 'Doença C');
 INSERT INTO vacinacao.dm_allergy VALUES (1, 'Alergia A');
 INSERT INTO vacinacao.dm_allergy VALUES (2, 'Alergia B');
 INSERT INTO vacinacao.dm_allergy VALUES (3, 'Alergia C');
+
+insert into vacinacao.tb_person (cpf,dt_birth,has_tattoo,name,rg,weight) values 
+(11111, '1980-01-01', false, 'José', 11111, 80),
+(22222, '1980-01-01', false, 'Maria', 22222, 80),
+(33333, '1980-01-01', false, 'João', 33333, 80)
+
+INSERT INTO vacinacao.tb_employees VALUES (123, 1, 'José', 11111);
+INSERT INTO vacinacao.tb_employees VALUES (456, 2, 'Maria', 22222);
+INSERT INTO vacinacao.tb_employees VALUES (789, 3, 'João', 33333);
+
+insert into vacinacao.tb_access (cpf, is_admin, login, password) values 
+(11111, true, 'jose', 'jose'),
+(22222, true, 'maria', 'maria'),
+(33333, true, 'joao', 'joao')

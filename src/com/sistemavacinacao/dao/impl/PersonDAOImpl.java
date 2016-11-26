@@ -99,7 +99,7 @@ public class PersonDAOImpl implements IPersonDAO {
 
 		em.close();
 
-		return people;
+		return people; // TODO limitar alterar/excluir apenas a não-admins
 	}
 
 	@Override

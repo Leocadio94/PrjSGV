@@ -23,6 +23,7 @@ public class Access implements Serializable {
 	private Person person;
 	private String  login;
 	private String  password;
+	private Boolean isAdmin = false;
 
 	@Id
 	@ManyToOne(targetEntity=Person.class)
@@ -50,6 +51,13 @@ public class Access implements Serializable {
 		this.password = password;
 	}
 	
+    @Column(name="is_admin", columnDefinition = "boolean default false")
+	public Boolean getIsAdmin() {
+		return isAdmin;
+	}
+	public void setIsAdmin(Boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
 	@Override
 	public String toString() {
 		return "Access [login="+login+"]";
