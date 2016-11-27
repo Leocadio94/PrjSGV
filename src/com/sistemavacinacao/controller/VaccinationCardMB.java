@@ -93,6 +93,19 @@ public class VaccinationCardMB implements Serializable {
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Data selecionada: " + format.format(event.getObject()), "INFO"));
 	}
 
+	public String getFormattedDate() {
+		String retorno = "Não há vacinas marcadas para essa data.";
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		
+		for (Vaccination v : nextVaccinations) {
+			if (currentDate.equals(v.getDateVaccination())) {
+				retorno = "Há uma vacina marcada para a data " + format.format(currentDate) +".";
+			}
+		}
+		
+		return retorno;
+	}
+
 	public List<Vaccination> getPreviousVaccinations() {
 		return previousVaccinations;
 	}

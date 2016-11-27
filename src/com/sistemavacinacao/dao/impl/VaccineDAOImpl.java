@@ -90,7 +90,7 @@ public class VaccineDAOImpl implements IVaccineDAO{
 
 		em.getTransaction().begin();
 
-		Query qry = em.createQuery("delete from tb_vaccinations as va where va.vaccine.id_vaccine = :idv");
+		Query qry = em.createQuery("delete from tb_vaccinations as va where va.vaccine.idVaccine = :idv");
 		qry.setParameter("idv", vaccine.getIdVaccine());
 		qry.executeUpdate();
 		
