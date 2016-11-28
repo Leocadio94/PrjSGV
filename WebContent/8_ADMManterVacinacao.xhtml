@@ -46,75 +46,79 @@
 					<h2>Administração de Vacinações</h2>
 
 					<div class="form-group">
-						<h:outputLabel class="col-md-4 control-label" value="Vacina:" />
+						<p:outputLabel for="slctVaccine" class="col-md-4 control-label"
+							value="Vacina:" />
 
 						<div class="col-md-4">
 							<p:selectOneMenu id="slctVaccine" converter="vaccineConverter"
 								value="${vaccinationMB.currentVaccination.vaccine}"
-								label="Vacina" filter="true" filterMatchMode="contains">
+								label="Vacina" filter="true" filterMatchMode="contains" required="true">
 								<f:selectItem itemLabel="Selecione a vacina..."
-									noSelectionOption="true" itemValue="" />
+									noSelectionOption="true" itemValue="#{null}" />
 								<f:selectItems value="#{vaccinationMB.vaccines}" var="v"
 									itemValue="#{v}" itemLabel="#{v.name}" />
 							</p:selectOneMenu>
-							<p:message for="slctVaccine" />
 						</div>
+						<p:message for="slctVaccine" />
 					</div>
 
 					<div class="form-group">
-						<h:outputLabel class="col-md-4 control-label" value="Pessoa:" />
+						<p:outputLabel for="slctPeople" class="col-md-4 control-label"
+							value="Pessoa:" />
 
 						<div class="col-md-4">
 							<p:selectOneMenu id="slctPeople" converter="personConverter"
 								value="${vaccinationMB.currentVaccination.person}"
-								label="Pessoa" filter="true" filterMatchMode="contains">
+								label="Pessoa" filter="true" filterMatchMode="contains" required="true">
 								<f:selectItem itemLabel="Selecione a pessoa..."
-									noSelectionOption="true" itemValue="" />
+									noSelectionOption="true" itemValue="#{null}" />
 								<f:selectItems value="#{vaccinationMB.people}" var="p"
 									itemValue="#{p}" itemLabel="#{p.name} (CPF: #{p.cpf})" />
 							</p:selectOneMenu>
-							<p:message for="slctPeople" />
 						</div>
+						<p:message for="slctPeople" />
 					</div>
 
 					<div class="form-group">
-						<h:outputLabel class="col-md-4 control-label" value="Funcionário:" />
+						<p:outputLabel for="slctEmployee" class="col-md-4 control-label"
+							value="Funcionário:" />
 
 						<div class="col-md-4">
 							<p:selectOneMenu id="slctEmployee" converter="employeeConverter"
 								value="${vaccinationMB.currentVaccination.employee}"
-								label="Funcionário" filter="true" filterMatchMode="contains">
+								label="Funcionário" filter="true" filterMatchMode="contains" required="true">
 								<f:selectItem itemLabel="Selecione o funcionário..."
-									noSelectionOption="true" itemValue="" />
+									noSelectionOption="true" itemValue="#{null}" />
 								<f:selectItems value="#{vaccinationMB.employees}" var="emp"
 									itemValue="#{emp}"
 									itemLabel="#{emp.person.name} - (#{emp.local.name})" />
 							</p:selectOneMenu>
-							<p:message for="slctEmployee" />
 						</div>
+						<p:message for="slctEmployee" />
 					</div>
 
 
 					<div class="form-group">
-						<h:outputLabel class="col-md-4 control-label"
+						<p:outputLabel for="txtDateVac" class="col-md-4 control-label"
 							value="Data da vacinação:" />
 						<div class="col-md-4">
 							<p:calendar id="txtDateVac" size="8"
 								value="${vaccinationMB.currentVaccination.dateVaccination}"
 								pattern="dd/MM/yyyy" mask="true" locale="br" navigator="true"
 								required="true" label="Data da vacinação" yearRange="c-0:c+10" />
-							<p:message for="txtDateVac" />
 						</div>
+						<p:message for="txtDateVac" />
 					</div>
 
 					<div class="form-group">
-						<h:outputLabel class="col-md-4 control-label" value="Dose:" />
+						<p:outputLabel for="txtDose" class="col-md-4 control-label"
+							value="Dose:" />
 						<div class="col-md-4">
 							<h:inputText id="txtDose" styleClass="form-control"
 								value="${vaccinationMB.currentVaccination.dose}" required="true"
 								label="Dose" />
-							<p:message for="txtDose" />
 						</div>
+						<p:message for="txtDose" />
 					</div>
 
 					<center>
@@ -122,8 +126,9 @@
 					<div class="grupoBotao">
 
 						<div class="botao">
-							<h:commandButton styleClass="btn btn-success" value="Gravar"
-								action="${vaccinationMB.create()}" />
+							<h:commandButton
+								styleClass="ui-priority-primary btn btn-lg btn-block"
+								value="Gravar" action="${vaccinationMB.create()}" />
 
 
 						</div>
@@ -144,9 +149,9 @@
 		href="https://google.com" target="_blank"><i class="fa fa-google"></i>
 			Google</a>
 	</span> </footer> </center>
-	
+
 	<ui:include src="templates/scripts.xhtml" />
-	
+
 </h:body>
 </html>
 

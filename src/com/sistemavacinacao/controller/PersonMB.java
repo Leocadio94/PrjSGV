@@ -107,6 +107,7 @@ public class PersonMB implements Serializable {
 
 		initialize();
 		read();
+		showForm = false;
 		
 		FacesContext.getCurrentInstance().addMessage(
                 null,
