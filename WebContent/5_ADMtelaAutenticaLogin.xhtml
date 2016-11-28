@@ -19,35 +19,41 @@
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" />
 	<link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" />
 
+	<link rel="stylesheet" href="css/teste.css" />
 	<link rel="stylesheet" href="css/styles.css" />
 	<link rel="stylesheet" href="css/tabela.css" />
+	<h:outputStylesheet name="css/styles.css"/>
 
 </h:head>
 
 <h:body class="align">
 	<div class="siteContainer">
 		<div class="row">
-			<img
+			<center> <img
 				src="http://www.canalalagoinhas.com.br/wp-content/uploads/2015/05/vacina-1024x640.jpg"
-				class="img-rounded" style="width: 300px; height: 150px;"></img>
+				class="img-rounded" style="width: 300px; height: 150px;"></img></center>
 		</div>
 		<div>
-			<h:outputLabel class="labelTitulo"
-				value="Seja bem vindo, usuário #{accessMB.currentAccess.person.name}." />
+			<center>
+			<h4>
+				<h:outputLabel class="labelTitulo"
+					value="Seja bem vindo, usuário #{accessMB.currentAccess.person.name}." />
+			</h4>
+			</center>
 		</div>
 
 		<div class="container">
 			<h:panelGroup rendered="#{not accessMB.currentAccess.isAdmin}">
+				<center>
 				<h2>
 					<h:outputLabel class="labelSubTitulo" value="Menu do Usuário" />
 				</h2>
+				</center>
 				<ul class="nav nav-justified">
-					<li><a class="text-center" href="2_telaCarteirinha.xhtml"><i
+					<li class="login-botao"><a class="text-center" href="2_telaCarteirinha.xhtml"><i
 							class="fa fa-tag fa-5x"></i> <br></br>Carteirinha Virtual</a></li>
-					<li><a class="text-center" href="3_telaCalendario.xhtml"><i
+					<li class="login-botao"><a class="text-center" href="3_telaCalendario.xhtml"><i
 							class="fa fa-calendar fa-5x"></i> <br></br>Calendário</a></li>
 				</ul>
 
@@ -55,19 +61,23 @@
 
 
 			<h:panelGroup rendered="#{accessMB.currentAccess.isAdmin}">
+				<center>
 				<h2>
 					<h:outputLabel class="labelSubTitulo" value="Menu de Administração" />
 				</h2>
+				</center>
 				<ul class="nav nav-justified">
-					<li><a class="text-center" href="6_ADMManterPessoa.xhtml"><i
+					<li class="login-botao"><a class="text-center" href="6_ADMManterPessoa.xhtml"><i
 							class="fa fa-user fa-5x"></i> <br></br>Manter Pessoa</a></li>
-					<li><a class="text-center" href="7_ADMManterVacina.xhtml"><i
+					<li class="login-botao"><a class="text-center" href="7_ADMManterVacina.xhtml"><i
 							class="fa fa-medkit fa-5x"></i> <br></br>Manter Vacina</a></li>
-					<li><a class="text-center" href="8_ADMManterVacinacao.xhtml"><i
+					<li class="login-botao"><a class="text-center" href="8_ADMManterVacinacao.xhtml"><i
 							class="fa fa-heartbeat fa-5x"></i> <br></br>Manter Vacinação</a></li>
 				</ul>
 			</h:panelGroup>
 		</div>
 	</div>
+
+	<ui:include src="templates/scripts.xhtml" />
 </h:body>
 </html>

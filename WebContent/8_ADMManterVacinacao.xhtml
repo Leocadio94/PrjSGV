@@ -12,15 +12,12 @@
 	<meta name="author" content=""></meta>
 	<title>VacinaWeb</title>
 
-
 	<link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 	<link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" />
 	<link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" />
 
 	<link rel="stylesheet" href="css/teste.css" />
 	<link rel="stylesheet" href="css/styles.css" />
@@ -47,13 +44,12 @@
 						class="img-rounded" style="width: 400px; height: 230px;"></img>
 
 					<h2>Administração de Vacinações</h2>
-					
+
 					<div class="form-group">
 						<h:outputLabel class="col-md-4 control-label" value="Vacina:" />
 
 						<div class="col-md-4">
-							<p:selectOneMenu id="slctVaccine"
-								converter="vaccineConverter"
+							<p:selectOneMenu id="slctVaccine" converter="vaccineConverter"
 								value="${vaccinationMB.currentVaccination.vaccine}"
 								label="Vacina" filter="true" filterMatchMode="contains">
 								<f:selectItem itemLabel="Selecione a vacina..."
@@ -64,13 +60,12 @@
 							<p:message for="slctVaccine" />
 						</div>
 					</div>
-					
+
 					<div class="form-group">
 						<h:outputLabel class="col-md-4 control-label" value="Pessoa:" />
 
 						<div class="col-md-4">
-							<p:selectOneMenu id="slctPeople"
-								converter="personConverter"
+							<p:selectOneMenu id="slctPeople" converter="personConverter"
 								value="${vaccinationMB.currentVaccination.person}"
 								label="Pessoa" filter="true" filterMatchMode="contains">
 								<f:selectItem itemLabel="Selecione a pessoa..."
@@ -86,8 +81,7 @@
 						<h:outputLabel class="col-md-4 control-label" value="Funcionário:" />
 
 						<div class="col-md-4">
-							<p:selectOneMenu id="slctEmployee" 
-								converter="employeeConverter"
+							<p:selectOneMenu id="slctEmployee" converter="employeeConverter"
 								value="${vaccinationMB.currentVaccination.employee}"
 								label="Funcionário" filter="true" filterMatchMode="contains">
 								<f:selectItem itemLabel="Selecione o funcionário..."
@@ -108,8 +102,7 @@
 							<p:calendar id="txtDateVac" size="8"
 								value="${vaccinationMB.currentVaccination.dateVaccination}"
 								pattern="dd/MM/yyyy" mask="true" locale="br" navigator="true"
-								required="true" label="Data da vacinação" yearRange="c-0:c+10"
-								/>
+								required="true" label="Data da vacinação" yearRange="c-0:c+10" />
 							<p:message for="txtDateVac" />
 						</div>
 					</div>
@@ -143,6 +136,7 @@
 		</div>
 	</div>
 	<hr />
+
 	<center> <footer class="rodape"> <span>VacinaWeb
 		- Site em Desenvolvimento ® All Rights Reserved 2016 - <a
 		href="https://facebook.com" target="_blank"><i
@@ -150,6 +144,9 @@
 		href="https://google.com" target="_blank"><i class="fa fa-google"></i>
 			Google</a>
 	</span> </footer> </center>
+	
+	<ui:include src="templates/scripts.xhtml" />
+	
 </h:body>
 </html>
 

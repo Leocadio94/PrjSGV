@@ -8,3 +8,15 @@
   box-shadow: 5px 5px 5px #000000;
   color: white;
 }
+
+.login-panel {
+    margin-top: 25%;
+}
+.panel-heading {
+    border-color: #5cb85c;
+    color: #fff;
+    background-color: #5cb85c;
+}
+.login-botao {
+	border: 1px solid black;
+}

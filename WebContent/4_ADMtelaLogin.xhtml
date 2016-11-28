@@ -18,11 +18,10 @@
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" />
 	<link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" />
 
 	<link rel="stylesheet" href="css/teste.css" />
 	<link rel="stylesheet" href="css/styles.css" />
+	<h:outputStylesheet name="css/styles.css"/>
 </h:head>
 <h:body>
 
@@ -31,28 +30,20 @@
 		<div class="inner-bg">
 			<div class="container">
 				<div class="row">
-					<center> <img
-						src="http://www.canalalagoinhas.com.br/wp-content/uploads/2015/05/vacina-1024x640.jpg"
-						class="img-rounded" style="width: 300px; height: 150px;"></img> </center>
-				</div>
-				<p:messages autoUpdate="true" />
-				<div class="row">
-					<div class="col-md-3"></div>
-					<div class="col-md-6">
-
-						<div class="form-box">
-							<div class="form-top">
-								<div class="form-top-left">
-									<h3>Acessar Conta</h3>
-									<p>Usuário/Email:</p>
-								</div>
-								<div class="form-top-right">
-									<i class="fa fa-lock"></i>
-								</div>
+					<div class="col-md-6 col-md-offset-3">
+						<div class="login-panel panel panel-default">
+							<center> <img
+								src="http://www.canalalagoinhas.com.br/wp-content/uploads/2015/05/vacina-1024x640.jpg"
+								class="img-rounded" style="width: 300px; height: 150px;"></img>
+							</center>
+							<div class="panel-heading">
+								<h4 class="page-title">Acesse sua conta</h4>
 							</div>
-							<div class="form-bottom">
-								<h:form role="form" class="form-horizontal"
-									enctype="multipart/form-data">
+							<div class="panel-body">
+								<h:form role="form" enctype="multipart/form-data">
+
+									<p:messages autoUpdate="true" />
+									
 									<div class="form-group">
 										<p:inputText value="${accessMB.currentAccess.login}"
 											styleClass="form-username form-control" id="form-username"
@@ -63,12 +54,12 @@
 										<p:password value="${accessMB.currentAccess.password}"
 											styleClass="form-password form-control" id="form-password"
 											required="true" label="Senha" />
-										<p:watermark for="form-password" value="Senha..."/>
+										<p:watermark for="form-password" value="Senha..." />
 									</div>
 									<div class="grupoBotao">
 
 										<div class="botao">
-											<h:commandButton styleClass="btn btn-success" value="Logar"
+											<h:commandButton styleClass="btn btn-lg btn-success btn-block" value="Logar"
 												action="${accessMB.login()}" />
 										</div>
 
@@ -76,13 +67,7 @@
 								</h:form>
 							</div>
 						</div>
-
-
-
 					</div>
-
-					<div class="col-md-3"></div>
-
 				</div>
 
 			</div>
@@ -103,6 +88,7 @@
 	</div>
 	</footer>
 
+	<ui:include src="templates/scripts.xhtml" />
 </h:body>
 </html>
 

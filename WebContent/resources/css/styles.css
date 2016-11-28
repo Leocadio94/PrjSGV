@@ -18,13 +18,19 @@ body {
 	height: 150px;
 	width: 100%;
 }
-.grupoBotao {
-	float: center;
-	height: 150px;
-	width: 100%;
-}
 .alinhamento {
 	float: center;
 	height: 150px;
 	width: 100%;
+}
+.login-panel {
+    margin-top: 25%;
+}
+.panel-heading {
+    border-color: #5cb85c;
+    color: #fff;
+    background-color: #5cb85c;
+}
+.login-botao {
+	border: 1px solid black;
 }
