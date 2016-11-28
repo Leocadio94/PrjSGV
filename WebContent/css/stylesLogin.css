@@ -1,47 +1,110 @@
-@import url("reset.css");
-
+*{
+padding : 0;
+margin : 0;
+border : 0;
+}
 body {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 13px;
-	background-image: url("img/fundao.png");
-	background-color: #ffffff;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  background-image: url("http://wallpaper.zone/img/9535.jpg"); 
+  background-color: #ffffff;
+}
+.blended_grid{
+display : block;
+overflow : auto;
+margin : 30px auto 0 auto;
+}
+.pageHeader{
+background-color : rgba(0, 0, 0, 0.5);
+float : left;
+clear : none;
+height : 200px;
+width : 900px;
+font-family: 'FonteLogo', sans-serif;
+font-size: 20pt;
+color:#606060;
+margin-bottom: 0px;
+margin-top: 0px;
+}
+.pageLeftMenu{
+background-color : rgba(0, 0, 0, 0.5);
+float : right;
+clear : none;
+height : 600px;
+width : 200px;
+}
+.pageContent{
+background-color : rgba(0, 0, 0, 0.5);
+float : left;
+clear : none;
+height : 600px;
+width : 700px;
+}
+.pageFooter{
+background-color : rgba(0, 0, 0, 0.5);
+float : left;
+clear : none;
+height : 100px;
+width : 900px;
+text-align: justify;
+text-indent: 50px;
+}
+.btn {
+  padding-botton: 20px;  
 }
 
+.btn:hover {
+  transition: 0.3s;  
+  box-shadow: 5px 5px 5px #000000;
+  color: white;
 }
-p {
-	padding: 20px;
-}
-
-#topo {
-	margin: 0 auto;
-	width: 1000px;
-}
-
-#nav {
-	float: left;
-	height: 40px;
-	width: 1500px;
-	background: #ffffff;
+.btn-lg {
+  padding-botton: 20px;  
 }
 
-#content {
+.btn-lg:hover {
+  transition: 0.3s;  
+  box-shadow: 5px 5px 5px #000000;
+  color: white;
+}
+.login-panel {
+    margin-top: 25%;
+}
+.panel-heading {
+    border-color: #5cb85c;
+    color: #fff;
+    background-color: #5cb85c;
+}
+.login-botao {
+	border: 1px solid black;
+}
+
+.btn {
+  padding-botton: 20px;  
+}
+
+.btn:hover {
+  transition: 0.3s;  
+  box-shadow: 5px 5px 5px #000000;
+}
+.topo {
 	float: center;
-	background: #ffffff;
-	width: 1400px;
+	height: 150px;
+	width: 100%;
 }
-
-#barra {
-	float: left;
-	background: #33CCFF;
-	z-index: 200;
-	position: relative;
-	width: 20%;
-	font-size: 1em;
-
+.alinhamento {
+	float: center;
+	height: 150px;
+	width: 100%;
 }
-#rodape {
-	height: 40px;
-	width: 1000px;
-	background: #c0c0c0;
-	clear: both;
+.login-panel {
+    margin-top: 25%;
+}
+.panel-heading {
+    border-color: #5cb85c;
+    color: #fff;
+    background-color: #5cb85c;
+}
+.login-botao {
+	border: 1px solid black;
 }

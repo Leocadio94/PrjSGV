@@ -19,7 +19,7 @@
 	</context-param>	
 	<welcome-file-list>
 		<welcome-file>index.xhtml</welcome-file>
-		<welcome-file>telaLivro.xhtml</welcome-file>
+		<welcome-file>1_PortalPrincipal.xhtml</welcome-file>
 	</welcome-file-list>
 	<context-param>
 		<param-name>primefaces.THEME</param-name>

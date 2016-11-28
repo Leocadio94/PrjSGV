@@ -1,5 +1,4 @@
 .btn {
-  background-color: rgba(0, 60, 40, 1);
   padding-botton: 20px;  
 }
 
@@ -8,7 +7,6 @@
   box-shadow: 5px 5px 5px #000000;
   color: white;
 }
-
 .login-panel {
     margin-top: 25%;
 }

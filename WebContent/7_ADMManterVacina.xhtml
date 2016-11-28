@@ -116,7 +116,9 @@
 								</p:column>
 
 								<p:column headerText="Validade">
-									<h:outputText value="#{v.validate}" />
+									<h:outputText value="#{v.validate}">
+										<f:convertDateTime pattern="dd/MM/yyyy"/>
+									</h:outputText>
 								</p:column>
 
 								<p:column headerText="lote">

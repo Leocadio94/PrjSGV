@@ -18,7 +18,7 @@
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" />
 	<link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
-		
+
 	<link rel="stylesheet" href="css/teste.css" />
 	<link rel="stylesheet" href="css/styles.css" />
 </h:head>
@@ -50,41 +50,51 @@
 
 								<h4>Dados Principais</h4>
 								<div class="form-group">
-									<h:outputLabel for="txtCPF" class="col-md-4 control-label"
+									<p:outputLabel for="txtCPF" class="col-md-4 control-label"
 										value="CPF:" />
 									<div class="col-md-4">
-										<p:inputText id="txtCPF" styleClass="form-control"
-											value="${personMB.currentPerson.cpf}" required="true" />
+										<p:inputMask id="txtCPF" styleClass="form-control"
+											value="${personMB.currentPerson.cpf}" mask="999.999.999-99"
+											required="true" maxlength="11" converter="convertInput" />
 									</div>
+									<p:message for="txtCPF" />
 								</div>
 
 								<div class="form-group">
-									<h:outputLabel class="col-md-4 control-label" value="Nome:" />
+									<p:outputLabel for="txtName" class="col-md-4 control-label"
+										value="Nome:" />
 									<div class="col-md-4">
 										<p:inputText id="txtName" styleClass="form-control"
 											value="${personMB.currentPerson.name}" required="true" />
 									</div>
+									<p:message for="txtName" />
 								</div>
 
 								<div class="form-group">
-									<h:outputLabel class="col-md-4 control-label" value="RG:" />
+									<p:outputLabel for="txtRg" class="col-md-4 control-label"
+										value="RG:" />
 									<div class="col-md-4">
-										<p:inputText id="txtRg" styleClass="form-control"
-											value="${personMB.currentPerson.rg}" required="true" />
+										<p:inputMask id="txtRg" styleClass="form-control"
+											value="${personMB.currentPerson.rg}" required="true"
+											mask="99.999.999-9" converter="convertInput" />
 									</div>
+									<p:message for="txtRg" />
 								</div>
 
 								<div class="form-group">
-									<h:outputLabel class="col-md-4 control-label" value="Peso:" />
+									<p:outputLabel for="txtWeight" class="col-md-4 control-label"
+										value="Peso:" />
 									<div class="col-md-4">
 										<p:inputText id="txtWeight" styleClass="form-control"
 											value="${personMB.currentPerson.weight}" required="true" />
 									</div>
+									<p:message for="txtWeight" />
 								</div>
 
 								<div class="form-group">
 
-									<h:outputLabel class="col-md-4 control-label" value="Tatuagem:" />
+									<p:outputLabel for="slctTattoo" class="col-md-4 control-label"
+										value="Tatuagem:" />
 
 									<div class="col-md-4">
 										<h:selectOneMenu id="slctTattoo" styleClass="form-control"
@@ -94,17 +104,19 @@
 											<f:selectItem itemLabel="Sim" itemValue="#{true}" />
 											<f:selectItem itemLabel="Não" itemValue="#{false}" />
 										</h:selectOneMenu>
+										<p:message for="slctTattoo" />
 									</div>
 								</div>
 
 								<div class="form-group">
-									<h:outputLabel for="txtDataNasc" class="col-md-4 control-label"
+									<p:outputLabel for="txtDataNasc" class="col-md-4 control-label"
 										value="Data da Nascimento:" />
 									<div class="col-md-4">
 										<p:calendar id="txtDataNasc" size="8"
 											value="${personMB.currentPerson.dtBirth}"
 											pattern="dd/MM/yyyy" mask="true" locale="br" navigator="true"
 											yearRange="c-100:c+0" required="true" />
+										<p:message for="txtDataNasc" />
 									</div>
 								</div>
 
@@ -112,7 +124,8 @@
 
 								<h4>Dados de Acesso</h4>
 								<div class="form-group">
-									<h:outputLabel class="col-md-4 control-label" value="Login:" />
+									<p:outputLabel for="txtLogin" class="col-md-4 control-label"
+										value="Login:" />
 									<div class="col-md-4">
 										<p:inputText id="txtLogin" styleClass="form-control"
 											value="#{personMB.currentAccess.login}" label="Login" />
@@ -120,7 +133,8 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<h:outputLabel class="col-md-4 control-label" value="Senha:" />
+									<p:outputLabel for="txtPassword" class="col-md-4 control-label"
+										value="Senha:" />
 									<div class="col-md-4">
 										<p:password id="txtPassword" styleClass="form-control"
 											value="#{personMB.currentAccess.password}" label="Senha"
@@ -133,8 +147,9 @@
 								<hr />
 
 								<div class="form-group text-center">
-									<p:commandButton value="Próximo" action="#{personMB.addPerson}"
-										process="@form" rendered="${!personMB.showForm}" update="@all" />
+									<p:commandButton styleClass="ui-priority-primary btn btn-xs"
+										value="Próximo" action="#{personMB.addPerson}" process="@form"
+										rendered="${!personMB.showForm}" update="@all" />
 								</div>
 
 							</h:panelGroup>
@@ -163,10 +178,12 @@
 											<f:validateDoubleRange minimum="1" />
 										</h:inputText>
 										<p:message for="txtNumberAdr" />
-										<p:commandLink value="Adicionar endereço"
-											action="#{personMB.addAddress}" update="dAddress"
-											process="@this form1:pAddress" />
 									</div>
+								</div>
+								<div class="form-group text-center">
+									<p:commandLink styleClass="ui-priority-primary btn btn-xs"
+										value="Adicionar endereço" action="#{personMB.addAddress}"
+										update="dAddress" process="@this form1:pAddress" />
 								</div>
 								<div class="form-group">
 									<h:outputLabel class="col-md-4 control-label" value="" />
@@ -194,9 +211,9 @@
 											<f:validateDoubleRange minimum="1" />
 										</h:inputText>
 										<p:message for="txtPhone" />
-										<p:commandLink value="Adicionar telefone"
-											action="#{personMB.addPhone}" update="dPhone"
-											process="@this form1:pPhone" />
+										<p:commandLink styleClass="ui-priority-primary btn btn-xs"
+											value="Adicionar telefone" action="#{personMB.addPhone}"
+											update="dPhone" process="@this form1:pPhone" />
 									</div>
 								</div>
 								<div class="form-group">
@@ -223,7 +240,7 @@
 											value="${personMB.currentEmail.email}" required="true"
 											label="E-mail" />
 										<p:message for="txtEmail" />
-										<p:commandLink value="Adicionar e-mail"
+										<p:commandLink styleClass="ui-priority-primary btn btn-xs" value="Adicionar e-mail"
 											action="#{personMB.addEmail}" update="dEmail"
 											process="@this form1:pEmail" />
 									</div>
@@ -270,7 +287,7 @@
 											value="${personMB.currentDependent.cpfDependent}"
 											required="true" label="CPF do Dependente" />
 										<p:message for="txtCpfDep" />
-										<p:commandLink value="Adicionar dependente"
+										<p:commandLink styleClass="ui-priority-primary btn btn-xs" value="Adicionar dependente"
 											action="#{personMB.addDependent}" update="dDependent"
 											process="@this form1:pDependent" />
 									</div>
@@ -307,7 +324,7 @@
 												itemValue="#{d}" itemLabel="#{d.name}" />
 										</h:selectOneMenu>
 										<p:message for="slctDisease" />
-										<p:commandLink value="Adicionar doença"
+										<p:commandLink styleClass="ui-priority-primary btn btn-xs" value="Adicionar doença"
 											action="#{personMB.addDisease}" update="dDisease"
 											process="@this form1:pDisease" />
 									</div>
@@ -343,7 +360,7 @@
 										</h:selectOneMenu>
 										<p:message for="slctAllergy" />
 
-										<p:commandLink value="Adicionar alergia"
+										<p:commandLink styleClass="ui-priority-primary btn btn-xs" value="Adicionar alergia"
 											action="#{personMB.addAllergy}" update="dAllergy"
 											process="@this form1:pAllergy" />
 									</div>
@@ -382,16 +399,18 @@
 							enctype="multipart/form-data">
 							<p:dataTable var="p" value="#{personMB.people}"
 								styleClass="table table-striped table-bordered table-hover">
-								<p:column headerText="CPF" colspan="2">
+								<p:column headerText="CPF" colspan="4">
 									<h:outputText value="#{p.cpf}" />
 								</p:column>
 
-								<p:column headerText="Nome" colspan="2">
+								<p:column headerText="Nome" colspan="4">
 									<h:outputText value="#{p.name}" />
 								</p:column>
 
 								<p:column headerText="Data de Nascimento" colspan="3">
-									<h:outputText value="#{p.dtBirth}" />
+									<h:outputText value="#{p.dtBirth}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:outputText>
 								</p:column>
 
 								<p:column headerText="RG" colspan="2">
@@ -408,13 +427,15 @@
 
 								<p:column colspan="3">
 									<p:commandButton actionListener="${personMB.delete(p)}"
-										value="Excluir" styleClass="ui-priority-primary pull-right btn btn-xs"
+										value="Excluir"
+										styleClass="ui-priority-primary pull-right btn btn-xs"
 										update="@all" icon="fa fa-fw fa-remove">
 										<p:confirm header="Confirmação" message="Tem certeza?"
 											icon="ui-icon-alert" />
 									</p:commandButton>
 									<p:commandButton action="${personMB.update(p)}" value="Alterar"
-										styleClass="ui-priority-primary pull-right btn btn-xs" update="@all" icon="fa fa-fw fa-edit"/>
+										styleClass="ui-priority-primary pull-right btn btn-xs"
+										update="@all" icon="fa fa-fw fa-edit" />
 
 								</p:column>
 							</p:dataTable>
@@ -422,10 +443,10 @@
 
 							<p:confirmDialog global="true" showEffect="fade"
 								hideEffect="fade">
-								<p:commandButton value="Sim"
-									styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-								<p:commandButton value="Não"
-									styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+								<p:commandButton value="Sim" styleClass="ui-confirmdialog-yes"
+									icon="ui-icon-check" />
+								<p:commandButton value="Não" styleClass="ui-confirmdialog-no"
+									icon="ui-icon-close" />
 							</p:confirmDialog>
 						</h:form>
 
@@ -435,17 +456,17 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<hr />
-	
+
 	<center> <footer class="rodape"> <span>VacinaWeb
 		- Site em Desenvolvimento ® All Rights Reserved 2016 - <a
 		href="https://facebook.com" target="_blank"><i
 			class="fa fa-facebook-official"></i> Facebook</a> / <a
 		href="https://google.com" target="_blank"><i class="fa fa-google"></i>
 			Google</a>
-	</span> </footer> </center>	
-	
+	</span> </footer> </center>
+
 	<ui:include src="templates/scripts.xhtml" />
 </h:body>
 </html>
