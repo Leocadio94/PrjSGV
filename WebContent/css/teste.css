@@ -48,9 +48,7 @@ width : 900px;
 text-align: justify;
 text-indent: 50px;
 }
-.ui-selectonemenu{
+.ui-selectonemenu, 
+.ui-selectonemenu-label {
      width: 100% !important;
 }
-.ui-selectonemenu-label{
-     width: 100% !important;
-} 

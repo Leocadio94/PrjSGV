@@ -18,3 +18,9 @@
 .login-botao {
 	border: 1px solid black;
 }
+
+.ui-selectonemenu, 
+.ui-selectonemenu-label,
+.ui-inputnumber {
+     width: 100% !important;
+}
