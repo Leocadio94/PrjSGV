@@ -40,7 +40,7 @@
 
 				<p:tabView cache="true" dynamic="true">
 					<p:tab title="Cadastrar">
-						<h:form role="form" class="form-horizontal"
+						<h:form id="formprincipal" role="form" class="form-horizontal"
 							enctype="multipart/form-data">
 							<img
 								src="http://www.big1news.com.br/wp-content/uploads/2013/08/Campanha-Nacional-de-Vacina%C3%A7%C3%A3o-1.jpg"
@@ -86,9 +86,10 @@
 
 								<div class="col-md-4">
 									<p:selectOneMenu id="slctVaccineType"
-										converter="vaccineTypeConverter"
-										value="${vaccineMB.currentVaccine.vaccineType}"
+										widgetVar="slctVaccineType" converter="vaccineTypeConverter"
+										value="#{vaccineMB.currentVaccine.vaccineType}"
 										required="true">
+										<p:ajax event="change" update="@this"/>
 										<f:selectItem itemLabel="Selecione o tipo..."
 											noSelectionOption="true" itemValue="#{null}" />
 										<f:selectItems value="#{vaccineMB.vaccineTypes}" var="vac"
@@ -149,7 +150,9 @@
 									<p:commandButton action="${vaccineMB.update(v)}"
 										value="Alterar"
 										styleClass="ui-priority-primary pull-right btn btn-xs"
-										update="@all" icon="fa fa-fw fa-edit" />
+										update="@all" icon="fa fa-fw fa-edit"
+										oncomplete="PF('slctVaccineType').selectValue(v)">
+									</p:commandButton>
 
 								</p:column>
 							</p:dataTable>

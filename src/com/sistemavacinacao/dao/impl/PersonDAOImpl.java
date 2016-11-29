@@ -93,7 +93,7 @@ public class PersonDAOImpl implements IPersonDAO {
 	public List<Person> selectAllPeople() throws SQLException {
 		EntityManager em = JPAUtil.getConnection();
 
-		TypedQuery<Person> qry = em.createQuery("select p from tb_person as p", Person.class);
+		TypedQuery<Person> qry = em.createQuery("select p from tb_person as p order by p.name", Person.class);
 
 		List<Person> people = qry.getResultList();
 

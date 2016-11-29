@@ -55,9 +55,14 @@
 									<div class="col-md-4">
 										<p:inputMask id="txtCPF" styleClass="form-control"
 											value="${personMB.currentPerson.cpf}" mask="999.999.999-99"
-											required="true" maxlength="11" converter="convertInput" />
+											required="true" maxlength="11" converter="convertInput"
+											rendered="#{not personMB.showEdit}" />
+										<p:inputText id="txtCPFP" styleClass="form-control"
+											value="${personMB.currentPerson.cpf}" required="true"
+											rendered="#{personMB.showEdit}" />
 									</div>
 									<p:message for="txtCPF" />
+									<p:message for="txtCPFP" />
 								</div>
 
 								<div class="form-group">
@@ -76,9 +81,12 @@
 									<div class="col-md-4">
 										<p:inputMask id="txtRg" styleClass="form-control"
 											value="${personMB.currentPerson.rg}" required="true"
-											mask="99.999.999-9" converter="convertInput" />
+											mask="99.999.999-9" converter="convertInput" rendered="#{not personMB.showEdit}"/>
+										<p:inputText id="txtRgP" styleClass="form-control"
+											value="${personMB.currentPerson.rg}" required="true" rendered="#{personMB.showEdit}"/>
 									</div>
 									<p:message for="txtRg" />
+									<p:message for="txtRgP" />
 								</div>
 
 								<div class="form-group">
@@ -119,9 +127,9 @@
 									</div>
 									<p:message for="txtDataNasc" />
 								</div>
-
+							</h:panelGroup>
+							<h:panelGroup id="pAccess" rendered="#{not personMB.showEdit}">
 								<hr />
-
 								<h4>Dados de Acesso</h4>
 								<div class="form-group">
 									<p:outputLabel for="txtLogin" class="col-md-4 control-label"
@@ -143,20 +151,22 @@
 										<p:message for="txtPassword" />
 									</div>
 								</div>
-
-								<hr />
-
-								<div class="form-group text-center">
-									<p:commandButton id="btnProx"
-										styleClass="ui-priority-primary btn btn-lg btn-block"
-										value="Próximo" action="#{personMB.addPerson}" process="@form"
-										rendered="${!personMB.showForm}" update="@all" />
-								</div>
 							</h:panelGroup>
+
+							<hr />
+
+							<div class="form-group text-center">
+								<p:commandButton id="btnProx"
+									styleClass="ui-priority-primary btn btn-lg btn-block"
+									value="#{personMB.showEdit ? 'Atualizar Pessoa' : 'Gravar Pessoa'}"
+									action="#{personMB.addPerson}" process="@form"
+									rendered="#{not personMB.showForm}" update="@all" />
+							</div>
+
 							<p:defaultCommand target="btnProx" />
 						</h:form>
 						<h:form id="form1" role="form" class="form-horizontal"
-							enctype="multipart/form-data" rendered="${personMB.showForm}">
+							enctype="multipart/form-data" rendered="#{personMB.showForm}">
 							<h4>Dados Adicionais</h4>
 							<h:panelGroup id="pAddress">
 								<div class="form-group">
@@ -164,8 +174,7 @@
 										value="Endereço(s):" />
 									<div class="col-md-4">
 										<p:inputText id="txtAddress" styleClass="form-control"
-											value="#{personMB.currentAddress.address}" 
-											label="Endereço" />
+											value="#{personMB.currentAddress.address}" label="Endereço" />
 										<p:message for="txtAddress" />
 									</div>
 								</div>
@@ -174,8 +183,7 @@
 										value="Número do endereço:" />
 									<div class="col-md-4">
 										<h:inputText id="txtNumberAdr" styleClass="form-control"
-											value="#{personMB.currentAddress.number}" 
-											label="Número">
+											value="#{personMB.currentAddress.number}" label="Número">
 											<f:validateDoubleRange minimum="1" />
 										</h:inputText>
 										<p:message for="txtNumberAdr" />
@@ -207,8 +215,7 @@
 										value="Telefone(s):" />
 									<div class="col-md-4">
 										<h:inputText id="txtPhone" styleClass="form-control"
-											value="#{personMB.currentPhone.phoneNumber}" 
-											label="Telefone">
+											value="#{personMB.currentPhone.phoneNumber}" label="Telefone">
 											<f:validateDoubleRange minimum="1" />
 										</h:inputText>
 										<p:message for="txtPhone" />
@@ -240,8 +247,7 @@
 										value="E-mail(s):" />
 									<div class="col-md-4">
 										<h:inputText id="txtEmail" styleClass="form-control"
-											value="${personMB.currentEmail.email}" 
-											label="E-mail" />
+											value="${personMB.currentEmail.email}" label="E-mail" />
 										<p:message for="txtEmail" />
 									</div>
 								</div>
@@ -322,8 +328,7 @@
 										value="Doença(s):" />
 
 									<div class="col-md-4">
-										<p:selectOneMenu id="slctDisease" 
-											converter="diseaseConverter"
+										<p:selectOneMenu id="slctDisease" converter="diseaseConverter"
 											value="${personMB.currentDiseases.disease}" label="Doença">
 											<f:selectItem itemLabel="Selecione a doença..."
 												noSelectionOption="true" itemValue="#{null}" />
@@ -359,8 +364,7 @@
 									<h:outputLabel class="col-md-4 control-label"
 										value="Alergia(s):" />
 									<div class="col-md-4">
-										<p:selectOneMenu id="slctAllergy"
-											converter="allergyConverter"
+										<p:selectOneMenu id="slctAllergy" converter="allergyConverter"
 											value="${personMB.currentAllergies.allergy}" label="Alergia">
 											<f:selectItem itemLabel="Selecione a alergia..."
 												noSelectionOption="true" itemValue="#{null}" />
@@ -409,30 +413,30 @@
 						<h:form id="formae" role="form" class="form-horizontal"
 							enctype="multipart/form-data">
 							<p:dataTable var="p" value="#{personMB.people}"
-								styleClass="table table-striped table-bordered table-hover">
-								<p:column headerText="CPF" colspan="4">
+								styleClass="table table-striped table-bordered table-hover" >
+								<p:column headerText="CPF" colspan="4" sortBy="#{p.cpf}">
 									<h:outputText value="#{p.cpf}" />
 								</p:column>
 
-								<p:column headerText="Nome" colspan="4">
+								<p:column headerText="Nome" colspan="4" sortBy="#{p.name}">
 									<h:outputText value="#{p.name}" />
 								</p:column>
 
-								<p:column headerText="Data de Nascimento" colspan="3">
+								<p:column headerText="Data de Nascimento" colspan="3" sortBy="#{p.dtBirth}">
 									<h:outputText value="#{p.dtBirth}">
 										<f:convertDateTime pattern="dd/MM/yyyy" />
 									</h:outputText>
 								</p:column>
 
-								<p:column headerText="RG" colspan="2">
+								<p:column headerText="RG" colspan="2" sortBy="#{p.rg}">
 									<h:outputText value="#{p.rg}" />
 								</p:column>
 
-								<p:column headerText="Peso" colspan="2">
+								<p:column headerText="Peso" colspan="2" sortBy="#{p.weight}">
 									<h:outputText value="#{p.weight}" />
 								</p:column>
 
-								<p:column headerText="Tem tattoo?" colspan="2">
+								<p:column headerText="Tem tattoo?" colspan="2" sortBy="#{p.has_tattoo}">
 									<h:outputText value="#{p.has_tattoo ? 'Sim' : 'Não'}" />
 								</p:column>
 

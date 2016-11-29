@@ -62,7 +62,7 @@ public class VaccineMB implements Serializable {
 	}
 	public String update(Vaccine v){
 		currentVaccine = v;
-		return "7_ADMManterVacina?faces-redirect=true";
+		return "7_ADMManterVacina";
 	}
 
 	public void delete(Vaccine v){
