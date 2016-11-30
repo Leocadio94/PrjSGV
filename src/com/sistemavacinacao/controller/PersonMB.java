@@ -136,7 +136,7 @@ public class PersonMB implements Serializable {
 		currentPerson = p;
 		// currentAccess = personDAO.selectAccess(currentPerson);
 		showForm = false;
-		showEdit = true; // TODO alguma coisa pra fazer sumir o form de acesso
+		showEdit = true; 
 		currentAccess = new Access();
 		return "6_ADMManterPessoa?faces-redirect=true";
 	}

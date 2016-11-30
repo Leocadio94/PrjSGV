@@ -21,6 +21,7 @@
 
 	<link rel="stylesheet" href="css/teste.css" />
 	<link rel="stylesheet" href="css/styles.css" />
+	<link rel="stylesheet" href="css/stylesAdmin.css" />
 
 </h:head>
 <h:body>
@@ -104,8 +105,8 @@
 						<div class="col-md-4">
 							<p:calendar id="txtDateVac" size="8"
 								value="${vaccinationMB.currentVaccination.dateVaccination}"
-								pattern="dd/MM/yyyy" mask="true" locale="br" navigator="true"
-								required="true" label="Data da vacinação" yearRange="c-0:c+10" />
+								pattern="dd/MM/yyyy" mask="true" locale="pt" navigator="true"
+								required="true" label="Data da vacinação" yearRange="c-0:c+10" showOn="both" />
 						</div>
 						<p:message for="txtDateVac" />
 					</div>

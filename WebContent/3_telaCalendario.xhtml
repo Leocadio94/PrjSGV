@@ -19,9 +19,10 @@
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" />
 	<link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
-		
+
 	<link rel="stylesheet" href="css/teste.css" />
 	<link rel="stylesheet" href="css/styles.css" />
+	<link rel="stylesheet" href="css/stylesPerson.css" />
 
 </h:head>
 <h:body>
@@ -48,51 +49,62 @@
 					<h2>Calendário - Próximas Vacinas</h2>
 
 					<hr />
+					<div class="row">
+						<div class="col-md-8 col-md-offset-4">
+							<p:dialog id="diag" header="Vacinação" widgetVar="dlg"
+								dynamic="true" modal="true">
+								<h:outputText value="${vaccinationCardMB.getFormattedDate()}" />
+							</p:dialog>
 
-					<p:dialog id="diag" header="Vacinação" widgetVar="dlg" dynamic="true" modal="true">
-						<h:outputText value="${vaccinationCardMB.getFormattedDate()}" />
-					</p:dialog>
+							<h3>Calendário de Vacinação</h3>
+							<p:calendar id="inline" mode="inline"
+								value="#{vaccinationCardMB.currentDate}" locale="pt"
+								onselect="PF('dlg').show();" navigator="true"
+								showOtherMonths="true" >
+								<p:ajax event="dateSelect"
+									listener="#{vaccinationCardMB.onDateSelect}" update="diag"
+									oncomplete="PF('dlg').show();" />
+							</p:calendar>
 
-					<h4>Calendário de Vacinação</h4>
-					<p:calendar id="inline" mode="inline"
-						value="#{vaccinationCardMB.currentDate}" locale="br" onselect="PF('dlg').show();">
-						<p:ajax event="dateSelect" listener="#{vaccinationCardMB.onDateSelect}"
-							update="diag" oncomplete="PF('dlg').show();" />
-					</p:calendar>
+							<p:confirmDialog global="true" showEffect="fade"
+								hideEffect="fade">
+								<p:commandButton value="Sim" styleClass="ui-confirmdialog-yes"
+									icon="ui-icon-check" />
+								<p:commandButton value="Não" styleClass="ui-confirmdialog-no"
+									icon="ui-icon-close" />
+							</p:confirmDialog>
+						</div>
 
-					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-						<p:commandButton value="Sim" styleClass="ui-confirmdialog-yes"
-							icon="ui-icon-check" />
-						<p:commandButton value="Não" styleClass="ui-confirmdialog-no"
-							icon="ui-icon-close" />
-					</p:confirmDialog>
+						<div class="text-center col-md-12">
 
-					<hr />
+							<hr />
+							<h3>Próximas Vacinas</h3>
+							<p:dataTable var="v"
+								value="#{vaccinationCardMB.nextVaccinations}">
+								<p:column headerText="Vacina">
+									<h:outputText value="#{v.vaccine.name}" />
+								</p:column>
 
-					<h4>Próximas Vacinas</h4>
-					<p:dataTable var="v" value="#{vaccinationCardMB.nextVaccinations}">
-						<p:column headerText="Vacina">
-							<h:outputText value="#{v.vaccine.name}" />
-						</p:column>
+								<p:column headerText="Dosagem">
+									<h:outputText value="#{v.dose} ml" />
+								</p:column>
 
-						<p:column headerText="Dosagem">
-							<h:outputText value="#{v.dose} ml" />
-						</p:column>
+								<p:column headerText="Data">
+									<h:outputText value="#{v.dateVaccination}">
+										<f:convertDateTime pattern="dd-MM-yyyy" />
+									</h:outputText>
+								</p:column>
 
-						<p:column headerText="Data">
-							<h:outputText value="#{v.dateVaccination}">
-								<f:convertDateTime pattern="dd-MM-yyyy" />
-							</h:outputText>
-						</p:column>
+								<p:column headerText="Enfermeiro(a)">
+									<h:outputText value="#{v.employee.person.name}" />
+								</p:column>
 
-						<p:column headerText="Enfermeiro(a)">
-							<h:outputText value="#{v.employee.person.name}" />
-						</p:column>
-
-						<p:column headerText="Posto de Atendimento">
-							<h:outputText value="#{v.employee.local.name}" />
-						</p:column>
-					</p:dataTable>
+								<p:column headerText="Posto de Atendimento">
+									<h:outputText value="#{v.employee.local.name}" />
+								</p:column>
+							</p:dataTable>
+						</div>
+					</div>
 				</h:form>
 			</div>
 		</div>
@@ -105,8 +117,8 @@
 			class="fa fa-facebook-official"></i> Facebook</a> / <a
 		href="https://google.com" target="_blank"><i class="fa fa-google"></i>
 			Google</a>
-	</span> </footer> </center>	
-	
+	</span> </footer> </center>
+
 	<ui:include src="templates/scripts.xhtml" />
 </h:body>
 </html>

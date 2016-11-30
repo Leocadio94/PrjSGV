@@ -22,6 +22,7 @@
 
 	<link rel="stylesheet" href="css/teste.css" />
 	<link rel="stylesheet" href="css/styles.css" />
+	<link rel="stylesheet" href="css/stylesAdmin.css" />
 </h:head>
 <h:body>
 	<f:metadata>
@@ -64,8 +65,8 @@
 								<div class="col-md-4">
 									<p:calendar id="txtVal" size="8"
 										value="${vaccineMB.currentVaccine.validate}"
-										pattern="dd/MM/yyyy" mask="true" locale="br" navigator="true"
-										yearRange="c-0:c+10" required="true" />
+										pattern="dd/MM/yyyy" mask="true" locale="pt" navigator="true"
+										yearRange="c-0:c+10" required="true" showOn="both" />
 								</div>
 								<p:message for="txtVal" />
 							</div>

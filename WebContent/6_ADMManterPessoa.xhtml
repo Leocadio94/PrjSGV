@@ -21,6 +21,7 @@
 
 	<link rel="stylesheet" href="css/teste.css" />
 	<link rel="stylesheet" href="css/styles.css" />
+	<link rel="stylesheet" href="css/stylesAdmin.css" />
 </h:head>
 <h:body>
 	<f:metadata>
@@ -92,18 +93,6 @@
 								</div>
 
 								<div class="form-group">
-									<p:outputLabel for="txtWeight" class="col-md-4 control-label"
-										value="Peso:" />
-									<div class="col-md-4">
-										<p:inputNumber id="txtWeight"
-											value="${personMB.currentPerson.weight}" required="true"
-											symbol=" kg" symbolPosition="s" decimalSeparator=","
-											thousandSeparator="." size="22" />
-									</div>
-									<p:message for="txtWeight" />
-								</div>
-
-								<div class="form-group">
 
 									<p:outputLabel for="slctTattoo" class="col-md-4 control-label"
 										value="Tatuagem:" />
@@ -126,10 +115,22 @@
 									<div class="col-md-4">
 										<p:calendar id="txtDataNasc" size="8"
 											value="${personMB.currentPerson.dtBirth}"
-											pattern="dd/MM/yyyy" mask="true" locale="br" navigator="true"
-											yearRange="c-100:c+0" required="true" />
+											pattern="dd/MM/yyyy" mask="true" locale="pt" navigator="true"
+											yearRange="c-100:c+0" required="true" showOn="both" />
 									</div>
 									<p:message for="txtDataNasc" />
+								</div>
+
+								<div class="form-group">
+									<p:outputLabel for="txtWeight" class="col-md-4 control-label"
+										value="Peso:" />
+									<div class="col-md-4">
+										<p:inputNumber id="txtWeight"
+											value="${personMB.currentPerson.weight}" required="true"
+											symbol=" kg" symbolPosition="s" decimalSeparator=","
+											thousandSeparator="." size="8"/>
+									</div>
+									<p:message for="txtWeight" />
 								</div>
 							</h:panelGroup>
 							<h:panelGroup id="pAccess" rendered="#{not personMB.showEdit}">
@@ -435,7 +436,7 @@
 									filterMatchMode="contains">
 									<f:facet name="filter">
 										<p:inputText onkeyup="PF('personTable').filter()"
-											styleClass="form-control" placeholder="Procurar CPF..."/>
+											styleClass="form-control" placeholder="Procurar CPF..." />
 									</f:facet>
 									<h:outputText value="#{p.cpf}" />
 								</p:column>
@@ -444,7 +445,7 @@
 									filterBy="#{p.name}" filterMatchMode="contains">
 									<f:facet name="filter">
 										<p:inputText onkeyup="PF('personTable').filter()"
-											styleClass="form-control" placeholder="Procurar nome..."/>
+											styleClass="form-control" placeholder="Procurar nome..." />
 									</f:facet>
 									<h:outputText value="#{p.name}" />
 								</p:column>
