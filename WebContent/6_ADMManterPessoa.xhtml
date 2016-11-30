@@ -35,10 +35,10 @@
 		<p:messages />
 
 		<div class="content">
-			<div class="col-md-8">
 
-				<p:tabView cache="true" dynamic="true">
-					<p:tab title="Cadastrar">
+			<p:tabView cache="true" dynamic="true">
+				<p:tab title="Cadastrar" titleStyleClass="tabTitle">
+					<div class="col-md-8">
 						<h:form id="formp" role="form" class="form-horizontal"
 							enctype="multipart/form-data">
 							<img
@@ -95,10 +95,10 @@
 									<p:outputLabel for="txtWeight" class="col-md-4 control-label"
 										value="Peso:" />
 									<div class="col-md-4">
-										<p:inputNumber id="txtWeight" 
+										<p:inputNumber id="txtWeight"
 											value="${personMB.currentPerson.weight}" required="true"
 											symbol=" kg" symbolPosition="s" decimalSeparator=","
-											thousandSeparator="." size="22"/>
+											thousandSeparator="." size="22" />
 									</div>
 									<p:message for="txtWeight" />
 								</div>
@@ -410,43 +410,64 @@
 							</center>
 
 						</h:form>
-					</p:tab>
 
-					<p:tab title="Alterar/Excluir">
+					</div>
+				</p:tab>
 
+				<p:tab title="Alterar/Excluir" titleStyleClass="tabTitle">
+					<div class="col-md-12">
 						<h:form id="formae" role="form" class="form-horizontal"
 							enctype="multipart/form-data">
-							<p:dataTable var="p" value="#{personMB.people}"
-								styleClass="table table-striped table-bordered table-hover">
-								<p:column headerText="CPF" colspan="4" sortBy="#{p.cpf}">
+							<p:dataTable id="pTable" widgetVar="personTable" var="p"
+								value="#{personMB.people}"
+								styleClass="table table-striped table-bordered table-hover"
+								emptyMessage="Nenhuma pessoa foi encontrada.">
+								<f:facet name="header">
+									<p:outputPanel>
+										<h:outputText value="Procurar por CPF ou nome da pessoa: " />
+										<p:inputText id="globalFilter"
+											onkeyup="PF('personTable').filter()" style="width:150px"
+											placeholder="Digite aqui" />
+									</p:outputPanel>
+								</f:facet>
+
+								<p:column headerText="CPF" sortBy="#{p.cpf}" filterBy="#{p.cpf}"
+									filterMatchMode="contains">
+									<f:facet name="filter">
+										<p:inputText onkeyup="PF('personTable').filter()"
+											styleClass="form-control" placeholder="Procurar CPF..."/>
+									</f:facet>
 									<h:outputText value="#{p.cpf}" />
 								</p:column>
 
-								<p:column headerText="Nome" colspan="4" sortBy="#{p.name}">
+								<p:column headerText="Nome" sortBy="#{p.name}"
+									filterBy="#{p.name}" filterMatchMode="contains">
+									<f:facet name="filter">
+										<p:inputText onkeyup="PF('personTable').filter()"
+											styleClass="form-control" placeholder="Procurar nome..."/>
+									</f:facet>
 									<h:outputText value="#{p.name}" />
 								</p:column>
 
-								<p:column headerText="Data de Nascimento" colspan="3"
-									sortBy="#{p.dtBirth}">
+								<p:column headerText="Data de Nascimento" sortBy="#{p.dtBirth}">
 									<h:outputText value="#{p.dtBirth}">
 										<f:convertDateTime pattern="dd/MM/yyyy" />
 									</h:outputText>
 								</p:column>
 
-								<p:column headerText="RG" colspan="2" sortBy="#{p.rg}">
+								<p:column headerText="RG" sortBy="#{p.rg}">
 									<h:outputText value="#{p.rg}" />
 								</p:column>
 
-								<p:column headerText="Peso" colspan="2" sortBy="#{p.weight}">
-									<h:outputText value="#{p.weight}" />
+								<p:column headerText="Peso" sortBy="#{p.weight}">
+									<h:outputText value="#{p.weight} kg" />
 								</p:column>
 
-								<p:column headerText="Tem tattoo?" colspan="2"
-									sortBy="#{p.has_tattoo}">
+								<p:column headerText="Tem tattoo?" sortBy="#{p.has_tattoo}">
 									<h:outputText value="#{p.has_tattoo ? 'Sim' : 'Não'}" />
 								</p:column>
 
-								<p:column colspan="3">
+								<p:column>
 									<p:commandButton actionListener="${personMB.delete(p)}"
 										value="Excluir"
 										styleClass="ui-priority-primary pull-right btn btn-xs"
@@ -460,8 +481,6 @@
 
 								</p:column>
 							</p:dataTable>
-
-
 							<p:confirmDialog global="true" showEffect="fade"
 								hideEffect="fade">
 								<p:commandButton value="Sim" styleClass="ui-confirmdialog-yes"
@@ -472,9 +491,10 @@
 						</h:form>
 
 
-					</p:tab>
-				</p:tabView>
-			</div>
+					</div>
+
+				</p:tab>
+			</p:tabView>
 		</div>
 	</div>
 

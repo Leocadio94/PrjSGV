@@ -48,7 +48,32 @@ width : 900px;
 text-align: justify;
 text-indent: 50px;
 }
-.tabTitle, .tabTitle > a, .tabTitle a {
-	color: black;	
+.ui-selectonemenu, 
+.ui-selectonemenu-label {
+     width: 100% !important;
+}.btn {
+  padding-botton: 20px;  
 }
+
+.btn:hover {
+  transition: 0.3s;  
+  box-shadow: 5px 5px 5px #000000;
+  color: white;
+}
+.login-panel {
+    margin-top: 25%;
+}
+.panel-heading {
+    border-color: #5cb85c;
+    color: #fff;
+    background-color: #5cb85c;
+}
+.login-botao {
+	border: 1px solid black;
+}
+
+.ui-selectonemenu, 
+.ui-selectonemenu-label,
+.ui-inputnumber {
+     width: 100% !important;
 }

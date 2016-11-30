@@ -46,7 +46,7 @@ public class AccessMB implements Serializable {
 		currentAccess = new Access();
 		accessDAO = new AccessDAOImpl();
 
-		return "4_ADMtelaLogin?faces-redirect=true";
+		return "1_PortalPrincipal?faces-redirect=true";
 	}
 
 	public Access getCurrentAccess() {

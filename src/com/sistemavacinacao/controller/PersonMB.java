@@ -47,6 +47,7 @@ public class PersonMB implements Serializable {
 	private Access currentAccess;
 
 	private List<Person> people;
+	private List<Person> filteredPeople;
 	private List<Address> addresses;
 	private List<Phone> phones;
 	private List<Email> emails;
@@ -76,6 +77,7 @@ public class PersonMB implements Serializable {
 		vaccineDAO = new VaccineDAOImpl();
 
 		people = new ArrayList<Person>();
+		filteredPeople = new ArrayList<Person>();
 		disease = new ArrayList<Disease>();
 		allergy = new ArrayList<Allergy>();
 		vaccines = new ArrayList<Vaccine>();
@@ -465,6 +467,20 @@ public class PersonMB implements Serializable {
 	 */
 	public void setShowEdit(boolean showEdit) {
 		this.showEdit = showEdit;
+	}
+
+	/**
+	 * @return the filteredPeople
+	 */
+	public List<Person> getFilteredPeople() {
+		return filteredPeople;
+	}
+
+	/**
+	 * @param filteredPeople the filteredPeople to set
+	 */
+	public void setFilteredPeople(List<Person> filteredPeople) {
+		this.filteredPeople = filteredPeople;
 	}
 
 }
