@@ -20,7 +20,6 @@
 }
 
 .ui-selectonemenu, 
-.ui-selectonemenu-label,
-.ui-inputnumber {
+.ui-selectonemenu-label {
      width: 100% !important;
 }

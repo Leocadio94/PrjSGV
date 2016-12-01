@@ -54,7 +54,7 @@
 									<p:outputLabel for="txtCPF" class="col-md-4 control-label"
 										value="CPF:" />
 									<div class="col-md-4">
-										<p:inputMask id="txtCPF" styleClass="form-control"
+										<p:inputMask id="txtCPF" size="15"
 											value="${personMB.currentPerson.cpf}" mask="999.999.999-99"
 											required="true" maxlength="11" converter="convertInput"
 											rendered="#{not personMB.showEdit}" />
@@ -70,7 +70,7 @@
 									<p:outputLabel for="txtName" class="col-md-4 control-label"
 										value="Nome:" />
 									<div class="col-md-4">
-										<p:inputText id="txtName" styleClass="form-control"
+										<p:inputText id="txtName"
 											value="${personMB.currentPerson.name}" required="true" />
 									</div>
 									<p:message for="txtName" />
@@ -80,7 +80,7 @@
 									<p:outputLabel for="txtRg" class="col-md-4 control-label"
 										value="RG:" />
 									<div class="col-md-4">
-										<p:inputMask id="txtRg" styleClass="form-control"
+										<p:inputMask id="txtRg" size="12"
 											value="${personMB.currentPerson.rg}" required="true"
 											mask="99.999.999-9" converter="convertInput"
 											rendered="#{not personMB.showEdit}" />
@@ -98,13 +98,11 @@
 										value="Tatuagem:" />
 
 									<div class="col-md-4">
-										<p:selectOneMenu id="slctTattoo"
-											value="${personMB.currentPerson.has_tattoo}" required="true">
-											<f:selectItem itemLabel="Selecione a opção..."
-												noSelectionOption="true" itemValue="#{null}" />
+										<p:selectOneRadio id="slctTattoo"
+											value="${personMB.currentPerson.has_tattoo}" required="true" >
 											<f:selectItem itemLabel="Sim" itemValue="#{true}" />
-											<f:selectItem itemLabel="Não" itemValue="#{false}" />
-										</p:selectOneMenu>
+											<f:selectItem itemLabel="Não" itemValue="#{false}"  />
+										</p:selectOneRadio>
 									</div>
 									<p:message for="slctTattoo" />
 								</div>
@@ -128,7 +126,7 @@
 										<p:inputNumber id="txtWeight"
 											value="${personMB.currentPerson.weight}" required="true"
 											symbol=" kg" symbolPosition="s" decimalSeparator=","
-											thousandSeparator="." size="8"/>
+											thousandSeparator="." size="5"/>
 									</div>
 									<p:message for="txtWeight" />
 								</div>
@@ -140,7 +138,7 @@
 									<p:outputLabel for="txtLogin" class="col-md-4 control-label"
 										value="Login:" />
 									<div class="col-md-4">
-										<p:inputText id="txtLogin" styleClass="form-control"
+										<p:inputText id="txtLogin"
 											value="#{personMB.currentAccess.login}" label="Login" />
 										<p:message for="txtLogin" />
 									</div>
@@ -149,7 +147,7 @@
 									<p:outputLabel for="txtPassword" class="col-md-4 control-label"
 										value="Senha:" />
 									<div class="col-md-4">
-										<p:password id="txtPassword" styleClass="form-control"
+										<p:password id="txtPassword" 
 											value="#{personMB.currentAccess.password}" label="Senha"
 											feedback="true" promptLabel="Por favor, digite uma senha."
 											weakLabel="Fraco" goodLabel="Bom" strongLabel="Ótimo" />

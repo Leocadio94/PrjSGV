@@ -53,7 +53,7 @@
 								<p:outputLabel for="txtNameV" class="col-md-4 control-label"
 									value="Nome:" />
 								<div class="col-md-4">
-									<h:inputText id="txtNameV" styleClass="form-control"
+									<p:inputText id="txtNameV" 
 										value="${vaccineMB.currentVaccine.name}" required="true" />
 								</div>
 								<p:message for="txtNameV" />
@@ -75,8 +75,10 @@
 								<p:outputLabel for="txtLot" class="col-md-4 control-label"
 									value="Lote:" />
 								<div class="col-md-4">
-									<h:inputText id="txtLot" styleClass="form-control"
-										value="${vaccineMB.currentVaccine.lot}" required="true" />
+									<p:inputNumber id="txtLot"
+										value="${vaccineMB.currentVaccine.lot}" required="true" 
+											symbol=" ml" symbolPosition="s" decimalSeparator=","
+											thousandSeparator="." size="5"/>
 								</div>
 								<p:message for="txtLot" />
 							</div>
