@@ -151,12 +151,14 @@ CREATE TABLE vacinacao.tb_access (
                 cpf BIGINT NOT NULL,
                 login VARCHAR NOT NULL,
                 password VARCHAR NOT NULL,
+                is_admin BOOLEAN NOT NULL,
                 CONSTRAINT tb_access_pk PRIMARY KEY (cpf)
 );
 COMMENT ON TABLE vacinacao.tb_access IS 'Tabela de acesso de registros';
 COMMENT ON COLUMN vacinacao.tb_access.cpf IS 'CPF do registro';
 COMMENT ON COLUMN vacinacao.tb_access.login IS 'Login';
 COMMENT ON COLUMN vacinacao.tb_access.password IS 'Senha';
+COMMENT ON COLUMN vacinacao.tb_access.is_admin IS 'É administrador?';
 
 
 CREATE TABLE vacinacao.tb_allergies (
@@ -346,7 +348,7 @@ insert into vacinacao.tb_person (cpf,dt_birth,has_tattoo,name,rg,weight) values
 (22222, '1980-01-01', false, 'Maria', 22222, 80),
 (33333, '1980-01-01', false, 'João', 33333, 80);
 
-INSERT INTO vacinacao.tb_employees VALUES (123, 1, 11111);
+INSERT INTO vacinacao.tb_employees VALUES (999, 1, 999999);
 INSERT INTO vacinacao.tb_employees VALUES (123, 1, 11111);
 INSERT INTO vacinacao.tb_employees VALUES (456, 2, 22222);
 INSERT INTO vacinacao.tb_employees VALUES (789, 3, 33333);
