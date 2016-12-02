@@ -78,7 +78,7 @@ public class PersonDAOImpl implements IPersonDAO {
 		} else {
 			em.merge(object1);
 		}
-		
+
 		if (em.contains(object2)) {
 			em.persist(object2);
 		} else {
@@ -89,6 +89,7 @@ public class PersonDAOImpl implements IPersonDAO {
 
 		em.close();
 	}
+
 	@Override
 	public List<Person> selectAllPeople() throws SQLException {
 		EntityManager em = JPAUtil.getConnection();
@@ -99,7 +100,21 @@ public class PersonDAOImpl implements IPersonDAO {
 
 		em.close();
 
-		return people; // TODO limitar alterar/excluir apenas a não-admins
+		return people;
+	}
+
+	@Override
+	public List<Access> selectAllAccesses() throws SQLException {
+		EntityManager em = JPAUtil.getConnection();
+
+		TypedQuery<Access> qry = em.createQuery(
+				"select a from tb_access as a where a.isAdmin = false order by a.person.name", Access.class);
+
+		List<Access> accesses = qry.getResultList();
+
+		em.close();
+
+		return accesses; // TODO limitar alterar/excluir apenas a não-admins
 	}
 
 	@Override
@@ -186,35 +201,35 @@ public class PersonDAOImpl implements IPersonDAO {
 		Query qry = em.createQuery("delete from tb_access as a where a.person.cpf = :cpf");
 		qry.setParameter("cpf", person.getCpf());
 		qry.executeUpdate();
-		
+
 		qry = em.createQuery("delete from tb_addresses as ad where ad.person.cpf = :cpf");
 		qry.setParameter("cpf", person.getCpf());
 		qry.executeUpdate();
-		
+
 		qry = em.createQuery("delete from tb_allergies as al where al.person.cpf = :cpf");
 		qry.setParameter("cpf", person.getCpf());
 		qry.executeUpdate();
-		
+
 		qry = em.createQuery("delete from tb_dependents as d where d.person.cpf = :cpf");
 		qry.setParameter("cpf", person.getCpf());
 		qry.executeUpdate();
-		
+
 		qry = em.createQuery("delete from tb_diseases as di where di.person.cpf = :cpf");
 		qry.setParameter("cpf", person.getCpf());
 		qry.executeUpdate();
-		
+
 		qry = em.createQuery("delete from tb_emails as e where e.person.cpf = :cpf");
 		qry.setParameter("cpf", person.getCpf());
 		qry.executeUpdate();
-		
+
 		qry = em.createQuery("delete from tb_phones as p where p.person.cpf = :cpf");
 		qry.setParameter("cpf", person.getCpf());
 		qry.executeUpdate();
-		
+
 		qry = em.createQuery("delete from tb_vaccinations as v where v.person.cpf = :cpf");
 		qry.setParameter("cpf", person.getCpf());
 		qry.executeUpdate();
-		
+
 		Person p1 = em.getReference(Person.class, person.getCpf());
 		em.remove(p1);
 

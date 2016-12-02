@@ -62,6 +62,13 @@ public interface IPersonDAO {
 	public List<Person> selectAllPeople() throws SQLException;
 
 	/**
+	 * Método responsável por buscar todos os registros de acessos da base de dados
+	 * @param pgDB
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<Access> selectAllAccesses() throws SQLException;
+	/**
 	 * Método responsável por buscar todos os registros de pessoas da base de dados
 	 * @param pgDB
 	 * @return

@@ -22,11 +22,15 @@ public class AccessMB implements Serializable {
 	private IAccessDAO accessDAO;
 
 	public AccessMB() {
-		currentAccess = new Access();
-		currentAccess.setPerson(new Person());
-		accessDAO = new AccessDAOImpl();
+		initialize();
 	}
 
+	public void initialize() {
+		currentAccess = new Access();
+		currentAccess.setPerson(new Person());
+		accessDAO = new AccessDAOImpl();		
+	}
+	
 	public String login() {
 		currentAccess = accessDAO.login(currentAccess);
 

@@ -158,7 +158,7 @@ COMMENT ON TABLE vacinacao.tb_access IS 'Tabela de acesso de registros';
 COMMENT ON COLUMN vacinacao.tb_access.cpf IS 'CPF do registro';
 COMMENT ON COLUMN vacinacao.tb_access.login IS 'Login';
 COMMENT ON COLUMN vacinacao.tb_access.password IS 'Senha';
-COMMENT ON COLUMN vacinacao.tb_access.is_admin IS '√â administrador?';
+COMMENT ON COLUMN vacinacao.tb_access.is_admin IS '… administrador?';
 
 
 CREATE TABLE vacinacao.tb_allergies (
@@ -321,7 +321,7 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-insert into vacinacao.dm_vaccine_type values (1, 'Imuniza√ß√£o');
+insert into vacinacao.dm_vaccine_type values (1, 'ImunizaÁ„o');
 insert into vacinacao.dm_vaccine_type values (2, 'Virais');
 
 insert into vacinacao.dm_dependence_type values (1, 'Filho');
@@ -344,9 +344,9 @@ INSERT INTO vacinacao.dm_allergy VALUES (3, 'Alergia C');
 
 insert into vacinacao.tb_person (cpf,dt_birth,has_tattoo,name,rg,weight) values 
 (999999, '1980-01-01', false, 'Administrador', 999999, 80),
-(11111, '1980-01-01', false, 'Jos√©', 11111, 80),
+(11111, '1980-01-01', false, 'JosÈ', 11111, 80),
 (22222, '1980-01-01', false, 'Maria', 22222, 80),
-(33333, '1980-01-01', false, 'Jo√£o', 33333, 80);
+(33333, '1980-01-01', false, 'Jo„o', 33333, 80);
 
 INSERT INTO vacinacao.tb_employees VALUES (999, 1, 999999);
 INSERT INTO vacinacao.tb_employees VALUES (123, 1, 11111);

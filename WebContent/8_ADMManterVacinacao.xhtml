@@ -19,7 +19,7 @@
 	<link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 
-	<link rel="stylesheet" href="css/teste.css" />
+
 	<link rel="stylesheet" href="css/styles.css" />
 	<link rel="stylesheet" href="css/stylesAdmin.css" />
 
@@ -37,13 +37,14 @@
 		<p:messages />
 
 		<div class="content">
+
+			<img
+				src="http://dmtraveldm.lwsite.com.br/uploads/widget/image/553/028/55302839/vacina-banner-dmtravel.jpg"
+				class="img-rounded img-responsive"
+				style="width: 150%; height: 230px;"></img>
 			<div class="col-md-8">
 				<h:form role="form" class="form-horizontal"
 					enctype="multipart/form-data">
-					<img
-						src="http://www.big1news.com.br/wp-content/uploads/2013/08/Campanha-Nacional-de-Vacina%C3%A7%C3%A3o-1.jpg"
-						class="img-rounded" style="width: 400px; height: 230px;"></img>
-
 					<h2>Administração de Vacinações</h2>
 
 					<div class="form-group">
@@ -72,7 +73,7 @@
 							<p:selectOneMenu id="slctPeople" converter="personConverter"
 								value="${vaccinationMB.currentVaccination.person}"
 								label="Pessoa" filter="true" filterMatchMode="contains"
-								required="true" >
+								required="true">
 								<f:selectItem itemLabel="Selecione a pessoa..."
 									noSelectionOption="true" itemValue="#{null}" />
 								<f:selectItems value="#{vaccinationMB.people}" var="p"
@@ -119,7 +120,7 @@
 						<p:outputLabel for="txtDose" class="col-md-4 control-label"
 							value="Dose:" />
 						<div class="col-md-4">
-							<p:inputText id="txtDose" 
+							<p:inputText id="txtDose"
 								value="${vaccinationMB.currentVaccination.dose}" required="true"
 								label="Dose" size="2" />
 						</div>
@@ -149,10 +150,10 @@
 
 	<center> <footer class="rodape"> <span>VacinaWeb
 		- Site em Desenvolvimento ® All Rights Reserved 2016 - <a
-		href="https://facebook.com" target="_blank"><i
-			class="fa fa-facebook-official"></i> Facebook</a> / <a
-		href="https://google.com" target="_blank"><i class="fa fa-google"></i>
-			Google</a>
+		href="http://localhost:8080/Sistema-Vacinacao/1_PortalPrincipal.xhtml"
+		target="_blank"><i class="fa fa-facebook-official"></i> Nossa
+			Página</a> / <a href="https://google.com" target="_blank"><i
+			class="fa fa-google"></i> Google</a>
 	</span> </footer> </center>
 
 	<ui:include src="templates/scripts.xhtml" />

@@ -20,7 +20,7 @@
 	<link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 
-	<link rel="stylesheet" href="css/teste.css" />
+
 	<link rel="stylesheet" href="css/styles.css" />
 	<link rel="stylesheet" href="css/stylesAdmin.css" />
 </h:head>
@@ -40,12 +40,12 @@
 
 			<p:tabView cache="true" dynamic="true">
 				<p:tab title="Cadastrar">
+					<img
+						src="http://dmtraveldm.lwsite.com.br/uploads/widget/image/553/028/55302839/vacina-banner-dmtravel.jpg"
+						class="img-rounded img-responsive" style="width: 150%; height: 230px;"></img>
 					<div class="col-md-8">
 						<h:form id="formprincipal" role="form" class="form-horizontal"
 							enctype="multipart/form-data">
-							<img
-								src="http://www.big1news.com.br/wp-content/uploads/2013/08/Campanha-Nacional-de-Vacina%C3%A7%C3%A3o-1.jpg"
-								class="img-rounded" style="width: 400px; height: 230px;"></img>
 
 							<h2>Administração de Vacinas</h2>
 
@@ -53,7 +53,7 @@
 								<p:outputLabel for="txtNameV" class="col-md-4 control-label"
 									value="Nome:" />
 								<div class="col-md-4">
-									<p:inputText id="txtNameV" 
+									<p:inputText id="txtNameV"
 										value="${vaccineMB.currentVaccine.name}" required="true" />
 								</div>
 								<p:message for="txtNameV" />
@@ -76,9 +76,9 @@
 									value="Lote:" />
 								<div class="col-md-4">
 									<p:inputNumber id="txtLot"
-										value="${vaccineMB.currentVaccine.lot}" required="true" 
-											symbol=" ml" symbolPosition="s" decimalSeparator=","
-											thousandSeparator="." size="5"/>
+										value="${vaccineMB.currentVaccine.lot}" required="true"
+										symbol=" ml" symbolPosition="s" decimalSeparator=","
+										thousandSeparator="." size="5" />
 								</div>
 								<p:message for="txtLot" />
 							</div>
@@ -140,7 +140,8 @@
 									<h:outputText value="#{v.lot}" />
 								</p:column>
 
-								<p:column headerText="Tipo de Vacina" sortBy="#{v.vaccineType.name}">
+								<p:column headerText="Tipo de Vacina"
+									sortBy="#{v.vaccineType.name}">
 									<h:outputText value="#{v.vaccineType.name}" />
 								</p:column>
 
@@ -180,10 +181,10 @@
 	<hr />
 	<center> <footer class="rodape"> <span>VacinaWeb
 		- Site em Desenvolvimento ® All Rights Reserved 2016 - <a
-		href="https://facebook.com" target="_blank"><i
-			class="fa fa-facebook-official"></i> Facebook</a> / <a
-		href="https://google.com" target="_blank"><i class="fa fa-google"></i>
-			Google</a>
+		href="http://localhost:8080/Sistema-Vacinacao/1_PortalPrincipal.xhtml"
+		target="_blank"><i class="fa fa-facebook-official"></i> Nossa
+			Página</a> / <a href="https://google.com" target="_blank"><i
+			class="fa fa-google"></i> Google</a>
 	</span> </footer> </center>
 
 	<ui:include src="templates/scripts.xhtml" />

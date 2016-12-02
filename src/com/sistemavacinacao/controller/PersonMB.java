@@ -47,7 +47,7 @@ public class PersonMB implements Serializable {
 	private Access currentAccess;
 
 	private List<Person> people;
-	private List<Person> filteredPeople;
+	private List<Access> accesses;
 	private List<Address> addresses;
 	private List<Phone> phones;
 	private List<Email> emails;
@@ -69,24 +69,15 @@ public class PersonMB implements Serializable {
 
 	public PersonMB() {
 		showForm = false;
-		showEdit = false;
 
+		currentPerson = new Person();
 		initialize();
-
-		personDAO = new PersonDAOImpl();
-		vaccineDAO = new VaccineDAOImpl();
-
-		people = new ArrayList<Person>();
-		filteredPeople = new ArrayList<Person>();
-		disease = new ArrayList<Disease>();
-		allergy = new ArrayList<Allergy>();
-		vaccines = new ArrayList<Vaccine>();
 
 		read();
 	}
 
 	public void initialize() {
-		currentPerson = new Person();
+		showEdit = false;
 		currentAddress = new Address();
 		currentPhone = new Phone();
 		currentEmail = new Email();
@@ -104,10 +95,20 @@ public class PersonMB implements Serializable {
 		diseases = new ArrayList<Diseases>();
 		allergies = new ArrayList<Allergies>();
 		dependenceTypes = new ArrayList<DependenceType>();
+
+		people = new ArrayList<Person>();
+		setAccesses(new ArrayList<Access>());
+		disease = new ArrayList<Disease>();
+		allergy = new ArrayList<Allergy>();
+		vaccines = new ArrayList<Vaccine>();
+
+		personDAO = new PersonDAOImpl();
+		vaccineDAO = new VaccineDAOImpl();
 	}
 
 	public void create() {
 
+		currentPerson = new Person();
 		initialize();
 		read();
 		showForm = false;
@@ -119,8 +120,10 @@ public class PersonMB implements Serializable {
 	}
 
 	public void read() {
+		initialize();
 		try {
 			people = personDAO.selectAllPeople();
+			accesses = personDAO.selectAllAccesses();
 			dependenceTypes = personDAO.selectAllDependenceTypes();
 			vaccines = vaccineDAO.selectAllVaccines();
 			disease = personDAO.selectAllDisease();
@@ -454,33 +457,20 @@ public class PersonMB implements Serializable {
 		this.allergy = allergy;
 	}
 
-	/**
-	 * @return the showEdit
-	 */
 	public boolean isShowEdit() {
 		return showEdit;
 	}
 
-	/**
-	 * @param showEdit
-	 *            the showEdit to set
-	 */
 	public void setShowEdit(boolean showEdit) {
 		this.showEdit = showEdit;
 	}
 
-	/**
-	 * @return the filteredPeople
-	 */
-	public List<Person> getFilteredPeople() {
-		return filteredPeople;
+	public List<Access> getAccesses() {
+		return accesses;
 	}
-
-	/**
-	 * @param filteredPeople the filteredPeople to set
-	 */
-	public void setFilteredPeople(List<Person> filteredPeople) {
-		this.filteredPeople = filteredPeople;
+	
+	public void setAccesses(List<Access> accesses) {
+		this.accesses = accesses;
 	}
 
 }
