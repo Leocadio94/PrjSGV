@@ -20,11 +20,42 @@
 	<link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 
-
 	<link rel="stylesheet" href="css/styles.css" />
-	<link rel="stylesheet" href="css/stylesPerson.css" />
 
-	<script src="js/highlight.js" />
+	<script>
+		// <![CDATA[
+		function highlightDays(date) {
+			var carter = "#{vaccinationCardMB.currentDates}";
+			var dates = carter;
+			dates = dates.replace("[", "");
+			dates = dates.replace("]", "");
+			dates = dates.replace(" ", "");
+			dates = dates.split(",");
+
+			var dateF = ('0' + date.getDate()).slice(-2) + '/'
+					+ ('0' + (date.getMonth() + 1)).slice(-2) + '/'
+					+ date.getFullYear();
+			console.log(dateF);
+			var cssclass = "";
+			for (var i = 0; i < dates.length; i++) {
+				console.log(dates[i]);
+				if (dateF === dates[i]) {
+					cssclass = "pdate-selected";
+				}
+			}
+
+			return [ true, cssclass ];
+		}
+		// ]]>
+	</script>
+
+	<h:outputStylesheet>
+		.pdate-selected > a {	
+		    background: #ff3333 !important;
+		    color: #FFF !important;
+		    border: 2px solid black !important;
+		}
+	</h:outputStylesheet>
 </h:head>
 <h:body>
 	<f:metadata>
@@ -62,7 +93,8 @@
 							<p:calendar id="inline" mode="inline"
 								value="#{vaccinationCardMB.currentDate}" locale="pt"
 								onselect="PF('dlg').show();" navigator="true"
-								showOtherMonths="true" beforeShowDay="highlightDays" mindate="new Date();">
+								showOtherMonths="true" beforeShowDay="highlightDays"
+								mindate="new Date();">
 								<p:ajax event="dateSelect" update="diag"
 									oncomplete="PF('dlg').show();" />
 							</p:calendar>

@@ -90,7 +90,7 @@ public class VaccinationCardMB implements Serializable {
 	}
 
 	public void fillDates() {
-		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		List<String> dateList = new ArrayList<String> ();
 		
 		for (Vaccination v : nextVaccinations) {
