@@ -1,2 +1,4 @@
-.ui-datepicker {
+.pdate-selected {
+	background-color: blue;
+	border: 1px solid black;
 }

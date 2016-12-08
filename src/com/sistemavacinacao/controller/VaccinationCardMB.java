@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -38,6 +39,7 @@ public class VaccinationCardMB implements Serializable {
 
 	private List<Vaccination> previousVaccinations;
 	private List<Vaccination> nextVaccinations;
+	private String[] currentDates;
 
 	private IVaccinationDAO vaccinationDAO;
 
@@ -64,6 +66,7 @@ public class VaccinationCardMB implements Serializable {
 
 		readPrevious();
 		readNext();
+		fillDates();
 	}
 
 	public void readPrevious() {
@@ -86,23 +89,41 @@ public class VaccinationCardMB implements Serializable {
 		}
 	}
 
-	public void onDateSelect(SelectEvent event) {
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-		facesContext.addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Data selecionada: " + format.format(event.getObject()), "INFO"));
+	public void fillDates() {
+		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+		List<String> dateList = new ArrayList<String> ();
+		
+		for (Vaccination v : nextVaccinations) {
+			dateList.add(format.format(v.getDateVaccination()));
+		}
+		
+		currentDates = new String[dateList.size()];
+		currentDates = dateList.toArray(currentDates);
 	}
-
+	
+	public static String toJavascriptArray(String[] arr){
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("[");
+	    for(int i=0; i<arr.length; i++){
+	        sb.append("\"").append(arr[i]).append("\"");
+	        if(i+1 < arr.length){
+	            sb.append(",");
+	        }
+	    }
+	    sb.append("]");
+	    return sb.toString();
+	}
+	
 	public String getFormattedDate() {
 		String retorno = "Não há vacinas marcadas para essa data.";
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-		
+
 		for (Vaccination v : nextVaccinations) {
 			if (currentDate.equals(v.getDateVaccination())) {
-				retorno = "Há uma vacina marcada para a data " + format.format(currentDate) +".";
+				retorno = "Há uma vacina marcada para a data " + format.format(currentDate) + ".";
 			}
 		}
-		
+
 		return retorno;
 	}
 
@@ -152,5 +173,13 @@ public class VaccinationCardMB implements Serializable {
 
 	public void setCurrentDate(Date currentDate) {
 		this.currentDate = currentDate;
+	}
+
+	public String getCurrentDates() {
+		return Arrays.toString(currentDates);
+	}
+
+	public void setCurrentDates(String[] currentDates) {
+		this.currentDates = currentDates;
 	}
 }

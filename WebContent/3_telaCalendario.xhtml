@@ -24,6 +24,7 @@
 	<link rel="stylesheet" href="css/styles.css" />
 	<link rel="stylesheet" href="css/stylesPerson.css" />
 
+	<script src="js/highlight.js" />
 </h:head>
 <h:body>
 	<f:metadata>
@@ -61,9 +62,8 @@
 							<p:calendar id="inline" mode="inline"
 								value="#{vaccinationCardMB.currentDate}" locale="pt"
 								onselect="PF('dlg').show();" navigator="true"
-								showOtherMonths="true">
-								<p:ajax event="dateSelect"
-									listener="#{vaccinationCardMB.onDateSelect}" update="diag"
+								showOtherMonths="true" beforeShowDay="highlightDays" mindate="new Date();">
+								<p:ajax event="dateSelect" update="diag"
 									oncomplete="PF('dlg').show();" />
 							</p:calendar>
 
