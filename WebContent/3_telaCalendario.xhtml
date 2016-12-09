@@ -21,7 +21,7 @@
 
 	<link rel="stylesheet" href="css/styles.css" />
 	<link rel="stylesheet" href="css/stylesPessoa.css" />
-	
+
 	<script type="text/javascript">
 		// <![CDATA[
 		function highlightDays(date) {
@@ -77,7 +77,8 @@
 						<div class="col-md-8 col-md-offset-4">
 							<p:dialog id="diag" header="Vacinação" widgetVar="dlg"
 								dynamic="true" modal="true">
-								<h:outputText value="${vaccinationCardMB.getFormattedDate()}"  escape="false"/>
+								<h:outputText value="${vaccinationCardMB.getFormattedDate()}"
+									escape="false" />
 							</p:dialog>
 
 							<h3>Calendário de Vacinação</h3>
@@ -99,6 +100,19 @@
 							</p:confirmDialog>
 						</div>
 
+						<hr />
+
+						<div class="col-md-8 col-md-offset-4">
+							<h3>Mapa</h3>
+
+							<p:gmap widgetVar="w_gmap" type="MAP"
+								center="-23.5404823,-46.4866057" zoom="15"
+								style="width:400px;height:400px" />
+						</div>
+						
+						
+						<hr />
+						
 						<div class="text-center col-md-12">
 
 							<hr />
@@ -133,7 +147,6 @@
 			</div>
 		</div>
 	</div>
-
 	<hr />
 	<center> <footer class="rodape"> <span>VacinaWeb
 		- Site em Desenvolvimento ® All Rights Reserved 2016 - <a
@@ -144,6 +157,32 @@
 	</span> </footer> </center>
 
 	<ui:include src="templates/scripts.xhtml" />
+
+	<script type="text/javascript"
+		src="http://maps.google.com/maps/api/js?key=AIzaSyDBfhUrVy7XsG9HFLOVfb3xlrxdZQB7CZ0"></script>
+	<script type="text/javascript"
+		src="http://www.google.com/jsapi?key=AIzaSyDBfhUrVy7XsG9HFLOVfb3xlrxdZQB7CZ0"></script>
+
+
+	<script type="text/javascript">
+		if (navigator.geolocation) {
+			checkGeolocationByHTML5();
+		}
+
+		function checkGeolocationByHTML5() {
+			navigator.geolocation.getCurrentPosition(function(position) {
+				setMapCenter(position.coords.latitude,
+						position.coords.longitude);
+			}, function() {
+				checkGeolocationByLoaderAPI(); // Error! Fall back to Loader API.
+			});
+		}
+
+		function setMapCenter(latitude, longitude) {
+			PF('w_gmap').getMap().setCenter(
+					new google.maps.LatLng(latitude, longitude));
+		}
+	</script>
 </h:body>
 </html>
 
