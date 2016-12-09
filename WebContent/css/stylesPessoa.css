@@ -1,0 +1,5 @@
+.pdate-selected > a {
+	background: #ff3333 !important;
+	color: #FFF !important;
+	border: 2px solid black !important;
+}

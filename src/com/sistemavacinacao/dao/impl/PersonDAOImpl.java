@@ -114,7 +114,7 @@ public class PersonDAOImpl implements IPersonDAO {
 
 		em.close();
 
-		return accesses; // TODO limitar alterar/excluir apenas a não-admins
+		return accesses; 
 	}
 
 	@Override

@@ -91,40 +91,58 @@ public class VaccinationCardMB implements Serializable {
 
 	public void fillDates() {
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-		List<String> dateList = new ArrayList<String> ();
-		
+		List<String> dateList = new ArrayList<String>();
+
 		for (Vaccination v : nextVaccinations) {
 			dateList.add(format.format(v.getDateVaccination()));
 		}
-		
+
 		currentDates = new String[dateList.size()];
 		currentDates = dateList.toArray(currentDates);
 	}
-	
-	public static String toJavascriptArray(String[] arr){
-	    StringBuffer sb = new StringBuffer();
-	    sb.append("[");
-	    for(int i=0; i<arr.length; i++){
-	        sb.append("\"").append(arr[i]).append("\"");
-	        if(i+1 < arr.length){
-	            sb.append(",");
-	        }
-	    }
-	    sb.append("]");
-	    return sb.toString();
-	}
-	
+
+	/*
+	 * public static String toJavascriptArray(String[] arr){ StringBuffer sb =
+	 * new StringBuffer(); sb.append("["); for(int i=0; i<arr.length; i++){
+	 * sb.append("\"").append(arr[i]).append("\""); if(i+1 < arr.length){
+	 * sb.append(","); } } sb.append("]"); return sb.toString(); }
+	 */
+
 	public String getFormattedDate() {
-		String retorno = "Não há vacinas marcadas para essa data.";
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		List<Vaccination> vacinacoes = new ArrayList<Vaccination>();
+		String dataAtual = format.format(currentDate);
+
+		StringBuffer retorno = new StringBuffer();
+		retorno.append("Não há vacinas marcadas para essa data.");
 
 		for (Vaccination v : nextVaccinations) {
 			if (currentDate.equals(v.getDateVaccination())) {
-				retorno = "Há uma vacina marcada para a data " + format.format(currentDate) + ".";
+				vacinacoes.add(v);
 			}
 		}
 
-		return retorno;
+		if (vacinacoes.size() > 0) {
+			if (vacinacoes.size() == 1) {
+				Vaccination v = vacinacoes.get(0);
+				retorno = new StringBuffer();
+				retorno.append("Para o dia " + dataAtual + ", a seguinte vacina está marcada: <br/>");
+				retorno.append(" - Vacina '" + v.getVaccine().getName() + "' com o funcionário '"
+						+ v.getEmployee().getPerson().getName() + "' no hospital '" + v.getEmployee().getLocal().getName());
+
+			} else {
+				retorno = new StringBuffer();
+				retorno.append("Para o dia " + dataAtual + ", as seguintes vacinas estão marcadas: <br/>");
+				for (Vaccination v : vacinacoes) {
+					retorno.append(" - Vacina '" + v.getVaccine().getName() + "' com o funcionário '"
+							+ v.getEmployee().getPerson().getName() + "' no hospital '" + v.getEmployee().getLocal().getName()
+							+ "' <br/>");
+				}
+			}
+
+		}
+
+		return retorno.toString();
 	}
 
 	public List<Vaccination> getPreviousVaccinations() {

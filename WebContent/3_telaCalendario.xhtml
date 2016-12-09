@@ -12,7 +12,6 @@
 	<meta name="author" content=""></meta>
 	<title>VacinaWeb</title>
 
-
 	<link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 	<link rel="stylesheet"
@@ -21,8 +20,9 @@
 		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 
 	<link rel="stylesheet" href="css/styles.css" />
-
-	<script>
+	<link rel="stylesheet" href="css/stylesPessoa.css" />
+	
+	<script type="text/javascript">
 		// <![CDATA[
 		function highlightDays(date) {
 			var carter = "#{vaccinationCardMB.currentDates}";
@@ -35,11 +35,10 @@
 			var dateF = ('0' + date.getDate()).slice(-2) + '/'
 					+ ('0' + (date.getMonth() + 1)).slice(-2) + '/'
 					+ date.getFullYear();
-			console.log(dateF);
 			var cssclass = "";
 			for (var i = 0; i < dates.length; i++) {
-				console.log(dates[i]);
-				if (dateF === dates[i]) {
+				console.log(dateF + " COMPARA " + dates[i]);
+				if (dateF === dates[i].trim()) {
 					cssclass = "pdate-selected";
 				}
 			}
@@ -48,14 +47,6 @@
 		}
 		// ]]>
 	</script>
-
-	<h:outputStylesheet>
-		.pdate-selected > a {	
-		    background: #ff3333 !important;
-		    color: #FFF !important;
-		    border: 2px solid black !important;
-		}
-	</h:outputStylesheet>
 </h:head>
 <h:body>
 	<f:metadata>
@@ -86,7 +77,7 @@
 						<div class="col-md-8 col-md-offset-4">
 							<p:dialog id="diag" header="Vacinação" widgetVar="dlg"
 								dynamic="true" modal="true">
-								<h:outputText value="${vaccinationCardMB.getFormattedDate()}" />
+								<h:outputText value="${vaccinationCardMB.getFormattedDate()}"  escape="false"/>
 							</p:dialog>
 
 							<h3>Calendário de Vacinação</h3>
